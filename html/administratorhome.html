@@ -148,10 +148,18 @@
         document.getElementById(fileInputId).click();
     }
     let i = 0;
-    document.querySelector('.think-Container').addEventListener('change', function (event) {
-        const target = event.target;
-        if (target.classList.contains('file-input')) {
+    let changeImg=0;
+    document.querySelector('.think-Container').addEventListener('change',function(event){
+        let target = event.target;
+        var imgBoxId = 'addImg' + target.id.replace('file-input', '');
+        var imgBoxElement = document.getElementById(imgBoxId);
+            if (imgBoxElement) {
+                    imgBoxElement.parentNode.removeChild(imgBoxElement);
+                    changeImg++;
+            }
+            if (target.classList.contains('file-input')) {
             const file = target.files[0];
+            
             if (file) {
                 const reader = new FileReader();
                 reader.onload = function (e) {
@@ -159,18 +167,23 @@
                     const imgBox = document.getElementById(imgBoxId);
                     const img = document.createElement('img');
                     img.src = e.target.result;
-                    img.className = 'addImg';
-
+                    img.className = 'addImg' ;
+                    img.id='addImg' +i;
+                    var plusSignId= 'plus-sign' + target.id.replace('file-input', '');
+                    const plusSign= document.getElementById(plusSignId);
+                    plusSign.classList.add('hidden');
                     imgBox.appendChild(img);
-
+                    if(changeImg==0){
                     createNewThingIcon();
-
+                    
+                    }else{changeImg--}
                 }
                 reader.readAsDataURL(file);
             }
         }
-    });
 
+    })
+    
     function createNewThingIcon() {
         i++;
         const container = document.querySelector('.think-Container');
