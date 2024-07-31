@@ -82,34 +82,34 @@
                     </tr>
                     <tr>
                         <td><label class="eventInformation" for="Fee">Fee :</label></td>
-                        <td><input name="Fee" type="number"></td>
+                        <td><input name="Fee" type="number" step="0.01"></td>
                     </tr>
                     <tr>
                         <td><label class="eventInformation" for="Host">Event host :</label></td>
                         <td><input name="Host"></td>
                     </tr>
                     <tr>
-                        <td><label class="eventInformation">Precautions:</label></td>
+                        <td><label class="eventInformation">Precautions : </label></td>
                         <td><textarea class="" name="Precautions" cols="30" rows="3"></textarea></td>
                     </tr>
                 </table>
                 <span class="line"></span>
                 <h3 class="thingToBring">Thing to bring</h3>
                 <div class="think-Container">
-                    <div class="thingIcon"><img src="../Img/Screenshot 2024-07-28 124450.png">
-                        <p class="thingContent">Water</p>
+                    <div class="thingIcon">
+                        <input type="file" id="file-input0" class="file-input" accept="image/*" style="display:none;" />
+                        <div class="img-box" id="img-box0" onclick="triggerFileInput('file-input0')">
+                            <img src="../Img/Screenshot 2024-06-08 133929.png" alt="addImg" class="plus-sign"
+                                id="plus-sign0">
+                        </div>
+                        <input name="thingContent" class="thingContent">
                     </div>
-                    <div class="thingIcon"><img src="../Img/Screenshot 2024-07-28 124450.png">
-                        <p class="thingContent">Water</p>
-                    </div>
-                    <div class="thingIcon"><img src="../Img/Screenshot 2024-07-28 124450.png">
-                        <p class="thingContent">Water</p>
-                    </div>
-                    <div class="thingIcon"><img src="../Img/Screenshot 2024-07-28 124450.png">
-                        <p class="thingContent">Water</p>
-                    </div>
+
                 </div>
-                <button class="signUp">Sign Up Now!</button>
+                <div class="button-container">
+                    <input class="button" type="submit" name="submit" value="Add">
+                    <input class="button" type="reset" name="reset" value="Reset">
+                </div>
             </div>
 
 
@@ -143,6 +143,75 @@
             }
         });
     });
+
+    function triggerFileInput(fileInputId) {
+        document.getElementById(fileInputId).click();
+    }
+    let i = 0;
+    document.querySelector('.think-Container').addEventListener('change', function (event) {
+        const target = event.target;
+        if (target.classList.contains('file-input')) {
+            const file = target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function (e) {
+                    const imgBoxId = 'img-box' + target.id.replace('file-input', '');
+                    const imgBox = document.getElementById(imgBoxId);
+                    const img = document.createElement('img');
+                    img.src = e.target.result;
+                    img.className = 'addImg';
+
+                    imgBox.appendChild(img);
+
+                    createNewThingIcon();
+
+                }
+                reader.readAsDataURL(file);
+            }
+        }
+    });
+
+    function createNewThingIcon() {
+        i++;
+        const container = document.querySelector('.think-Container');
+        const newThingIcon = document.createElement('div');
+        newThingIcon.className = 'thingIcon';
+
+        const newFileInput = document.createElement('input');
+        newFileInput.type = 'file';
+        newFileInput.id = 'file-input' + i;
+        newFileInput.className = 'file-input';
+        newFileInput.accept = 'image/*';
+        newFileInput.style.display = 'none';
+
+        const newImgBox = document.createElement('div');
+        newImgBox.className = 'img-box';
+        newImgBox.id = 'img-box' + i;
+        newImgBox.onclick = function () { triggerFileInput('file-input' + i); };
+
+        const newPlusSign = document.createElement('img');
+        newPlusSign.src = '../Img/Screenshot 2024-06-08 133929.png';
+        newPlusSign.alt = 'addImg';
+        newPlusSign.className = 'plus-sign';
+        newPlusSign.id = 'plus-sign' + i;
+
+        const newThingContent = document.createElement('input');
+        newThingContent.name = 'thingContent';
+        newThingContent.className = 'thingContent';
+
+        newImgBox.appendChild(newPlusSign);
+        newThingIcon.appendChild(newFileInput);
+        newThingIcon.appendChild(newImgBox);
+        newThingIcon.appendChild(newThingContent);
+        container.appendChild(newThingIcon);
+        const plusSigns = document.querySelectorAll('.plus-sign');
+        plusSigns.forEach(ps => ps.classList.add('hidden'));
+        let currentPlusSign = document.getElementById('plus-sign' + target.id.replace('file-input', ''));
+        if (currentPlusSign) {
+            currentPlusSign.classList.remove('hidden');
+        }
+    }
+
 
     let index = 0;
     let width = 0;
