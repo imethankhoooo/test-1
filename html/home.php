@@ -63,9 +63,9 @@
         </div>
         <div class="select-container" >
             <div id="img-container">
-                <div class="img-item" id="img1" style=" background-image: url('../Img/2010102611565864377801.jpg');">
+                <div class="img-item" id="img1" style=" background-image: url('../Img/360_F_99821575_nVEHTBXzUnTcLIKN6yOymAWAnFwEybGb-2.jpg');">
                     <div class="content">
-                        <div class="img-title">Title</div>
+                        <div class="img-title">MEET YOUR PERSONAL TRAINER</div>
                         <div class="img-text">content</div>
                         <button  >seeMore</button>
                     </div>
