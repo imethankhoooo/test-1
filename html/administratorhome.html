@@ -25,7 +25,7 @@
                 <li class="list" style="--clr:black;">
                     <a onclick="switchPage('adminPage2')">
                         <span class="icon"><img class="imgIcon" src="../Img/Screenshot 2024-06-08 133129.png"></span>
-                        <span class="text">Login</span>
+                        <span class="text">Member Information</span>
                     </a>
                 </li>
                 <li class="list" style="--clr:green;">
@@ -57,7 +57,9 @@
 
     <div class="Page adminPage1 "></div>
     <div class="Page adminPage2 hidden"></div>
-    <div class="Page adminPage3 hidden"></div>
+    <div class="Page adminPage3 hidden">
+        
+    </div>
     <div class="Page adminPage4 hidden">
         <div class="searchEvent-container">
             <input type="text" class="searchEvent" placeholder="Search....">
@@ -314,7 +316,7 @@
         newThingIcon.appendChild(newThingContent);
         container.appendChild(newThingIcon);
         const plusSigns = document.querySelectorAll('.plus-sign');
-        plusSigns.forEach(ps => ps.classList.add('hidden'));
+
         let currentPlusSign = document.getElementById('plus-sign' + target.id.replace('file-input', ''));
         if (currentPlusSign) {
             currentPlusSign.classList.remove('hidden');
