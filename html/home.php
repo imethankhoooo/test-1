@@ -66,42 +66,43 @@
                 <div class="img-item" id="img1" style=" background-image: url('../Img/360_F_99821575_nVEHTBXzUnTcLIKN6yOymAWAnFwEybGb-2.jpg');">
                     <div class="content">
                         <div class="img-title">MEET YOUR PERSONAL TRAINER</div>
-                        <div class="img-text">content</div>
+                        <div class="img-text">Not sure where to start? Try one-on-one sessions with our personal trainer! Our trainers will work together with you to tailor a training plan that fits you and your goals, monitor your progress and help you move forward with every session.</div>
                         <button  >seeMore</button>
                     </div>
                 </div>
-                <div class="img-item" id="img2" style="background-image: url('../Img/2010102611565872177802.jpg');">
+                <div class="img-item" id="img2" style="background-image: url('../Img/pexels-willpicturethis-1954524.jpg');">
                     <div class="content">
-                        <div class="img-title">Title</div>
-                        <div class="img-text">content</div>
+                        <div class="img-title">Our Amenities</div>
+                        <div class="img-text">TOP SPEED AMENITIES.</div>
                         <button>seeMore</button>
                     </div>
                 </div>
-                <div class="img-item" id="img3" style="background-image: url('../Img/2010102611565879977803.jpg');">
+                <div class="img-item" id="img3" style="background-image: url('../Img/philadelphia-Pink-Gym-in-Old-City-1024x682-2.jpg');">
                     <div class="content">
-                        <div class="img-title">Title</div>
-                        <div class="img-text">content</div>
+                        <div class="img-title">Own A Gym</div>
+                        <div class="img-text">Come explore our fully equipped, full-range weight training space.</div>
                         <button>seeMore</button>
                     </div>
                 </div>
-                <div class="img-item" id="img4" style="background-image: url('../Img/2010102611572611778058.jpg');">
+                <div class="img-item" id="img4" style="background-image: url('../Img/Joining-a-Gym-Affordable-Gym-Memberships-1024x640.png');">
                     <div class="content">
-                        <div class="img-title">Title</div>
-                        <div class="img-text">content</div>
+                        <div class="img-title">Gallery</div>
+                        <div class="img-text"></div>
                         <button>seeMore</button>
                     </div>
                 </div>
-                <div class="img-item" id="img5" style="background-image: url('../Img/201010261156596577807.jpg');">
+                <div class="img-item" id="img5" style="background-image: url('..//Img/man-doing-a-push-up-in-a-gym.jpg');">
                     <div class="content">
-                        <div class="img-title">Title</div>
-                        <div class="img-text">content</div>
+                        <div class="img-title">Find A Gym</div>
+                        <div class="img-text">You’re One Step Closer To Making Healthy Happen
+                        Find Your Local Gym And Get Your Free Pass</div>
                         <button>seeMore</button>
                     </div>
                 </div>
-                <div class="img-item" id="img6" style="background-image: url('../Img/2010102611565894077805.jpg');">
+                <div class="img-item" id="img6" style="background-image: url('../Img/13-Corporate-Wellness-Program-Malaysia-2.jpg');">
                     <div class="content">
-                        <div class="img-title">Title</div>
-                        <div class="img-text">content</div>
+                        <div class="img-title">Employee Wellness</div>
+                        <div class="img-text">Invest in the health of your employees and the return is exponential. A healthier, more motivated workforce is a happier, more productive workforce. Through our innovative approach to wellness, we’ll help both you, and your employees, improve your bottom line.</div>
                         <button>seeMore</button>
                     </div>
                 </div>
