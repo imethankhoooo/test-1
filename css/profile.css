@@ -1,11 +1,16 @@
-.Page3{
-    display
+.Page2{
+    display: flex;
+    flex-direction: row;
+
 }
-.pofileImg-Container{
+.profileAside{
     height: auto;
-    width: 100%;
-    position: relative;
+    width: 40% ;
     
+}
+.profileImg-Container{
+    height: auto;
+    width: fit-content;
 }
 .profileImg{
     border: 1px black solid;
@@ -13,11 +18,16 @@
     width: 300px;
     height: 300px;
     
-    
-
 }
-
 .profileUsername{
     color: rgba(0, 0, 0, 0.5);
     text-align: center;
 }
+
+.profileField{
+    width: 60%;
+}
+
+.profileInformation{
+    color: rgba(0, 0, 0, 0.5);
+} 
