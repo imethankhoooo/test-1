@@ -17,7 +17,7 @@
 <body>
     
     <aside>
-        <p></p>
+        <class></class>
         <div class="navigation">
             <div class="menuToggle"></div>
             <ul>
