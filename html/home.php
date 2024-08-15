@@ -28,31 +28,31 @@
                         <span class="text">Home</span>
                     </a>
                 </li>
-                <li class="list" id="login" style="--clr:black;">
+                <li class="list" id="login" style="--clr:purple;">
                     <a onclick="switchPage('Page2')">
                         <span class="icon"><img class="imgIcon" src="../Img/Screenshot 2024-06-08 133129.png"></span>
                         <span class="text">Login</span>
                     </a>
                 </li>
-                <li class="list" style="--clr:green;">
+                <li class="list" style="--clr:black;">
                     <a onclick="switchPage('Page3')">
-                        <span class="icon"><img class="imgIcon" src="../Img/Screenshot 2024-06-08 133525.png"
+                        <span class="icon"><img class="imgIcon" src="../Img/free-location-icon-2952-thumbb.png"
                                 alt=""></span>
-                        <span class="text">Search</span>
+                        <span class="text">Location</span>
                     </a>
                 </li>
-                <li class="list" style="--clr:grey;">
+                <li class="list" style="--clr:orange;">
                     <a onclick="switchPage('Page4')">
                         <span class="icon"><img class="imgIcon" src="../Img/clipart1518456.png"
                                 alt=""></span>
                         <span class="text">Facility</span>
                     </a>
                 </li>
-                <li class="list" style="--clr:orange;">
+                <li class="list" style="--clr:grey;">
                     <a onclick="switchPage('Page5')">
-                        <span class="icon"><img class="imgIcon" src="../Img/5455782.png"
+                        <span class="icon"><img class="imgIcon" src="../Img/user_icon_007-removebg-preview.png"
                                 alt=""></span>
-                        <span class="text">Member</span>
+                        <span class="text">Plan</span>
                     </a>
                 </li>
                 
