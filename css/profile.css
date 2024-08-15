@@ -1,0 +1,23 @@
+.Page3{
+    display
+}
+.pofileImg-Container{
+    height: auto;
+    width: 100%;
+    position: relative;
+    
+}
+.profileImg{
+    border: 1px black solid;
+    border-radius: 50%;
+    width: 300px;
+    height: 300px;
+    
+    
+
+}
+
+.profileUsername{
+    color: rgba(0, 0, 0, 0.5);
+    text-align: center;
+}
