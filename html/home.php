@@ -41,11 +41,11 @@
                         <span class="text">Search</span>
                     </a>
                 </li>
-                <li class="list" style="--clr:blue;">
+                <li class="list" style="--clr:grey;">
                     <a onclick="switchPage('Page4')">
-                        <span class="icon"><img class="imgIcon" src="../Img/Screenshot 2024-06-08 133929.png"
+                        <span class="icon"><img class="imgIcon" src="../Img/clipart1518456.png"
                                 alt=""></span>
-                        <span class="text">Add</span>
+                        <span class="text">Facility</span>
                     </a>
                 </li>
             </ul>
