@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="../css/search.css">
     <link rel="stylesheet" href="../css/addcustomer.css">
     <link rel="stylesheet" href="../css/page3.css">
+    <link rel="stylesheet" href="../css/profile.css">
     
     <title>保存用户数据</title>
  
@@ -114,17 +115,20 @@
         </div>
     </div>
 
-    <div class="Page Page2 hidden">
+    <div class="Page Page2 ">
+        <div class="profileImg-Container">
+            <img src="../Img/cartoon 1.png" alt="" class="profileImg">
+            <h3 class="profileUsername">Matthew Yong</h3>
+        </div>
         <div class="profile">
+            
             <form action="../php/test.php" method="GET">
-                <label for="data">Data:</label>
-                <input type="text" id="data" name="data" required>
-                <button type="submit">Submit</button>
+                
             </form>
         </div>
     </div>
 
-    <div class="Page Page3 ">
+    <div class="Page Page3 hidden">
         <div class="searchEvent-container">
             <input type="text" class="searchEvent" placeholder="Search....">
         </div>
@@ -149,7 +153,7 @@
                     55100 Kuala Lumpur,
                     Wilayah Persekutuan Kuala Lumpur,
                     Malaysia.</p><br>
-                <a href="tel:+1300-123-998">1300-123-998</a><br>
+                <a href="tel:+1300-123-998">1300-123-998</a>下·<br>
                 <a href="branch page1.html">View More</a>
             </div>
         </div>

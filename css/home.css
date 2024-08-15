@@ -53,6 +53,7 @@
 }
 .img-item:nth-child(3){
     left: 50%;
+    opacity: 0;
 }
 .img-item:nth-child(4){
     left: calc(50% + 165px);
