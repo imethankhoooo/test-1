@@ -48,6 +48,14 @@
                         <span class="text">Facility</span>
                     </a>
                 </li>
+                <li class="list" style="--clr:orange;">
+                    <a onclick="switchPage('Page5')">
+                        <span class="icon"><img class="imgIcon" src="../Img/5455782.png"
+                                alt=""></span>
+                        <span class="text">Member</span>
+                    </a>
+                </li>
+                
             </ul>
         </div>
     </aside>
