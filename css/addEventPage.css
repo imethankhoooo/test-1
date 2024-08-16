@@ -13,7 +13,8 @@
 .eventImgCointainer{
     position: relative;
     width: 100%;
-    height: 250px;
+    min-height: 250px;
+    height: fit-content;
     background-color: rgba(0, 0, 0, 0.4);
 }
 
@@ -138,6 +139,6 @@ td{
 .eventImg{
     height: 100%;
     width: 100%;
-    transform: translateX(-50%);
+
     object-fit: contain;
 }
