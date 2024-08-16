@@ -1,0 +1,142 @@
+/* Global Styles */
+:root {
+    --primary-color: #3498db;
+    --secondary-color: #2ecc71;
+    --accent-color: #e74c3c;
+    --background-color: #f9f9f9;
+    --text-color: #333;
+    --input-background-color: #fff;
+    --input-border-color: #ccc;
+    --font-family: 'Roboto', sans-serif;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--font-family);
+    background-color: var(--background-color);
+    color: var(--text-color);
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    max-width: 1200px;
+    width: 100%;
+    align-items: center;
+}
+
+/* Image Styling */
+.image-container {
+    text-align: center;
+}
+
+.image-container img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 10px;
+}
+
+/* Form Container */
+.form-container {
+    background-color: var(--input-background-color);
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    width: 100%;
+}
+
+/* Page Title */
+h1 {
+    font-size: 2rem;
+    color: var(--primary-color);
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+/* Table Styles */
+table {
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+table tr {
+    margin-bottom: 15px;
+}
+
+table td {
+    padding: 10px 0;
+}
+
+table td:first-child {
+    font-weight: bold;
+    color: var(--primary-color);
+}
+
+table input[type="text"],
+table input[type="date"],
+table input[type="time"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid var(--input-border-color);
+    border-radius: 5px;
+    background-color: var(--input-background-color);
+    font-size: 1rem;
+    color: var(--text-color);
+}
+
+table input[type="submit"],
+table input[type="reset"] {
+    width: 48%;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+    margin-top: 20px;
+    color: #fff;
+    transition: background-color 0.3s ease;
+    margin-right: 4%;
+}
+
+table input[type="submit"] {
+    background-color: var(--primary-color);
+}
+
+table input[type="submit"]:hover {
+    background-color: #2c81ba;
+}
+
+table input[type="reset"] {
+    background-color: var(--accent-color);
+}
+
+table input[type="reset"]:hover {
+    background-color: #c0392b;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .container {
+        grid-template-columns: 1fr;
+    }
+
+    table input[type="submit"],
+    table input[type="reset"] {
+        width: 100%;
+        margin-bottom: 10px;
+        margin-right: 0;
+    }
+}
+
