@@ -79,7 +79,7 @@
                         <button  >seeMore</button>
                     </div>
                 </div>
-                <div class="img-item" id="img2" style="background-image: url('../Img/pexels-willpicturethis-1954524.jpg');">
+                <div class="img-item" id="img2" style="background-image: url('../Img/AF_HERO_30MinTreadmillWorkout-1024x683.jpg');">
                     <div class="content">
                         <div class="img-title">Our Amenities</div>
                         <div class="img-text">TOP SPEED AMENITIES.</div>
