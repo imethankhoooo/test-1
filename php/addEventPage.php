@@ -51,8 +51,8 @@
                     </tr>
                     <tr>
                         <td colspan="2">
-                            <input type="submit" value="Submit">
-                            <input type="reset" value="Reset">
+                            <input type="submit" value="Submit" name="submit">
+                            <input type="reset" onclick="window.location='addEventPage.php'" value="Reset">
                         </td>
                     </tr>
                 </table>
@@ -60,7 +60,49 @@
         </div>
     </div>
 
-    <?php?>
+    <?php
+            $error = array();
+            $venueClass = $dateClass = $timeClass = $feeClass = $eventHostClass = $precautionsClass = "";
+
+            if (isset($_POST["submit"])) {
+                if (empty($_POST["venue"])) {
+                    $error[] = "Venue is empty";
+                    $venueClass = "error-field";
+                }
+                if (empty($_POST["date"])) {
+                    $error[] = "Date is empty";
+                    $dateClass = "error-field";
+                }
+                if (empty($_POST["time"])) {
+                    $error[] = "Time is empty";
+                    $timeClass = "error-field";
+                }
+                if (empty($_POST["fee"])) {
+                    $error[] = "Fee is empty";
+                    $feeClass = "error-field";
+                } else if (!preg_match("/^[1-9]$/", $_POST["fee"])) {
+                    $error[]="Fee must be digit value";
+                }
+                    if (empty($_POST["eventHost"])) {
+                    $error[] = "Event Host is empty";
+                    $eventHostClass = "error-field";
+                }
+                if (empty($_POST["precautions"])) {
+                    $error[] = "Precautions is empty";
+                    $precautionsClass = "error-field";
+                }
+                
+                if (count($error) > 0) {
+                    echo "<ul class='error-messages'>";
+                    foreach ($error as $value) {
+                        echo "<li>$value</li>";
+                    }
+                    echo "</ul>";
+                } else {
+                    echo "Event Created Successfully!";
+                }
+            }
+            ?>
 </body>
 
 
