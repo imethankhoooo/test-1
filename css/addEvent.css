@@ -140,3 +140,41 @@ table input[type="reset"]:hover {
     }
 }
 
+.error-field {
+    border-color: var(--accent-color);
+    background-color: #f9d6d5;
+}
+
+/* Add some padding to the error messages if you display them */
+ul {
+    padding: 10px;
+    color: var(--accent-color);
+}
+
+.error-messages {
+    background-color: #fbeae9;
+    color: var(--accent-color);
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    font-size: 0.9rem;
+    list-style-type: none;
+}
+
+table input[type="submit"],
+table input[type="reset"] {
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+table input[type="submit"]:hover,
+table input[type="reset"]:hover {
+    transform: scale(1.05);
+}
+
+table input[type="text"]:focus,
+table input[type="date"]:focus,
+table input[type="time"]:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 5px var(--primary-color);
+}
