@@ -55,6 +55,13 @@
                         <span class="text">Plan</span>
                     </a>
                 </li>
+                <li class="list" style="--clr:green;">
+                    <a onclick="switchPage('Page6')">
+                        <span class="icon"><img class="imgIcon" src="../Img/booking.png"
+                                alt=""></span>
+                        <span class="text">Booking</span>
+                    </a>
+                </li>
                 
             </ul>
         </div>
