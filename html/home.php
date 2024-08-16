@@ -150,7 +150,7 @@
                     Wilayah Persekutuan Kuala Lumpur,
                     Malaysia.</p><br>
                 <a href="tel:+1300-123-998">1300-123-998</a><br>
-                <a href="branch page1.html">View More</a>
+                <a href="https://www.google.com/maps/dir/3.2362824,101.6918495//@3.2207987,101.7115947,13.1z?entry=ttu">View More</a>
             </div>
         </div>
         <div class="eventCard">
@@ -162,7 +162,7 @@
                     Wilayah Persekutuan Kuala Lumpur,
                     Malaysia.</p><br>
                 <a href="tel:+1300-123-998">1300-123-998</a>下·<br>
-                <a href="branch page1.html">View More</a>
+                <a href="https://www.google.com/maps/dir/3.2362824,101.6918495//@3.2207987,101.7115947,13.1z?entry=ttu">View More</a>
             </div>
         </div>
         <div class="eventCard">
@@ -174,7 +174,7 @@
                     Wilayah Persekutuan Kuala Lumpur,
                     Malaysia.</p><br>
                 <a href="tel:+1300-123-998">1300-123-998</a><br>
-                <a href="branch page1.html">View More</a>
+                <a href="https://www.google.com/maps/dir/3.2362824,101.6918495//@3.2207987,101.7115947,13.1z?entry=ttu">View More</a>
             </div>
         </div>
         <div class="eventCard">
@@ -186,7 +186,7 @@
                     Wilayah Persekutuan Kuala Lumpur,
                     Malaysia.</p><br>
                 <a href="tel:+1300-123-998">1300-123-998</a><br>
-                <a href="branch page1.html">View More</a>
+                <a href="https://www.google.com/maps/dir/3.2362824,101.6918495//@3.2207987,101.7115947,13.1z?entry=ttu">View More</a>
             </div>
         </div>
         <div class="eventCard">
@@ -198,7 +198,7 @@
                     Wilayah Persekutuan Kuala Lumpur,
                     Malaysia.</p><br>
                 <a href="tel:+1300-123-998">1300-123-998</a><br>
-                <a href="branch page1.html">View More</a>
+                <a href="https://www.google.com/maps/dir/3.2362824,101.6918495//@3.2207987,101.7115947,13.1z?entry=ttu">View More</a>
             </div>
         </div>
         <div class="eventCard">
@@ -210,7 +210,7 @@
                     Wilayah Persekutuan Kuala Lumpur,
                     Malaysia.</p><br>
                 <a href="tel:+1300-123-998">1300-123-998</a><br>
-                <a href="branch page1.html">View More</a>
+                <a href="https://www.google.com/maps/dir/3.2362824,101.6918495//@3.2207987,101.7115947,13.1z?entry=ttu">View More</a>
             </div>
         </div>
 
