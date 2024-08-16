@@ -134,3 +134,10 @@ td{
     height: 100%;
 
 }
+
+.eventImg{
+    height: 100%;
+    width: 100%;
+    transform: translateX(-50%);
+    object-fit: contain;
+}

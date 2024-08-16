@@ -11,6 +11,95 @@
 </head>
 
 <body>
+    <?php 
+    $conn= new mysqli('localhost','root','','php-assginment');
+    if($conn->connect_error){
+        die('Connection failed: '.$conn->connect_error);
+    }
+    if($_SERVER['REQUEST_METHOD']=='POST'&& $_POST['submit']=='Add'){
+        $errors = [];
+
+        // 获取表单数据
+        $eventName = $_POST['title'];
+        $eventDescription = $_POST['content'];
+        $eventVenue = $_POST['Venue'];
+        $eventDate = $_POST['Date'];
+        $eventTime = $_POST['Time'];
+        $eventFee = $_POST['Fee'];
+        $eventHost = $_POST['Host'];
+        $eventPrecautions = $_POST['Precautions'];
+    
+        // 检查文件上传
+        $imageData = NULL;
+        if (isset($_FILES['eventImgInput']) && $_FILES['eventImgInput']['error'] == UPLOAD_ERR_OK) {
+            $imageTmpName = $_FILES['eventImgInput']['tmp_name'];
+            $imageData = addslashes(file_get_contents($imageTmpName));
+        }
+    
+        // 检查 thingContent
+        $thingContents = $_POST['thingContent'];
+        $thingImages = $_FILES['file-input'];
+        
+        $items = [];
+        foreach ($thingContents as $index => $thingContent) {
+            $imageContent = $thingImages['tmp_name'][$index];
+            
+            if (empty($thingContent) || empty($imageContent)) {
+                // Exit loop without error if any thingContent or image is empty
+                break;
+            }
+    
+            // Add content and image to items array
+            $imageData = addslashes(file_get_contents($imageContent));
+            $items[] = ['text' => $thingContent, 'image' => $imageData];
+        }
+    
+        if (empty($errors)) {
+            // 准备 SQL 语句
+            $sql = "INSERT INTO event (event_name, event_date, location, description, banner_image, note) 
+                    VALUES (?, ?, ?, ?, ?, ?)";
+    
+            // 使用预处理语句防止 SQL 注入
+            $stmt = $conn->prepare($sql);
+            if ($stmt === false) {
+                die("Prepare failed: " . $conn->error);
+            }
+    
+            $stmt->bind_param("ssssss", $eventName, $eventDate, $eventVenue, $eventDescription, $imageData, $eventPrecautions);
+    
+            // 执行语句
+            if ($stmt->execute()) {
+                $eventId = $stmt->insert_id;
+                // Insert items related to the event
+                $itemSql = "INSERT INTO items (event_id, item_text, item_image) VALUES (?, ?, ?)";
+                $itemStmt = $conn->prepare($itemSql);
+                if ($itemStmt === false) {
+                    die("Prepare failed: " . $conn->error);
+                }
+                foreach ($items as $item) {
+                    $itemStmt->bind_param("iss", $eventId, $item['text'], $item['image']);
+                    $itemStmt->execute();
+                }
+                $itemStmt->close();
+                echo "Event and items added successfully!";
+            } else {
+                echo "Error: " . $stmt->error;
+            }
+    
+            // 关闭语句
+            $stmt->close();
+        } else {
+            // 显示错误信息
+            foreach ($errors as $error) {
+                echo "<p style='color:red;'>$error</p>";
+            }
+        }
+    
+        // 关闭连接
+        $conn->close();
+    }
+
+    ?>
     <aside>
         <div class="navigation">
             <div class="menuToggle"></div>
@@ -141,7 +230,7 @@
         </div>
     </div>
     <div class="Page adminPage5 hidden">
-        <form action="../php/addEventPage.php">
+        <form action="<?php echo $_SERVER['PHP_SELF']?>">
 
             <div class="eventImgCointainer" onclick="triggerFileInput('eventImgInput')">
                 <input type="file" id="eventImgInput" class="eventImgInput" accept="image/*" style="display:none;" />
@@ -264,10 +353,10 @@
 
     })
 
-    document.querySelector('.eventImg').addEventListener('change', function (event) {
+    document.querySelector('.eventImgCointainer').addEventListener('change', function (event) {
         let target = event.target;
-
-        const file = target.file;
+        
+        const file = target.files[0];
         if (file) {
             const reader = new FileReader();
             reader.onload = function (e) {
@@ -275,8 +364,8 @@
                 const img = document.createElement('img');
                 img.src = e.target.result;
                 img.className = 'eventImg';
-                var eventImg = document.querySelector('.eventImg');
-                eventImg.classList.add('hidden');
+                var plussign = document.querySelector('.plus-sign');
+                plussign.classList.add('hidden');
                 eventImgCointainer.appendChild(img);
             }
             reader.readAsDataURL(file);
