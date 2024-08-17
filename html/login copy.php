@@ -8,6 +8,15 @@
 <title>Login 弹出窗口</title>
 </head>
 <body>
+    <style>
+        .search-container{
+    width: 300px;
+    height: 30px;
+}
+        .search-container{
+            margin: 30px auto;
+        }
+    </style>
     
     <div id="alert" class="Alert"></div>
     <div class="container">

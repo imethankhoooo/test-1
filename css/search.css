@@ -1,10 +1,8 @@
 .search-container{
     position: relative;
     display: block;
-    width: 300px;
-    margin: 30px auto;
     text-align: center;
-    height: 30px;
+    
 }
 .search-input{
     position: absolute;
@@ -19,7 +17,7 @@
 }
 .search-placeholder{
     position: absolute;
-    top: 15px;
+    top: 7px;
     left: 10px;
     pointer-events: none;
     transition: font-size 0.3s, top 0.3s, color 0.3s;
@@ -28,7 +26,6 @@
 .line{
     position: absolute;
     width: 100%;
-    top: 50px;
     left: 0px;
     border-bottom: 2px solid rgb(254, 82, 82);
     transform: scaleX(0);
@@ -37,7 +34,7 @@
 
 .search-input:focus ~ .search-placeholder, 
 .search-input:not(:placeholder-shown) ~ .search-placeholder{
-    top: -5px;
+    top: -10px;
     font-size: 12px;
     color: rgba (0,0,0,0.5);
 }

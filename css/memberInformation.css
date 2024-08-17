@@ -1,0 +1,32 @@
+body {
+    display: flex;
+    flex-direction: row;
+
+}
+
+.profileInput-container{
+
+    height: auto;
+    background-color: white;
+}
+.container1{
+    width: 30%;
+    background-color: red;
+}
+
+.container1 img{
+    width: 100%;
+    height: 100%;
+}
+.container2{
+    width: 70%;
+}
+.form-container{
+    margin: 10%;
+}
+
+.form-container h1{
+    font-size: 40px;
+    font-weight: 1200;
+    margin-bottom: 10%;
+}
