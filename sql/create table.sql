@@ -3,10 +3,13 @@ CREATE TABLE `event` (
     `event_id` INT PRIMARY KEY AUTO_INCREMENT,
     `event_name` VARCHAR(255) NOT NULL,
     `event_date` DATE NOT NULL,
+    `time` TIME NOT NULL,
     `location` VARCHAR(255) NOT NULL,
     `description` TEXT,
     `banner_image` BLOB, 
-    `note` VARCHAR(200),  
+    `note` VARCHAR(200),
+    `fee` DECIMAL(10, 2),
+    `event_host` VARCHAR(255),
     `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
@@ -33,7 +36,7 @@ CREATE TABLE `admin_member` (
     `password` VARCHAR(255) NOT NULL,
     `email` VARCHAR(255) NOT NULL UNIQUE,
     `phone` VARCHAR(20),
-    `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP
     -- CONSTRAINT `chk_admin_email_format` CHECK (`email` REGEXP '^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$'),
     -- CONSTRAINT `chk_admin_phone_format` CHECK (`phone` REGEXP '^(\+?60|0)1[0-46-9]-*[0-9]{7,8}$')
 );
