@@ -12,95 +12,82 @@
 </head>
 
 <body>
-    <?php 
-    $conn= new mysqli('localhost','root','','php-assginment');
-    if($conn->connect_error){
-        die('Connection failed: '.$conn->connect_error);
-    }
-    if($_SERVER['REQUEST_METHOD']=='POST'&& $_POST['submit']=='Add'){
-        $errors = [];
+<?php
 
-        // 获取表单数据
-        $eventName = $_POST['title'];
-        $eventDescription = $_POST['content'];
-        $eventVenue = $_POST['Venue'];
-        $eventDate = $_POST['Date'];
-        $eventTime = $_POST['Time'];
-        $eventFee = $_POST['Fee'];
-        $eventHost = $_POST['Host'];
-        $eventPrecautions = $_POST['Precautions'];
-    
-        // 检查文件上传
-        $imageData = NULL;
-        if (isset($_FILES['eventImgInput']) && $_FILES['eventImgInput']['error'] == UPLOAD_ERR_OK) {
-            $imageTmpName = $_FILES['eventImgInput']['tmp_name'];
-            $imageData = addslashes(file_get_contents($imageTmpName));
-        }
-    
-        // 检查 thingContent
-        $thingContents = $_POST['thingContent'];
-        $thingImages = $_FILES['file-input'];
-        
-        $items = [];
-        foreach ($thingContents as $index => $thingContent) {
-            $imageContent = $thingImages['tmp_name'][$index];
-            
-            if (empty($thingContent) || empty($imageContent)) {
-                // Exit loop without error if any thingContent or image is empty
-                break;
-            }
-    
-            // Add content and image to items array
-            $imageData = addslashes(file_get_contents($imageContent));
-            $items[] = ['text' => $thingContent, 'image' => $imageData];
-        }
-    
-        if (empty($errors)) {
-            // 准备 SQL 语句
-            $sql = "INSERT INTO event (event_name, event_date, location, description, banner_image, note) 
-                    VALUES (?, ?, ?, ?, ?, ?)";
-    
-            // 使用预处理语句防止 SQL 注入
-            $stmt = $conn->prepare($sql);
-            if ($stmt === false) {
-                die("Prepare failed: " . $conn->error);
-            }
-    
-            $stmt->bind_param("ssssss", $eventName, $eventDate, $eventVenue, $eventDescription, $imageData, $eventPrecautions);
-    
-            // 执行语句
-            if ($stmt->execute()) {
-                $eventId = $stmt->insert_id;
-                // Insert items related to the event
-                $itemSql = "INSERT INTO items (event_id, item_text, item_image) VALUES (?, ?, ?)";
-                $itemStmt = $conn->prepare($itemSql);
-                if ($itemStmt === false) {
-                    die("Prepare failed: " . $conn->error);
-                }
-                foreach ($items as $item) {
-                    $itemStmt->bind_param("iss", $eventId, $item['text'], $item['image']);
-                    $itemStmt->execute();
-                }
-                $itemStmt->close();
-                echo "Event and items added successfully!";
-            } else {
-                echo "Error: " . $stmt->error;
-            }
-    
-            // 关闭语句
-            $stmt->close();
+// 创建数据库连接
+$conn = new mysqli('localhost', 'root', '', 'php-assginment');
+
+// 检查连接是否成功
+if ($conn->connect_error) {
+    die("连接失败: " . $conn->connect_error);
+}
+$uploadDir = 'uploads/';
+if (!is_dir($uploadDir)) {
+    mkdir($uploadDir, 0777, true);
+}
+
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    $title = $_POST['title'];
+    $content = $_POST['content'];
+    $venue = $_POST['Venue'];
+    $event_date = $_POST['Date'];
+    $event_time = $_POST['Time'];
+    $fee = $_POST['Fee'];
+    $host = $_POST['Host'];
+    $precautions = $_POST['Precautions'];
+
+    // 保存banner图片
+     $bannerImgPath = null;
+
+    // 检查文件是否正确上传
+    if (isset($_FILES['eventImgInput']['tmp_name']) && !empty($_FILES['eventImgInput']['tmp_name'])) {
+        $bannerImgPath = $uploadDir . basename($_FILES['eventImgInput']['name']);
+        if (move_uploaded_file($_FILES['eventImgInput']['tmp_name'], $bannerImgPath)) {
+            echo "Banner 图片上传成功，路径为: $bannerImgPath <br>";
         } else {
-            // 显示错误信息
-            foreach ($errors as $error) {
-                echo "<p style='color:red;'>$error</p>";
-            }
+            die("上传 banner 图片失败，检查文件上传是否正确。");
         }
-    
-        // 关闭连接
-        $conn->close();
+    } else {
+        echo "未检测到文件上传。<br>";
     }
 
-    ?>
+    // 使用预处理语句插入数据到event表
+    $stmt = $conn->prepare("INSERT INTO event (event_name, description, location, event_date, time, fee, event_host, note, banner_image) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
+    $stmt->bind_param("sssssssss", $title, $content, $venue, $event_date, $event_time, $fee, $host, $precautions, $bannerImgPath);
+    
+    if ($stmt->execute()) {
+        $event_id = $conn->insert_id; // 获取刚插入的事件ID
+
+        // 保存"Things to Bring"数据
+        if (!empty($_POST['thingContent'])) {
+            foreach ($_POST['thingContent'] as $index => $thingContent) {
+                // 只在有文本和上传文件的情况下进行插入
+                if (!empty($thingContent) && !empty($_FILES['file-input']['tmp_name'][$index])) {
+                    $thing_image = null;
+        
+                    if (!empty($_FILES['file-input']['tmp_name'][$index])) {
+                        $thing_image = file_get_contents($_FILES['file-input']['tmp_name'][$index]);
+                    }
+        
+                    // 使用预处理语句插入数据到item表
+                    $stmtItem = $conn->prepare("INSERT INTO item (event_id, description, logo) VALUES (?, ?, ?)");
+                    $stmtItem->bind_param("iss", $event_id, $thingContent, $thing_image);
+                    $stmtItem->execute();
+                }
+            }
+        }
+
+        echo "新记录插入成功";
+    } else {
+        echo "错误: " . $stmt->error;
+    }
+    
+    $stmt->close();
+}
+
+$conn->close();
+?>
+
     <aside>
         <div class="navigation">
             <div class="menuToggle"></div>
@@ -231,10 +218,10 @@
         </div>
     </div>
     <div class="Page adminPage5 hidden">
-        <form action="<?php echo $_SERVER['PHP_SELF']?>">
+        <form action="<?php echo $_SERVER['PHP_SELF']?>" method='post' enctype="multipart/form-data">
 
             <div class="eventImgCointainer" onclick="triggerFileInput('eventImgInput')">
-                <input type="file" id="eventImgInput" class="eventImgInput" accept="image/*" style="display:none;" />
+                <input type="file" id="eventImgInput" class="eventImgInput" name="eventImgInput" accept="image/*" style="display:none;" />
                 <img class="plus-sign" src="../Img/Screenshot 2024-06-08 133929.png">
             </div>
             <div class="contentBlock">
@@ -272,12 +259,12 @@
                 <h3 class="thingToBring">Thing to bring</h3>
                 <div class="think-Container">
                     <div class="thingIcon">
-                        <input type="file" id="file-input0" class="file-input" accept="image/*" style="display:none;" />
+                        <input type="file" id="file-input0" class="file-input" accept="image/*" style="display:none;" name="file-input[]"/>
                         <div class="img-box" id="img-box0" onclick="triggerFileInput('file-input0')">
                             <img src="../Img/Screenshot 2024-06-08 133929.png" alt="addImg" class="plus-sign"
                                 id="plus-sign0">
                         </div>
-                        <input name="thingContent" class="thingContent">
+                        <input name="thingContent[]" class="thingContent">
                     </div>
                 </div>
                 <div class="button-container">
@@ -285,7 +272,9 @@
                     <input class="button" type="reset" name="reset" value="Reset">
                 </div>
             </div>
+</form>
     </div>
+
 
 </body>
 <script src="../js/page.js"></script>
@@ -318,41 +307,37 @@
         document.getElementById(fileInputId).click();
     }
     let i = 0;
-    let changeImg = 0;
-    document.querySelector('.think-Container').addEventListener('change', function (event) {
-        let target = event.target;
-        var imgBoxId = 'addImg' + target.id.replace('file-input', '');
-        var imgBoxElement = document.getElementById(imgBoxId);
-        if (imgBoxElement) {
-            imgBoxElement.parentNode.removeChild(imgBoxElement);
-            changeImg++;
-        }
-        if (target.classList.contains('file-input')) {
-            const file = target.files[0];
+        let changeImg = 0;
 
-            if (file) {
-                const reader = new FileReader();
-                reader.onload = function (e) {
-                    const imgBoxId = 'img-box' + target.id.replace('file-input', '');
-                    const imgBox = document.getElementById(imgBoxId);
-                    const img = document.createElement('img');
-                    img.src = e.target.result;
-                    img.className = 'addImg';
-                    img.id = 'addImg' + i;
-                    var plusSignId = 'plus-sign' + target.id.replace('file-input', '');
-                    const plusSign = document.getElementById(plusSignId);
-                    plusSign.classList.add('hidden');
-                    imgBox.appendChild(img);
-                    if (changeImg == 0) {
-                        createNewThingIcon();
+        document.querySelector('.think-Container').addEventListener('change', function (event) {
+            let target = event.target;
+            if (target.classList.contains('file-input')) {
+                const file = target.files[0];
+                if (file) {
+                    const reader = new FileReader();
+                    reader.onload = function (e) {
+                        const imgBoxId = 'img-box' + target.id.replace('file-input', '');
+                        const imgBox = document.getElementById(imgBoxId);
+                        const img = document.createElement('img');
+                        img.src = e.target.result;
+                        img.className = 'addImg';
+                        img.id = 'addImg' + i;
+                        const plusSignId = 'plus-sign' + target.id.replace('file-input', '');
+                        const plusSign = document.getElementById(plusSignId);
+                        plusSign.classList.add('hidden');
+                        imgBox.appendChild(img);
 
-                    } else { changeImg-- };
+                        if (changeImg == 0) {
+                            createNewThingIcon();
+                        } else {
+                            changeImg--;
+                        }
+                    }
+                    reader.readAsDataURL(file);
                 }
-                reader.readAsDataURL(file);
             }
-        }
+        });
 
-    })
 
     document.querySelector('.eventImgCointainer').addEventListener('change', function (event) {
         let target = event.target;
@@ -373,45 +358,40 @@
         }
     })
     function createNewThingIcon() {
-        i++;
-        const container = document.querySelector('.think-Container');
-        const newThingIcon = document.createElement('div');
-        newThingIcon.className = 'thingIcon';
+            i++;
+            const container = document.querySelector('.think-Container');
+            const newThingIcon = document.createElement('div');
+            newThingIcon.className = 'thingIcon';
 
-        const newFileInput = document.createElement('input');
-        newFileInput.type = 'file';
-        newFileInput.id = 'file-input' + i;
-        newFileInput.className = 'file-input';
-        newFileInput.accept = 'image/*';
-        newFileInput.style.display = 'none';
+            const newFileInput = document.createElement('input');
+            newFileInput.type = 'file';
+            newFileInput.id = 'file-input' + i;
+            newFileInput.name = 'file-input[]';
+            newFileInput.className = 'file-input';
+            newFileInput.accept = 'image/*';
+            newFileInput.style.display = 'none';
 
-        const newImgBox = document.createElement('div');
-        newImgBox.className = 'img-box';
-        newImgBox.id = 'img-box' + i;
-        newImgBox.onclick = function () { triggerFileInput('file-input' + i); };
+            const newImgBox = document.createElement('div');
+            newImgBox.className = 'img-box';
+            newImgBox.id = 'img-box' + i;
+            newImgBox.onclick = function () { triggerFileInput('file-input' + i); };
 
-        const newPlusSign = document.createElement('img');
-        newPlusSign.src = '../Img/Screenshot 2024-06-08 133929.png';
-        newPlusSign.alt = 'addImg';
-        newPlusSign.className = 'plus-sign';
-        newPlusSign.id = 'plus-sign' + i;
+            const newPlusSign = document.createElement('img');
+            newPlusSign.src = '../Img/Screenshot 2024-06-08 133929.png';
+            newPlusSign.alt = 'addImg';
+            newPlusSign.className = 'plus-sign';
+            newPlusSign.id = 'plus-sign' + i;
 
-        const newThingContent = document.createElement('input');
-        newThingContent.name = 'thingContent';
-        newThingContent.className = 'thingContent';
+            const newThingContent = document.createElement('input');
+            newThingContent.name = 'thingContent[]';
+            newThingContent.className = 'thingContent';
 
-        newImgBox.appendChild(newPlusSign);
-        newThingIcon.appendChild(newFileInput);
-        newThingIcon.appendChild(newImgBox);
-        newThingIcon.appendChild(newThingContent);
-        container.appendChild(newThingIcon);
-        const plusSigns = document.querySelectorAll('.plus-sign');
-
-        let currentPlusSign = document.getElementById('plus-sign' + target.id.replace('file-input', ''));
-        if (currentPlusSign) {
-            currentPlusSign.classList.remove('hidden');
+            newImgBox.appendChild(newPlusSign);
+            newThingIcon.appendChild(newFileInput);
+            newThingIcon.appendChild(newImgBox);
+            newThingIcon.appendChild(newThingContent);
+            container.appendChild(newThingIcon);
         }
-    }
 
 
     let index = 0;
