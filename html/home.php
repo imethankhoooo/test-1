@@ -79,35 +79,35 @@
         </div>
         <div class="select-container" >
             <div id="img-container">
-                <div class="img-item" id="img1" style=" background-image: url('../Img/360_F_99821575_nVEHTBXzUnTcLIKN6yOymAWAnFwEybGb-2.jpg');">
+                <div class="img-item" id="img1" style=" background-image: url('../Img/pexels-shkrabaanthony-5878680.jpg');">
                     <div class="content">
                         <div class="img-title">MEET YOUR PERSONAL TRAINER</div>
                         <div class="img-text">Not sure where to start? Try one-on-one sessions with our personal trainer! Our trainers will work together with you to tailor a training plan that fits you and your goals, monitor your progress and help you move forward with every session.</div>
                         <button  >seeMore</button>
                     </div>
                 </div>
-                <div class="img-item" id="img2" style="background-image: url('../Img/AF_HERO_30MinTreadmillWorkout-1024x683.jpg');">
+                <div class="img-item" id="img2" style="background-image: url('../Img/9MqoKp.jpg');">
                     <div class="content">
                         <div class="img-title">Our Amenities</div>
                         <div class="img-text">TOP SPEED AMENITIES.</div>
                         <button>seeMore</button>
                     </div>
                 </div>
-                <div class="img-item" id="img3" style="background-image: url('../Img/philadelphia-Pink-Gym-in-Old-City-1024x682-2.jpg');">
+                <div class="img-item" id="img3" style="background-image: url('../Img/20230512-luxury-gym.jpg');">
                     <div class="content">
                         <div class="img-title">Own A Gym</div>
                         <div class="img-text">Come explore our fully equipped, full-range weight training space.</div>
                         <button>seeMore</button>
                     </div>
                 </div>
-                <div class="img-item" id="img4" style="background-image: url('../Img/Joining-a-Gym-Affordable-Gym-Memberships-1024x640.png');">
+                <div class="img-item" id="img4" style="background-image: url('../Img/stock-photo-sporty-people-exercising-in-gym.jpg');">
                     <div class="content">
                         <div class="img-title">Gallery</div>
                         <div class="img-text"></div>
                         <button>seeMore</button>
                     </div>
                 </div>
-                <div class="img-item" id="img5" style="background-image: url('..//Img/man-doing-a-push-up-in-a-gym.jpg');">
+                <div class="img-item" id="img5" style="background-image: url('..//Img/photo-1534438327276-14e5300c3a48.jpg');">
                     <div class="content">
                         <div class="img-title">Find A Gym</div>
                         <div class="img-text">You’re One Step Closer To Making Healthy Happen
@@ -115,7 +115,7 @@
                         <button>seeMore</button>
                     </div>
                 </div>
-                <div class="img-item" id="img6" style="background-image: url('../Img/13-Corporate-Wellness-Program-Malaysia-2.jpg');">
+                <div class="img-item" id="img6" style="background-image: url('../Img/1_5pyrdtIlYVp3ZvwR8C1Yrw.jpg');">
                     <div class="content">
                         <div class="img-title">Employee Wellness</div>
                         <div class="img-text">Invest in the health of your employees and the return is exponential. A healthier, more motivated workforce is a happier, more productive workforce. Through our innovative approach to wellness, we’ll help both you, and your employees, improve your bottom line.</div>
