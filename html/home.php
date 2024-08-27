@@ -93,7 +93,7 @@
                         <button>seeMore</button>
                     </div>
                 </div>
-                <div class="img-item" id="img3" style="background-image: url('../Img/20230512-luxury-gym.jpg');">
+                <div class="img-item" id="img3" style="background-image: url('../Img/19238196_312409769281059_35031026448672256_o.width-1920.jpg');">
                     <div class="content">
                         <div class="img-title">Own A Gym</div>
                         <div class="img-text">Come explore our fully equipped, full-range weight training space.</div>
