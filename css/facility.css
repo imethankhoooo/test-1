@@ -112,6 +112,6 @@ h1::after {
 
 @media (max-width: 768px) {
     .facility-item {
-        height: auto; /* Adjust height for smaller screens */
+        height: auto; 
     }
 }

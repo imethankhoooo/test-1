@@ -68,7 +68,7 @@
     </div>
 
     <div class="content">
-        <div class="Page Page6 active">
+        <div class="Page Page6 ">
             <h1>Our Facilities</h1>
 
             <!-- Introduction section -->
