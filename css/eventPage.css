@@ -1,140 +1,188 @@
-body{
-    background-color: #ffffff;
-    margin: 0;
-    top: 0;
-
-}
-
-.eventImg{
-    width: 100%;
-    height: 250px;
-    background-color: rgba(0, 0, 0, 0.4);
-}
-
-.contentBlock{
-    display: block;
-    position: relative;
-    transform: translateY(-50%);
-    transform: translateX(-50%);
-    width:fit-content;
-    max-width: 40%;
-    left: 50%;
-    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-}
-
-.eventType{
-    margin: 3vw 0 1vw 0;
-    font-weight:bold;
-    font-size: 22px;
-
-}
-
-.title{
-    margin: 0 ;
-    font-size: 40px;
-}
-.content{
-    color: rgba(0, 0, 0, 0.8);
-    font-size: 17px;
-}
-.line{
-    display: block;
-    width: 100%;
-    left: 0px;
-    border-bottom: 2px solid rgba(0, 0, 0, 0.2);
-    height: 5px;
-}
-
-.thingToBring{
-    margin: 1vw 0 1vw 0;
-}
-.think-Container{
-    display: flex;
-    flex-wrap: wrap;
-    width: 100%;
-    justify-content: space-around;
-    flex-direction: row;
-}
-
-.thingIcon{
-    max-width: var(--dynamic-width, 100%);
-    min-width: max-content;
-    margin: 0 2vw;
-}
-
-.thingIcon img{
-    display: block;
-    width: 2vw;
-    height: 2vw;
-    margin: auto;
-}
-
-.thingIcon .thingContent{
-    font-size: 1vw;
-}
-
-.signUp{
-    width: max-content;
-    height: 2vw;
-    margin: 5% 50%;
-    transform: translateX(-50%);
-}
-
-.moreEvent{
-    position: absolute;
-    width: 100vw;
-    height: 60vh;
-    background-color: rgba(0, 0, 0, 0.4);
-}
-
-.moreEventTitle{
-    font-size: 3vw;
-    margin: 10vw 7vw 10vw 10vw;
+            body {
+                margin: 0;
+                font-family: 'Poppins', sans-serif;
+                color: #444;
+                background-color: #f4f4f4;
+                line-height: 1.6;
+            }
     
-}
-.moreImgContainer{
-    overflow: hidden;
-    position: absolute;
-    right: 60px;
-    top: 50%;
-    transform: translateY(-50%);
-    background-color: transparent;
-    height: 40vh;
-    width: 30vw;
-}
-.moreEventContainer{
-    top: 50%;
-}
-.moreEventImg{
-    width: 100%;
-    height: 100%;
-    flex-shrink: 0;
-    object-fit: cover;
-}
-.ImgContainer{
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 100%;
-    height: 100%;
-    display: flex;
-    flex-direction: row;
-    transition: all 0.5s ease-in-out;
-
-
-}
-.nextImgContainer{
-    display: flex;
-    flex-direction: row;
-    height:60px;
-    width: 60px;
-    margin: 80% 0;
-}
-.nextImgContainer button{
-    background-color: #ffffff;
-    border-radius: 20px;
-    height: 40px;
-    width: 40px;
-    margin: 10px 40px;
-    z-index: 7;
-}
+            /* Hero Section */
+           
+    
+            .hero-overlay {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background-color: rgba(0, 0, 0, 0.6);
+            }
+    
+            .hero-content {
+                position: relative;
+                z-index: 2;
+                padding: 20px;
+            }
+    
+            .hero-content h1 {
+                font-size: 4rem;
+                margin-bottom: 10px;
+                text-transform: uppercase;
+                letter-spacing: 2px;
+            }
+    
+            .hero-content p {
+                font-size: 1.5rem;
+                margin-bottom: 30px;
+            }
+    
+            .hero-content a {
+                background-color: #ff6f61;
+                color: white;
+                padding: 15px 30px;
+                font-size: 1.2rem;
+                text-decoration: none;
+                border-radius: 5px;
+                transition: background-color 0.3s;
+            }
+    
+            .hero-content a:hover {
+                background-color: #e05a51;
+            }
+    
+            /* Event Details Section */
+            .event-details {
+                background: white;
+                padding: 50px;
+                box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.1);
+                border-radius: 10px;
+                max-width: 900px;
+                margin: -50px auto 50px;
+                position: relative;
+                z-index: 2;
+            }
+    
+            .event-details h2 {
+                font-size: 2.5rem;
+                margin-bottom: 30px;
+                text-align: center;
+                color: #ff6f61;
+            }
+    
+            .event-details ul {
+                list-style: none;
+                padding: 0;
+                display: flex;
+                flex-direction: column;
+                gap: 15px;
+            }
+    
+            .event-details ul li {
+                display: flex;
+                justify-content: space-between;
+                font-size: 1.2rem;
+                padding: 10px 0;
+                border-bottom: 1px solid #eee;
+            }
+    
+            .event-details ul li i {
+                font-size: 1.5rem;
+                color: #ff6f61;
+                margin-right: 15px;
+            }
+    
+            .event-details ul li span:first-child {
+                font-weight: bold;
+                color: #555;
+                flex-basis: 150px;
+            }
+    
+            .event-details ul li span:last-child {
+                color: #777;
+            }
+    
+            /* Things to Bring Section */
+            .things-to-bring {
+                padding: 50px;
+                text-align: center;
+                background-color: #f9f9f9;
+            }
+    
+            .things-to-bring h3 {
+                font-size: 2rem;
+                margin-bottom: 30px;
+                color: #333;
+            }
+    
+            .things-to-bring .items {
+                display: flex;
+                justify-content: center;
+                flex-wrap: wrap;
+                gap: 40px;
+            }
+    
+            .things-to-bring .item {
+                max-width: 200px;
+                text-align: center;
+            }
+    
+            .things-to-bring .item img {
+                width: 100px;
+                height: 100px;
+                margin-bottom: 10px;
+            }
+    
+            .things-to-bring .item p {
+                font-size: 1.1rem;
+                color: #555;
+            }
+    
+            /* More Events Section */
+            .more-events {
+                background-color: #f4f4f4;
+                padding: 50px;
+                text-align: center;
+            }
+    
+            .more-events h2 {
+                font-size: 2.5rem;
+                color: #333;
+                margin-bottom: 30px;
+            }
+    
+            .more-events .event-carousel {
+                display: flex;
+                justify-content: center;
+                overflow: hidden;
+                position: relative;
+                max-width: 90%;
+                margin: 0 auto;
+            }
+    
+            .more-events .event-carousel img {
+                width: 100%;
+                transition: transform 0.5s ease;
+            }
+    
+            .more-events .carousel-controls {
+                position: absolute;
+                top: 50%;
+                width: 100%;
+                display: flex;
+                justify-content: space-between;
+                transform: translateY(-50%);
+            }
+    
+            .more-events .carousel-controls button {
+                background-color: rgba(0, 0, 0, 0.5);
+                color: white;
+                border: none;
+                padding: 10px;
+                cursor: pointer;
+                border-radius: 50%;
+                transition: background-color 0.3s;
+            }
+    
+            .more-events .carousel-controls button:hover {
+                background-color: rgba(0, 0, 0, 0.7);
+            }

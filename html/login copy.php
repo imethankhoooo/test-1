@@ -8,13 +8,16 @@
 <title>Login 弹出窗口</title>
 </head>
 <body>
-    <style>
-        .search-container{
-    width: 300px;
-    height: 30px;
-}
-        .search-container{
-            margin: 30px auto;
+<style>
+        .search-container {
+            width: 300px;
+            height: 30px;
+            margin: 30px 10px;
+        }
+
+        .line {
+            top: 50px;
+
         }
     </style>
     

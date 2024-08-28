@@ -31,9 +31,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $content = $_POST['content'];
     $venue = $_POST['Venue'];
     $event_date = $_POST['Date'];
-    $event_time = $_POST['Time'];
+    $event_startTime = $_POST['StartTime'];
+    $event_endTime = $_POST['EndTime'];
     $fee = $_POST['Fee'];
     $host = $_POST['Host'];
+    $host_phone = $_POST['Phone'];
     $precautions = $_POST['Precautions'];
 
     // 保存banner图片
@@ -52,8 +54,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     }
 
     // 使用预处理语句插入数据到event表
-    $stmt = $conn->prepare("INSERT INTO event (event_name, description, location, event_date, time, fee, event_host, note, banner_image) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
-    $stmt->bind_param("sssssssss", $title, $content, $venue, $event_date, $event_time, $fee, $host, $precautions, $bannerImgPath);
+    $stmt = $conn->prepare("INSERT INTO event (event_name, description, location, event_date, start_time, end_time, fee, event_host, phone, note, banner_image) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+    $stmt->bind_param("sssssssssss", $title, $content, $venue, $event_date, $event_startTime ,$event_endTime, $fee, $host, $host_phone, $precautions, $bannerImgPath);
     
     if ($stmt->execute()) {
         $event_id = $conn->insert_id; // 获取刚插入的事件ID
@@ -181,7 +183,7 @@ if ($result->num_rows > 0) {
         echo '<div class="eventCardInfo">';
         echo '<h2>' . htmlspecialchars($row['event_name']) . '</h2>';
         echo '<p>' . nl2br(htmlspecialchars($row['location'])) . '</p><br>';
-        echo '<a href="eventPage.php?event_id=' . htmlspecialchars($event_id) . '" class="button">View Event Details</a>';
+        echo '<a href="Event.php?event_id=' . htmlspecialchars($event_id) . '" class="button">View Event Details</a>';
         echo '</div>';
         echo '</div>';
     }
@@ -213,8 +215,12 @@ $conn->close();
                         <td><input name="Date" type="date"></td>
                     </tr>
                     <tr>
-                        <td><label class="eventInformation" for="Time">Time :</label></td>
-                        <td><input name="Time" type="time"></td>
+                        <td><label class="eventInformation" for="Time">Start Time :</label></td>
+                        <td><input name="StartTime" type="time"></td>
+                    </tr>
+                    <tr>
+                        <td><label class="eventInformation" for="Time">End Time :</label></td>
+                        <td><input name="EndTime" type="time"></td>
                     </tr>
                     <tr>
                         <td><label class="eventInformation" for="Fee">Fee :</label></td>
@@ -223,6 +229,10 @@ $conn->close();
                     <tr>
                         <td><label class="eventInformation" for="Host">Event host :</label></td>
                         <td><input name="Host"></td>
+                    </tr>
+                    <tr>
+                        <td><label class="eventInformation" for="Host">Host Phone number :</label></td>
+                        <td><input name="Phone"></td>
                     </tr>
                     <tr>
                         <td><label class="eventInformation" for="Venue">Venue :</label></td>
