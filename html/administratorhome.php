@@ -142,78 +142,55 @@ $conn->close();
             <input type="text" class="searchEvent" placeholder="Search....">
         </div>
         <div class="eventCard-Container">
-            <div class="eventCard">
-                <img class="eventCardImage" src="hs_gym_featured_1.jpg" alt="Gym Image 1">
-                <div class="eventCardInfo">
-                    <h2>Jalan Bukit Bintang</h2>
-                    <p>No. 12, Jalan Bukit Bintang,
-                        55100 Kuala Lumpur,
-                        Wilayah Persekutuan Kuala Lumpur,
-                        Malaysia.</p><br>
-                    <a href="tel:+1300-123-998">1300-123-998</a><br>
-                    <a href="https://www.google.com/maps/dir/3.2362824,101.6918495//@3.2207987,101.7115947,13.1z?entry=ttu">View More</a>
-                </div>
-            </div>
-            <div class="eventCard">
-                <img class="eventCardImage" src="hs_gym_featured_1.jpg" alt="Gym Image 1">
-                <div class="eventCardInfo">
-                    <h2>Jalan Bukit Bintang</h2>
-                    <p>No. 12, Jalan Bukit Bintang,
-                        55100 Kuala Lumpur,
-                        Wilayah Persekutuan Kuala Lumpur,
-                        Malaysia.</p><br>
-                    <a href="tel:+1300-123-998">1300-123-998</a><br>
-                    <a href="https://www.google.com/maps/dir/3.2362824,101.6918495//@3.2207987,101.7115947,13.1z?entry=ttu">View More</a>
-                </div>
-            </div>
-            <div class="eventCard">
-                <img class="eventCardImage" src="hs_gym_featured_1.jpg" alt="Gym Image 1">
-                <div class="eventCardInfo">
-                    <h2>Jalan Bukit Bintang</h2>
-                    <p>No. 12, Jalan Bukit Bintang,
-                        55100 Kuala Lumpur,
-                        Wilayah Persekutuan Kuala Lumpur,
-                        Malaysia.</p><br>
-                    <a href="tel:+1300-123-998">1300-123-998</a><br>
-                    <a href="https://www.google.com/maps/dir/3.2362824,101.6918495//@3.2207987,101.7115947,13.1z?entry=ttu">View More</a>
-                </div>
-            </div>
-            <div class="eventCard">
-                <img class="eventCardImage" src="hs_gym_featured_1.jpg" alt="Gym Image 1">
-                <div class="eventCardInfo">
-                    <h2>Jalan Bukit Bintang</h2>
-                    <p>No. 12, Jalan Bukit Bintang,
-                        55100 Kuala Lumpur,
-                        Wilayah Persekutuan Kuala Lumpur,
-                        Malaysia.</p><br>
-                    <a href="tel:+1300-123-998">1300-123-998</a><br>
-                    <a href="https://www.google.com/maps/dir/3.2362824,101.6918495//@3.2207987,101.7115947,13.1z?entry=ttu">View More</a>
-                </div>
-            </div>
-            <div class="eventCard">
-                <img class="eventCardImage" src="hs_gym_featured_1.jpg" alt="Gym Image 1">
-                <div class="eventCardInfo">
-                    <h2>Jalan Bukit Bintang</h2>
-                    <p>No. 12, Jalan Bukit Bintang,
-                        55100 Kuala Lumpur,
-                        Wilayah Persekutuan Kuala Lumpur,
-                        Malaysia.</p><br>
-                    <a href="tel:+1300-123-998">1300-123-998</a><br>
-                    <a href="https://www.google.com/maps/dir/3.2362824,101.6918495//@3.2207987,101.7115947,13.1z?entry=ttu">View More</a>
-                </div>
-            </div>
-            <div class="eventCard">
-                <img class="eventCardImage" src="hs_gym_featured_1.jpg" alt="Gym Image 1">
-                <div class="eventCardInfo">
-                    <h2>Jalan Bukit Bintang</h2>
-                    <p>No. 12, Jalan Bukit Bintang,
-                        55100 Kuala Lumpur,
-                        Wilayah Persekutuan Kuala Lumpur,
-                        Malaysia.</p><br>
-                    <a href="tel:+1300-123-998">1300-123-998</a><br>
-                    <a href="https://www.google.com/maps/dir/3.2362824,101.6918495//@3.2207987,101.7115947,13.1z?entry=ttu">View More</a>
-                </div>
-            </div>
+            
+        <?php
+// 1. 连接数据库
+
+
+$conn = new mysqli('localhost', 'root', '', 'php-assginment');
+
+// 检查连接是否成功
+if ($conn->connect_error) {
+    die("连接失败: " . $conn->connect_error);
+}
+
+// 查询数据
+$sql = "SELECT event_id, banner_image, event_name, location FROM event";
+$result = $conn->query($sql);
+
+// 检查查询是否成功
+if ($result === false) {
+    die("查询失败: " . $conn->error);
+}
+
+// 检查是否有结果
+if ($result->num_rows > 0) {
+    // 输出每一行数据
+    while ($row = $result->fetch_assoc()) {
+        $event_id = $row['event_id'];  // 获取事件ID
+        echo '<div class="eventCard">';
+        
+        // 处理 banner_image
+        if (is_resource($row['banner_image'])) {
+            $imgSrc = 'data:image/jpeg;base64,' . base64_encode($row['banner_image']);
+        } else {
+            $imgSrc = htmlspecialchars($row['banner_image']);
+        }
+
+        echo '<img class="eventCardImage" src="' . $imgSrc . '" alt="Event Image">';
+        echo '<div class="eventCardInfo">';
+        echo '<h2>' . htmlspecialchars($row['event_name']) . '</h2>';
+        echo '<p>' . nl2br(htmlspecialchars($row['location'])) . '</p><br>';
+        echo '<a href="eventPage.php?event_id=' . htmlspecialchars($event_id) . '" class="button">View Event Details</a>';
+        echo '</div>';
+        echo '</div>';
+    }
+} else {
+    echo "0 结果";
+}
+
+$conn->close();
+?>
 
         </div>
     </div>
@@ -230,10 +207,7 @@ $conn->close();
                 <textarea class="content eventInformation" name="content" rows="4" cols="50"></textarea>
                 <span class="line"></span>
                 <table class="inputTable">
-                    <tr>
-                        <td id="qqq"><label class="eventInformation" for="Venue">Venue :</label></td>
-                        <td><input name="Venue"></td>
-                    </tr>
+                    
                     <tr>
                         <td><label class="eventInformation" for="Date">Date :</label></td>
                         <td><input name="Date" type="date"></td>
@@ -251,8 +225,12 @@ $conn->close();
                         <td><input name="Host"></td>
                     </tr>
                     <tr>
+                        <td><label class="eventInformation" for="Venue">Venue :</label></td>
+                        <td><textarea name="Venue" col="30" rows="3"></textarea></td>
+                    </tr>
+                    <tr>
                         <td><label class="eventInformation">Precautions : </label></td>
-                        <td><textarea class="" name="Precautions" cols="30" rows="3"></textarea></td>
+                        <td><textarea name="Precautions" cols="30" rows="3"></textarea></td>
                     </tr>
                 </table>
                 <span class="line"></span>

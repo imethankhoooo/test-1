@@ -78,7 +78,7 @@ td{
 
 .thingIcon{
     max-width: 0;
-    min-width: max-content;
+    min-width: fit-content;
     margin: 0 2vw;
 }
 
@@ -86,8 +86,9 @@ td{
 
 .thingIcon .thingContent{
     font-size: 1vw;
-    width: 4vw;
+    width: fit-content;
     min-width: 30px;
+    display: inline;
 }
 .button-container{
     display: flex;
@@ -104,15 +105,12 @@ td{
     transform: translateX(-50%);
 }
 
-.thingIcon {
-
-}
-
 .img-box {
     position: relative;
     width: 4vw;
     height: 4vw;
     border: 2px dashed #333;
+    justify-content: center;
     cursor: pointer;
 }
 
