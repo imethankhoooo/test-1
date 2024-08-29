@@ -140,8 +140,8 @@ $conn->close();
         
     </div>
     <div class="Page adminPage4 hidden">
-        <div class="searchEvent-container">
-            <input type="text" class="searchEvent" placeholder="Search....">
+    <div class="searchEvent-container">
+            <input type="text" id="searchInput"  class="searchEvent" placeholder="Search events...">
         </div>
         <div class="eventCard-Container">
             
@@ -183,7 +183,7 @@ if ($result->num_rows > 0) {
         echo '<div class="eventCardInfo">';
         echo '<h2>' . htmlspecialchars($row['event_name']) . '</h2>';
         echo '<p>' . nl2br(htmlspecialchars($row['location'])) . '</p><br>';
-        echo '<a href="Event.php?event_id=' . htmlspecialchars($event_id) . '" class="button">View Event Details</a>';
+        echo '<a href="Event.php?event_id=' . htmlspecialchars($event_id) . '" class="button">View</a>';
         echo '</div>';
         echo '</div>';
     }

@@ -60,8 +60,7 @@ while($row = $result->fetch_assoc()) {
     $things_to_bring[] = $row;
 }
 
-$stmt->close();
-$conn->close();
+
 ?>
 <style>
          .hero {
@@ -120,40 +119,61 @@ $conn->close();
     </section>
 
     <!-- More Events Section -->
-    <section class="more-events">
-        <h2>Other Events</h2>
-        <div class="event-carousel">
-            <div class="carousel-controls">
-                <button onclick="prevImage()">&lt;</button>
-                <button onclick="nextImage()">&gt;</button>
-            </div>
-            <div class="carousel-images">
-                <img src="../Img/191003-malepersonaltrainer-stock.jpg" alt="Event 1">
-                <img src="../Img/191003-malepersonaltrainer-stock.jpg" alt="Event 2">
-                <img src="../Img/191003-malepersonaltrainer-stock.jpg" alt="Event 3">
-            </div>
+    <?php
+// Assume you have a database connection established
+
+// Fetch up to 5 events from the database
+$query = "SELECT event_id, event_name, banner_image, event_date FROM event ORDER BY event_date DESC LIMIT 5";
+$stmt = $conn->prepare($query);
+$stmt->execute();
+$events = $stmt->get_result();
+?>
+
+<section class="more-events">
+    <h2>Other Events</h2>
+    <div class="event-carousel">
+        <div class="carousel-controls">
+            <button onclick="prevImage()">&lt;</button>
+            <button onclick="nextImage()">&gt;</button>
         </div>
-    </section>
+        <div class="carousel-images">
+            <?php foreach ($events as $event): ?>
+                <div class="carousel-item">
+                    <img src="<?php echo htmlspecialchars($event['banner_image']); ?>" alt="<?php echo htmlspecialchars($event['event_name']); ?>">
+                    <div class="carousel-caption">
+                        <h3><?php echo htmlspecialchars($event['event_name']); ?></h3>
+                        <p><?php echo htmlspecialchars($event['event_date']); ?></p>
+                        <a href="event.php?event_id=<?php echo $event['event_id']; ?>" class="btn-view-more">View More</a>
+                    </div>
+                </div>
+            <?php endforeach; ?>
+        </div>
+    </div>
+</section>
 
-    <script>
-        const images = document.querySelector('.carousel-images');
-        const totalImages = images.querySelectorAll('img').length;
-        let index = 0;
+<script>
+    const carousel = document.querySelector('.carousel-images');
+    const items = carousel.querySelectorAll('.carousel-item');
+    const totalItems = items.length;
+    let currentIndex = 0;
 
-        function showImage(i) {
-            images.style.transform = `translateX(${-i * 100}%)`;
-        }
+    function showImage(index) {
+        carousel.style.transform = `translateX(${-index * 100}%)`;
+    }
 
-        function prevImage() {
-            index = (index > 0) ? index - 1 : totalImages - 1;
-            showImage(index);
-        }
+    function prevImage() {
+        currentIndex = (currentIndex > 0) ? currentIndex - 1 : totalItems - 1;
+        showImage(currentIndex);
+    }
 
-        function nextImage() {
-            index = (index < totalImages - 1) ? index + 1 : 0;
-            showImage(index);
-        }
-    </script>
+    function nextImage() {
+        currentIndex = (currentIndex < totalItems - 1) ? currentIndex + 1 : 0;
+        showImage(currentIndex);
+    }
+
+    // Auto-rotate carousel
+    setInterval(nextImage, 5000);
+</script>
 </body>
 
 </html>

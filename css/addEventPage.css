@@ -102,7 +102,6 @@ td{
 .button{
     width: 4vw;
     height: 2vw;
-    transform: translateX(-50%);
 }
 
 .img-box {
