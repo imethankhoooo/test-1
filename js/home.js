@@ -26,14 +26,3 @@ document.querySelectorAll('.s-button')[0].onclick =()=>{
     _move()};
 
 
-let login=document.getElementById('login');
-let loginValue=0;
-login.addEventListener('click',()=>{
-    if(loginValue==0){
-        window.location.href='../html/login copy.php'
-    }
-})
-
-function loginStatus(value){
-    loginValue=value;
-}

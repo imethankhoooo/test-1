@@ -1,32 +1,250 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
 body {
     display: flex;
-    flex-direction: row;
-
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f0f2f5;
+    min-height: 100vh;
 }
 
-.profileInput-container{
-
-    height: auto;
-    background-color: white;
-}
-.container1{
-    width: 30%;
-    background-color: red;
+.profileInput-container {
+    height: 100vh;
 }
 
-.container1 img{
+.container1 {
+    width: 40%;
+    background-color: #f0f2f5;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    position: relative;
+}
+
+.container1::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.3);
+    z-index: 1;
+}
+
+.container1 img {
     width: 100%;
     height: 100%;
-}
-.container2{
-    width: 70%;
-}
-.form-container{
-    margin: 10%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
 }
 
-.form-container h1{
-    font-size: 40px;
-    font-weight: 1200;
-    margin-bottom: 10%;
+.container2 {
+    width: 60%;
+    background-color: white;
+    padding: 50px;
+    overflow-y: auto;
+    box-shadow: -10px 0 20px rgba(0, 0, 0, 0.1);
+}
+
+.form-container {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.form-container h1 {
+    font-size: 36px;
+    font-weight: 700;
+    margin-bottom: 30px;
+    color: #4285F4;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.avatar-upload {
+    position: relative;
+    max-width: 205px;
+    margin: 50px auto;
+}
+.avatar-edit {
+    position: absolute;
+    right: 12px;
+    z-index: 1;
+    top: 10px;
+}
+.avatar-edit input {
+    display: none;
+}
+.avatar-edit label {
+    display: inline-block;
+    width: 34px;
+    height: 34px;
+    margin-bottom: 0;
+    border-radius: 100%;
+    background: #FFFFFF;
+    border: 1px solid transparent;
+    box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.12);
+    cursor: pointer;
+    font-weight: normal;
+    transition: all .2s ease-in-out;
+}
+.avatar-edit label:hover {
+    background: #f1f1f1;
+    border-color: #d6d6d6;
+}
+.avatar-edit label:after {
+    content: "\270E";
+    font-family: 'FontAwesome';
+    color: #757575;
+    position: absolute;
+    top: 10px;
+    left: 0;
+    right: 0;
+    text-align: center;
+    margin: auto;
+}
+.avatar-preview {
+    width: 192px;
+    height: 192px;
+    position: relative;
+    border-radius: 100%;
+    border: 6px solid #F8F8F8;
+    box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.1);
+}
+.avatar-preview > div {
+    width: 100%;
+    height: 100%;
+    border-radius: 100%;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+fieldset {
+    border: none;
+    margin-bottom: 30px;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+legend {
+    font-size: 24px;
+    font-weight: 600;
+    margin-bottom: 20px;
+    color: #4285F4;
+    padding: 0 10px;
+}
+
+.search-container {
+    position: relative;
+    margin-bottom: 25px;
+    width: 100%;
+}
+
+.search-input {
+    width: 100%;
+    padding: 12px 0;
+    font-size: 16px;
+    border: none;
+    border-bottom: 2px solid #ccc;
+    background-color: transparent;
+    transition: border-color 0.3s;
+}
+
+.search-input:focus {
+    outline: none;
+    border-color: #4285F4;
+}
+
+.search-placeholder {
+    position: absolute;
+    top: 12px;
+    left: 0;
+    font-size: 16px;
+    color: #999;
+    transition: all 0.3s;
+    pointer-events: none;
+}
+
+.search-input:focus ~ .search-placeholder,
+.search-input:not(:placeholder-shown) ~ .search-placeholder {
+    top: -20px;
+    font-size: 12px;
+    color: #4285F4;
+}
+
+.line {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background-color: #4285F4;
+    transform: scaleX(0);
+    transition: transform 0.3s;
+}
+
+.search-input:focus ~ .line,
+.search-input:not(:placeholder-shown) ~ .line {
+    transform: scaleX(1);
+}
+
+button {
+    width: 100%;
+    padding: 15px;
+    background-color: #4285F4;
+    color: white;
+    border: none;
+    border-radius: 30px;
+    font-size: 18px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s;
+    box-shadow: 0 4px 6px rgba(66, 133, 244, 0.3);
+}
+
+button:hover {
+    background-color: #3367D6;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 8px rgba(66, 133, 244, 0.4);
+}
+
+.gender-container {
+    display: flex;
+    justify-content: center;
+    margin: 20px 0;
+    width: 100%;
+}
+
+.gender-option {
+    position: relative;
+    margin: 0 10px;
+}
+
+.gender-option input[type="radio"] {
+    display: none;
+}
+
+.gender-option label {
+    display: inline-block;
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #f0f0f0;
+    border: 2px solid #ddd;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.gender-option input[type="radio"]:checked + label {
+    background-color: #4285F4;
+    color: white;
+    border-color: #4285F4;
 }

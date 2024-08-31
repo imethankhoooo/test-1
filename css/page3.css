@@ -31,6 +31,7 @@
     flex-wrap: wrap;
     justify-content: space-around;
     gap: 20px;
+    padding: 20px;
 }
 
 .eventCard {
@@ -39,14 +40,25 @@
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     overflow: hidden;
     width: 300px;
-    transition: transform 0.3s;
+    transition: all 0.5s ease-in-out;
     display: flex;
     flex-direction: column;
+    opacity: 1;
+    transform: scale(1);
+}
+
+.eventCard.hidden {
+    width: 0;
+    margin: 0;
+    padding: 0;
+    opacity: 0;
+    transform: scale(0);
 }
 
 .eventCard:hover {
     transform: translateY(-10px);
 }
+
 
 .eventCardImage {
     width: 100%;
@@ -55,6 +67,16 @@
 }
 
 
+
+.eventCardInfo {
+    padding: 15px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    flex-grow: 1;
+}
 
 .eventCardInfo h2 {
     font-size: 20px;
@@ -68,20 +90,9 @@
     margin-bottom: 15px;
 }
 
-.eventCardInfo {
-    padding: 15px;
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-    align-items: center; /* 确保内容水平居中 */
-    justify-content: space-between;
-    height: auto; /* 允许高度自适应 */
-    min-height: 150px; /* 设置最小高度 */
-}
-
 .button {
-    display: inline-flex; 
-    align-items: center; 
+    display: inline-flex;
+    align-items: center;
     justify-content: center;
     padding: 10px 20px;
     background-color: #ff9900;
@@ -91,7 +102,7 @@
     font-size: 14px;
     transition: background-color 0.3s;
     min-width: 100px;
-    height: 40px; /* 固定高度 */
+    height: 40px;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;

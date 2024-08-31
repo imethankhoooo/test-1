@@ -8,6 +8,79 @@
 <title>Login 弹出窗口</title>
 </head>
 <body>
+<?php
+session_start();
+
+$conn = new mysqli('localhost', 'root', '', 'php-assginment');
+
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+
+function showAlert($message, $isError = false) {
+    $class = $isError ? 'error' : 'success';
+    echo "<script>
+        var alertDiv = document.createElement('div');
+        alertDiv.textContent = '$message';
+        alertDiv.className = 'Alert $class';
+        alertDiv.style.display = 'block';
+        alertDiv.style.padding = '10px';
+        alertDiv.style.margin = '10px 0';
+        alertDiv.style.border = '1px solid " . ($isError ? 'red' : 'green') . "';
+        document.body.insertBefore(alertDiv, document.body.firstChild);
+        setTimeout(function() {
+            alertDiv.style.display = 'none';
+        }, 5000);
+    </script>";
+}
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    
+    if (isset($_POST['registerEmail']) && isset($_POST['registerPassword']) && isset($_POST['userpassword'])) {
+        $email = trim($_POST['registerEmail']);
+        $password = trim($_POST['registerPassword']);
+        $confirmPassword = trim($_POST['userpassword']);
+        
+        if (empty($email) || empty($password) || empty($confirmPassword)) {
+            showAlert("所有字段都是必填的。请确保您填写了所有表单字段。", true);
+        } elseif ($password !== $confirmPassword) {
+            showAlert("密码不匹配。请确保两次输入的密码相同。", true);
+        } else {
+            $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
+            
+            $stmt = $conn->prepare("SELECT member_id FROM member WHERE email = ?");
+            $stmt->bind_param("s", $email);
+            $stmt->execute();
+            $result = $stmt->get_result();
+            
+            if ($result->num_rows > 0) {
+                showAlert("该邮箱已被注册。您可以直接登录。", true);
+            } else {
+                $stmt = $conn->prepare("INSERT INTO member (email, password) VALUES (?, ?)");
+                $stmt->bind_param("ss", $email, $hashedPassword);
+                
+                if ($stmt->execute()) {
+                    $member_id = $conn->insert_id;
+                    showAlert("注册成功！您现在可以登录了。");
+                    header('Location:memberInformation.php');
+                    $_SESSION['member_id'] = $member_id;
+                    exit();
+                } else {
+                    showAlert("注册失败: " . $conn->error, true);
+                }
+            }
+            $stmt->close();
+        }
+    } elseif (isset($_POST['loginName']) && isset($_POST['loginPassword'])) {
+        // Login code (unchanged)
+    } else {
+        showAlert("无效的表单提交。请检查您的表单。", true);
+    }
+} 
+
+
+$conn->close();
+?>
 <style>
         .search-container {
             width: 300px;
@@ -27,11 +100,7 @@
             <div class="register-box hidden">
                 <form action="login copy.php" method="post">
                 <h1>register</h1>
-                <div class="search-container"> 
-                    <input name="registerName" type="text" class="search-input" placeholder=" " required>
-                    <span class="line"></span>
-                    <label for="name" class="search-placeholder">用戶名</label>
-                </div>
+                
                 <div class="search-container">
                     <input name="registerEmail" type="email" class="search-input" placeholder=" " required>
                     <span class="line"></span>
@@ -83,66 +152,5 @@
     </div>
     <script src="../js/login.js">
 </script>
-<?php
-$file = 'userdata.json';
-
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $registerName = isset($_POST['registerName']) ? $_POST['registerName'] : null;
-    $registerEmail = isset($_POST['registerEmail']) ? $_POST['registerEmail'] : null;
-    $registerPassword = isset($_POST['registerPassword']) ? $_POST['registerPassword'] : null;
-    $userPassword = isset($_POST['userpassword']) ? $_POST['userpassword'] : null;
-
-    if ($registerName === null || $registerEmail === null || $registerPassword === null || $userPassword === null) {
-
-        echo "<script>showAlert('All fields are required.',true);</script>";
-        
-        exit;
-    }
-
-    if ($registerPassword !== $userPassword) {
-        echo "<script>showAlert('Passwords do not match.',true);</script>";
-
-        exit;
-    }
-
-    $users = json_decode(file_get_contents($file), true);
-    if ($users === null) {
-        $users = [];
-    }else{
-    foreach ($users as $user) {
-        if ($user['username'] == $registerName) {
-            echo "<script>showAlert('Username is already exists. You can now login.',true);</script>";
-            exit();
-        }
-    }
-}
-
-    $users[] = array('username' => $registerName, 'email' => $registerEmail, 'password' => $registerPassword);
-    echo "<script>showAlert('Registration successful. You can now login.',true);</script>";
-    file_put_contents($file, json_encode($users));
-    exit();
-
-
-
-
-// $servername="localhost";
-// $username="root";
-// $userpassword="";
-// $dbname="userdatabase";
-
-// $conn=new mysqli($servername,$username,$userpassword,$dbname);
-
-// if($conn->connect_error){
-//     die("connect_error" . $conn->connect_error);
-// }
-// $sql="INSERT INFO users(name, email, password) VALUES('$name,$email,$password')";
-// if($conn->query($sql)===TRUE){
-//     echo "good";
-// }else{
-//     echo "error";
-// }
-// $conn->close();
-}
-?>
 </body>
 </html>
