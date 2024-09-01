@@ -149,9 +149,18 @@
         </div>
         <div class="eventCard-Container">
              <div class="eventCard">
-            <img class="eventCardImage" src="hs_gym_featured_1.jpg" alt="Gym Image 1">
+            <img class="eventCardImage" src="../Img/6-Pax-Fitness-Centre-JB-2-1024x683.jpg" alt="Gym Image 1">
             <div class="eventCardInfo">
-                <h2>Jalan Bukit Bintang</h2>
+                <h2>Johor Bahru</h2>
+                <p>Lot 1-015 to Lot1-021 R&F Mall, Tanjung Puteri, 80300 Johor Bahru, Johor</p><br>
+                <a href="tel:+1300-123-998">1300-123-998</a><br>
+                <a href="https://www.google.com/maps/dir/3.2362824,101.6918495//@3.2207987,101.7115947,13.1z?entry=ttu">View More</a>
+            </div>
+        </div>
+        <div class="eventCard">
+            <img class="eventCardImage" src="../Img/533997883.jpg" alt="Gym Image 1">
+            <div class="eventCardInfo">
+                <h2>Bukit Bintang</h2>
                 <p>No. 12, Jalan Bukit Bintang,
                     55100 Kuala Lumpur,
                     Wilayah Persekutuan Kuala Lumpur,
@@ -161,61 +170,37 @@
             </div>
         </div>
         <div class="eventCard">
-            <img class="eventCardImage" src="hs_gym_featured_1.jpg" alt="Gym Image 1">
+            <img class="eventCardImage" src="../Img/1000s.jpg" alt="Gym Image 1">
             <div class="eventCardInfo">
-                <h2>Jalan Bukit Bintang</h2>
-                <p>No. 12, Jalan Bukit Bintang,
-                    55100 Kuala Lumpur,
-                    Wilayah Persekutuan Kuala Lumpur,
-                    Malaysia.</p><br>
-                <a href="tel:+1300-123-998">1300-123-998</a>下·<br>
-                <a href="https://www.google.com/maps/dir/3.2362824,101.6918495//@3.2207987,101.7115947,13.1z?entry=ttu">View More</a>
-            </div>
-        </div>
-        <div class="eventCard">
-            <img class="eventCardImage" src="hs_gym_featured_1.jpg" alt="Gym Image 1">
-            <div class="eventCardInfo">
-                <h2>Jalan Bukit Bintang</h2>
-                <p>No. 12, Jalan Bukit Bintang,
-                    55100 Kuala Lumpur,
-                    Wilayah Persekutuan Kuala Lumpur,
-                    Malaysia.</p><br>
+                <h2>Pandan Perdana</h2>
+                <p>1M, Jalan Perdana 4/5, Pandan Perdana, 55300 Kuala Lumpur, Wilayah Persekutuan Kuala Lumpur</p><br>
                 <a href="tel:+1300-123-998">1300-123-998</a><br>
                 <a href="https://www.google.com/maps/dir/3.2362824,101.6918495//@3.2207987,101.7115947,13.1z?entry=ttu">View More</a>
             </div>
         </div>
         <div class="eventCard">
-            <img class="eventCardImage" src="hs_gym_featured_1.jpg" alt="Gym Image 1">
+            <img class="eventCardImage" src="../Img/LeanBodies.jpg" alt="Gym Image 1">
             <div class="eventCardInfo">
-                <h2>Jalan Bukit Bintang</h2>
-                <p>No. 12, Jalan Bukit Bintang,
-                    55100 Kuala Lumpur,
-                    Wilayah Persekutuan Kuala Lumpur,
-                    Malaysia.</p><br>
+                <h2>Klang</h2>
+                <p>51a jalan bendahara 2/ks07, off, Jalan Raja Nong, taman sejati, 41200 Klang, Selangor</p><br>
                 <a href="tel:+1300-123-998">1300-123-998</a><br>
                 <a href="https://www.google.com/maps/dir/3.2362824,101.6918495//@3.2207987,101.7115947,13.1z?entry=ttu">View More</a>
             </div>
         </div>
         <div class="eventCard">
-            <img class="eventCardImage" src="hs_gym_featured_1.jpg" alt="Gym Image 1">
+            <img class="eventCardImage" src="../Img/hotelimage.jpg" alt="Gym Image 1">
             <div class="eventCardInfo">
-                <h2>Jalan Bukit Bintang</h2>
-                <p>No. 12, Jalan Bukit Bintang,
-                    55100 Kuala Lumpur,
-                    Wilayah Persekutuan Kuala Lumpur,
-                    Malaysia.</p><br>
+                <h2>Shah Alam</h2>
+                <p>2-G & 2-1, Jalan Kemuning Prima C33/C, Kemuning Utama, 40400 Shah Alam, Selangor</p><br>
                 <a href="tel:+1300-123-998">1300-123-998</a><br>
                 <a href="https://www.google.com/maps/dir/3.2362824,101.6918495//@3.2207987,101.7115947,13.1z?entry=ttu">View More</a>
             </div>
         </div>
         <div class="eventCard">
-            <img class="eventCardImage" src="hs_gym_featured_1.jpg" alt="Gym Image 1">
+            <img class="eventCardImage" src="../Img/bWFpbi9pbWFnZXMvZ3ltLTEuanBn.jpg" alt="Gym Image 1">
             <div class="eventCardInfo">
-                <h2>Jalan Bukit Bintang</h2>
-                <p>No. 12, Jalan Bukit Bintang,
-                    55100 Kuala Lumpur,
-                    Wilayah Persekutuan Kuala Lumpur,
-                    Malaysia.</p><br>
+                <h2>Penang</h2>
+                <p>59-B, Lebuh Tye Sin, 10300 George Town, Pulau Pinang.</p><br>
                 <a href="tel:+1300-123-998">1300-123-998</a><br>
                 <a href="https://www.google.com/maps/dir/3.2362824,101.6918495//@3.2207987,101.7115947,13.1z?entry=ttu">View More</a>
             </div>
