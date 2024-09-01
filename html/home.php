@@ -138,54 +138,63 @@ if(isset($_SESSION['member_id'])){
     </div>
 
     <div class="Page Page2 hidden">
-        <div class="profileAside">
-            <div class="profileImg-Container">
-                <img src="../Img/cartoon 1.png" alt="Profile Image" class="profileImg">
-                <h3 class="profileUsername">Matthew Yong</h3>
-            </div>
-        </div>
-        <div class="profileInformation">
-            <div class="infoSection">
-                <div class="profileCard">
-                    <h2>Personal Information</h2>
-                    <div class="infoGroup">
-                        <p><strong>Name:</strong> <span class="profileInformation">Matthew Yong</span></p>
-                        <p><strong>Email:</strong> <span class="profileInformation">matthew.yong@example.com</span></p>
-                        <p><strong>Phone:</strong> <span class="profileInformation">+1234567890</span></p>
-                    </div>
-                </div>
-            </div>
-            <div class="infoSection">
-                <div class="profileCard">
-                    <h2>Address</h2>
-                    <p><strong>Address:</strong> <span class="profileInformation">123 Example St, City, Country</span></p>
-                </div>
-            </div>
-            <div class="infoSection">
-                <div class="profileCard">
-                    <h2>Bio</h2>
-                    <p><span class="profileInformation">Start for gym have 20Years</span></p>
-                </div>
-            </div>
-            <div class="infoSection">
-                <div class="profileCard">
-                    <h2>Social Media</h2>
-                    <p><strong>LinkedIn:</strong> <a href="https://www.linkedin.com/in/matthewyong" class="profileLink">linkedin.com/in/matthewyong</a></p>
-                    <p><strong>Twitter:</strong> <a href="https://twitter.com/matthewyong" class="profileLink">twitter.com/matthewyong</a></p>
-                </div>
-            </div>
-            <div class="infoSection">
-                <div class="profileCard">
-                    <h2>Experience</h2>
-                    <ul class="profileList">
-                        <li>Education and certification</li>
-                        <li>Personal Experience (10 Year)</li>
-                    </ul>
-                </div>
-            </div>
-            
+        <?php
+        session_start();
+        $conn = new mysqli('localhost', 'root', '', 'php-assginment');
         
+        if ($conn->connect_error) {
+            die("Connection failed: " . $conn->connect_error);
+        }
+        
+        if (isset($_SESSION['member_id'])) {
+            $member_id = $_SESSION['member_id'];
+            
+        }        
+        ?>
+    <div class="profileAside">
+    <div class="profileImg-Container">
+        <img src="<?php echo htmlspecialchars($avatar_path); ?>" alt="Profile Image" class="profileImg">
+        <h3 class="profileUsername"><?php echo htmlspecialchars($membername); ?></h3>
+    </div>
+</div>
+<div class="profileInformation">
+    <div class="infoSection">
+        <div class="profileCard">
+            <h2>Personal Information</h2>
+            <div class="infoGroup">
+                <p><strong>Name:</strong> <span class="profileInformation"><?php echo htmlspecialchars($name); ?></span></p>
+                <p><strong>Email:</strong> <span class="profileInformation"><?php echo htmlspecialchars($_SESSION['email']); ?></span></p>
+                <p><strong>Phone:</strong> <span class="profileInformation"><?php echo htmlspecialchars($phone); ?></span></p>
+            </div>
         </div>
+    </div>
+    <div class="infoSection">
+        <div class="profileCard">
+            <h2>Address</h2>
+            <p><strong>Address:</strong> <span class="profileInformation"><?php echo htmlspecialchars($address); ?></span></p>
+        </div>
+    </div>
+    <div class="infoSection">
+        <div class="profileCard">
+            <h2>Bio</h2>
+            <p><span class="profileInformation"><?php echo htmlspecialchars($bio); ?></span></p>
+        </div>
+    </div>
+    <div class="infoSection">
+        <div class="profileCard">
+            <h2>Social Media</h2>
+            <p><strong>LinkedIn:</strong> <a href="<?php echo htmlspecialchars($socialmedia); ?>" class="profileLink"><?php echo htmlspecialchars($socialmedia); ?></a></p>
+        </div>
+    </div>
+    <div class="infoSection">
+        <div class="profileCard">
+            <h2>Experience</h2>
+            <ul class="profileList">
+                <li><?php echo htmlspecialchars($experience); ?></li>
+            </ul>
+        </div>
+    </div>
+</div>
     </div>
     
 
