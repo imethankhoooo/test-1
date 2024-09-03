@@ -17,6 +17,8 @@
 
 <body>
 <?php
+        session_start();
+
 if(isset($_SESSION['member_id'])){
     $member_id =$_SESSION['member_id'];
 }
@@ -53,7 +55,7 @@ if(isset($_SESSION['member_id'])){
                     </a>
                 </li>
                 <li class="list" style="--clr:grey;">
-                    <a href="about.html">
+                    <a>
                         <span class="icon"><img class="imgIcon" src="../Img/view-details.png"
                                 alt=""></span>
                         <span class="text">View</span>
@@ -139,7 +141,7 @@ if(isset($_SESSION['member_id'])){
 
     <div class="Page Page2 hidden">
         <?php
-        session_start();
+
         $conn = new mysqli('localhost', 'root', '', 'php-assginment');
         
         if ($conn->connect_error) {
@@ -148,7 +150,26 @@ if(isset($_SESSION['member_id'])){
         
         if (isset($_SESSION['member_id'])) {
             $member_id = $_SESSION['member_id'];
-            
+            $sql = "SELECT avatar,name,username,gender,phone,address,bio,experience,socialmedia FROM member WHERE member_id =?";
+            $stmt = $conn->prepare($sql);
+            $stmt ->bind_param("i",$member_id);
+            $stmt->execute();
+            $result = $stmt->get_result();
+            $member = $result->fetch_assoc();
+            $avatar_path = $member['avatar'] ? $member['avatar'] : '../Img/cartoon 1.png';
+        $membername = $member['username'];
+        $name=$member['name'];
+        $gender = $member['gender'];
+        $phone = $member['phone'];
+        $address = $member['address'];
+        $bio = $member['bio'];
+        $experience = $member['experience'];
+        $socialmedia = $member['socialmedia'];
+
+        }else {
+            // 如果没有找到 session，则重定向到登录页面或显示错误信息
+            echo "<script>alert('No member ID found. Please log in.'); window.location.href='login.php';</script>";
+            exit;
         }        
         ?>
     <div class="profileAside">
@@ -329,6 +350,7 @@ $conn->close();
     // 初始加载所有事件
     fetchEvents('');
 });
+
     </script>
 
 

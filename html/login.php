@@ -36,6 +36,7 @@ function showAlert($message, $isError = false) {
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     
+    
     if (isset($_POST['registerEmail']) && isset($_POST['registerPassword']) && isset($_POST['userpassword'])) {
         $email = trim($_POST['registerEmail']);
         $password = trim($_POST['registerPassword']);
@@ -46,18 +47,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         } elseif ($password !== $confirmPassword) {
             showAlert("密码不匹配。请确保两次输入的密码相同。", true);
         } else {
-            $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
+    
             
             $stmt = $conn->prepare("SELECT member_id FROM member WHERE email = ?");
             $stmt->bind_param("s", $email);
             $stmt->execute();
             $result = $stmt->get_result();
             
-            if ($result->num_rows > 0) {
+            if ($cresult->num_rows > 0) {
                 showAlert("该邮箱已被注册。您可以直接登录。", true);
             } else {
                 $stmt = $conn->prepare("INSERT INTO member (email, password) VALUES (?, ?)");
-                $stmt->bind_param("ss", $email, $hashedPassword);
+                $stmt->bind_param("ss", $email, $password);
                 
                 if ($stmt->execute()) {
                     $member_id = $conn->insert_id;
@@ -71,12 +72,43 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             }
             $stmt->close();
         }
-    } elseif (isset($_POST['loginName']) && isset($_POST['loginPassword'])) {
+    } elseif (isset($_POST['email']) && isset($_POST['loginPassword'])) {
         // Login code (unchanged)
+        $email = trim($_POST['email']);
+        $password = trim($_POST['loginPassword']);
+        
+        if (empty($email) || empty($password)) {
+            showAlert("用户名或密码不能为空。", true);
+        } else {
+            $stmt = $conn->prepare("SELECT member_id, password FROM member WHERE email = ?");
+            $stmt->bind_param("s", $email);
+            $stmt->execute();
+            $result = $stmt->get_result();
+            
+            if ($result->num_rows > 0) {
+                $row = $result->fetch_assoc();
+                // 验证密码
+                if ($password===$row['password']) {
+
+                    // 登录成功
+                    $_SESSION['member_id'] = $row['member_id'];
+                    $_SESSION['email'] = $email;
+                    showAlert("登录成功！");
+                    header('Location: home.php');
+                    exit();
+                } else {
+                    showAlert("密码错误。请重试。", true);
+                }
+            } else {
+                showAlert("用户不存在。请注册或检查您的输入。", true);
+            }
+            $stmt->close();
+        }
     } else {
         showAlert("无效的表单提交。请检查您的表单。", true);
     }
-} 
+}
+
 
 
 $conn->close();
@@ -98,7 +130,7 @@ $conn->close();
     <div class="container">
         <div class="form-box">
             <div class="register-box hidden">
-                <form action="login copy.php" method="post">
+                <form action="login.php" method="post">
                 <h1>register</h1>
                 
                 <div class="search-container">
@@ -120,12 +152,12 @@ $conn->close();
             </form>
             </div>
             <div class="login-box">
-                <form action="Register.php" method="post">
+                <form action="login.php" method="post">
                 <h1>login</h1>
                 <div class="search-container">
-                    <input name="loginName" type="text" class="search-input" placeholder=" " required>
+                    <input name="email" type="text" class="search-input" placeholder=" " required>
                     <span class="line"></span>
-                    <label class="search-placeholder">用戶名</label>
+                    <label class="search-placeholder">Email</label>
                 </div>
                 <div class="search-container">
                     <input name="loginPassword" type="password" class="search-input" placeholder=" " required>

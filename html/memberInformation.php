@@ -31,21 +31,40 @@ if (isset($_SESSION['member_id'])) {
         $socialmedia = $_POST['socialmedia'];
 
         // Handle avatar upload
-        if(isset($_FILES['avatar'])){
+        if (isset($_FILES['avatar']) && $_FILES['avatar']['error'] === UPLOAD_ERR_OK) {
             $file_tmp = $_FILES['avatar']['tmp_name'];
-            $file_ext = strtolower(end(explode('.',$_FILES['avatar']['name'])));
-        
-                $upload_dir = '../uploads/';
-                $avatar_name = uniqid() . '.' . $file_ext;
-                move_uploaded_file($file_tmp, $upload_dir . $avatar_name);
-                $avatar_path = '/uploads/' . $avatar_name; // Store relative path in database
+            
+            // 使用 pathinfo 获取文件扩展名
+            $file_info = pathinfo($_FILES['avatar']['name']);
+            $file_ext = strtolower($file_info['extension']);
+            
+            // 设置相对路径的上传目录
+            $upload_dir = './uploads/';
+            
+            // 确保上传目录存在
+            if (!is_dir($upload_dir)) {
+                mkdir($upload_dir, 0777, true); // 创建目录并设置权限
+            }
+            
+            // 生成唯一的文件名
+            $avatar_name = uniqid() . '.' . $file_ext;
+            
+            // 移动上传的文件到指定目录
+            if (move_uploaded_file($file_tmp, $upload_dir . $avatar_name)) {
+                $avatar_path = $upload_dir . $avatar_name; // 在数据库中存储相对路径
+                echo "File uploaded successfully to " . $avatar_path;
+            } else {
+                // 上传失败的处理
+                echo "File upload failed.";
+            }
         }
+        
 
         $stmt = $conn->prepare("UPDATE member SET name=?, username=?, gender=?, phone=?, address=?, bio=?, experience=?, socialmedia=?, avatar=? WHERE member_id=?");
         $stmt->bind_param("sssssssssi", $name, $membername, $gender, $phone, $address, $bio, $experience, $socialmedia, $avatar_path, $member_id);
 
         if ($stmt->execute()) {
-            echo "<script>alert('Profile updated successfully'); window.location.href='home.html';</script>";
+            echo "<script>alert('Profile updated successfully'); window.location.href='home.php';</script>";
         } else {
             echo "Error: " . $stmt->error;
         }
