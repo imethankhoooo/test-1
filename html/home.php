@@ -263,9 +263,7 @@ $conn->close();
 
     </div>
     <div class="Page Page5 hidden">
-    <style>
-        
-    </style>
+   
     <div class="container">
         <?php
        

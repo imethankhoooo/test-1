@@ -1,0 +1,105 @@
+.adminPage2 {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f4f7fa;
+    margin: 0;
+    padding: 30px;
+}
+
+.search-container {
+    margin-bottom: 40px;
+    text-align: center;
+}
+
+#searchMember {
+    width: 80%;
+    max-width: 500px;
+    padding: 15px 25px;
+    border: none;
+    border-radius: 50px;
+    font-size: 18px;
+    outline: none;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    background-color: white;
+}
+
+#searchMember:focus {
+    box-shadow: 0 4px 20px rgba(74, 144, 226, 0.4);
+}
+
+
+.member-card-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 30px;
+    padding: 20px;
+}
+
+.member-card {
+    background-color: white;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: flex;
+    flex-direction: column;
+}
+
+.member-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+}
+
+
+.member-card img {
+    width: 120px;
+    height: 120px;
+    object-fit: cover;
+    border-radius: 50%;
+    margin: 30px auto 20px;
+    border: 5px solid #f0f0f0;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.member-info {
+    padding: 0 25px 25px;
+    text-align: center;
+    flex-grow: 1;
+}
+
+.member-info h2 {
+    margin: 0 0 10px;
+    color: #333;
+    font-size: 1.6em;
+    font-weight: 600;
+}
+
+.member-info p {
+    margin: 0;
+    color: #666;
+    font-size: 1em;
+}
+
+
+.view-button {
+    display: block;
+    width: calc(100% - 50px);
+    margin: 20px auto;
+    padding: 15px;
+    background-color: #4a90e2;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    border: none;
+    border-radius: 50px;
+    font-size: 1em;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: all 0.3s ease;
+}
+
+.view-button:hover {
+    background-color: #3a7bc8;
+    box-shadow: 0 5px 15px rgba(74, 144, 226, 0.4);
+}

@@ -57,7 +57,6 @@ $totalEvents = count($events);
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard</title>
     <style>
-        /* ... (previous CSS styles) ... */
         .timetable {
             display: grid;
             grid-template-columns: repeat(7, 1fr);
