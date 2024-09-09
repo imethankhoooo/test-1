@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="stylesheet" href="../css/login.css">
 <link rel="stylesheet" href="../css/search.css">
-<title>Login 弹出窗口</title>
+<title>Login Page</title>
 </head>
 <body>
 <?php
@@ -43,9 +43,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $confirmPassword = trim($_POST['userpassword']);
         
         if (empty($email) || empty($password) || empty($confirmPassword)) {
-            showAlert("所有字段都是必填的。请确保您填写了所有表单字段。", true);
+            showAlert("All fields are required. Please make sure you fill out all form fields.", true);
         } elseif ($password !== $confirmPassword) {
-            showAlert("密码不匹配。请确保两次输入的密码相同。", true);
+            showAlert("The passwords do not match. Please make sure you enter the same password twice.", true);
         } else {
     
             
@@ -55,19 +55,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $result = $stmt->get_result();
             
             if ($cresult->num_rows > 0) {
-                showAlert("该邮箱已被注册。您可以直接登录。", true);
+                showAlert("This email address has been registered. You can log in directly.", true);
             } else {
                 $stmt = $conn->prepare("INSERT INTO member (email, password) VALUES (?, ?)");
                 $stmt->bind_param("ss", $email, $password);
                 
                 if ($stmt->execute()) {
                     $member_id = $conn->insert_id;
-                    showAlert("注册成功！您现在可以登录了。");
+                    showAlert("Registration successful! You can now log in.");
                     header('Location:memberInformation.php');
                     $_SESSION['member_id'] = $member_id;
                     exit();
                 } else {
-                    showAlert("注册失败: " . $conn->error, true);
+                    showAlert("Registration failed:" . $conn->error, true);
                 }
             }
             $stmt->close();
@@ -78,7 +78,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $password = trim($_POST['loginPassword']);
         
         if (empty($email) || empty($password)) {
-            showAlert("用户名或密码不能为空。", true);
+            showAlert("Username or password cannot be empty.", true);
         } else {
             $stmt = $conn->prepare("SELECT member_id, password FROM member WHERE email = ?");
             $stmt->bind_param("s", $email);
@@ -92,11 +92,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     // Member login successful
                     $_SESSION['member_id'] = $row['member_id'];
                     $_SESSION['email'] = $email;
-                    showAlert("登录成功！");
+                    showAlert("Login successful!");
                     header('Location: home.php');
                     exit();
                 } else {
-                    showAlert("密码错误。请重试。", true);
+                    showAlert("Wrong password. Please try again.", true);
                 }
             } else {
                 // Member not found, check admin_member table
@@ -112,20 +112,20 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         // Admin login successful
                         $_SESSION['admin_id'] = $adminRow['admin_id'];
                         $_SESSION['email'] = $email;
-                        showAlert("管理员登录成功！");
+                        showAlert("Administrator login successful!");
                         header('Location: administratorhome.php');
                         exit();
                     } else {
-                        showAlert("管理员密码错误。请重试。", true);
+                        showAlert("Wrong password. Please try again.", true);
                     }
                 } else {
-                    showAlert("用户不存在。请注册或检查您的输入。", true);
+                    showAlert("member does not exist. Please register or check your input.", true);
                 }
             }
             $stmt->close();
         }
     } else {
-        showAlert("无效的表单提交。请检查您的表单。", true);
+        showAlert("Invalid form submission. Please check your form.", true);
     }
 }
 
@@ -156,19 +156,19 @@ $conn->close();
                 <div class="search-container">
                     <input name="registerEmail" type="email" class="search-input" placeholder=" " required>
                     <span class="line"></span>
-                    <label class="search-placeholder">郵箱</label>
+                    <label class="search-placeholder">Email</label>
                 </div>
                 <div class="search-container">
                     <input name="registerPassword" type="password" class="search-input" placeholder=" " required>
                     <span class="line"></span>
-                    <label for="password" class="search-placeholder">密碼</label>
+                    <label for="password" class="search-placeholder">password</label>
                 </div>
                 <div class="search-container">
                     <input name="userpassword" type="password" class="search-input" placeholder=" " required>
                     <span class="line"></span>
-                    <label for="userpassword" class="search-placeholder">確認密碼</label>
+                    <label for="userpassword" class="search-placeholder">Confirm Password</label>
                 </div>
-                <button type="submit" >注冊</button>
+                <button type="submit" >Registration</button>
             </form>
             </div>
             <div class="login-box">
@@ -182,24 +182,24 @@ $conn->close();
                 <div class="search-container">
                     <input name="loginPassword" type="password" class="search-input" placeholder=" " required>
                     <span class="line"></span>
-                    <label class="search-placeholder">密碼</label>
+                    <label class="search-placeholder">Password</label>
                 </div>
-                <button type="submit" >登錄</button>
+                <button type="submit" >Log In</button>
             </form>
             </div>
         </div>
         <div class="con-box left">
-            <h2>歡迎來到<span>客戶資料管理網站</span></h2>
+            <h2>Welcome to the<span> event booking website</span></h2>
             <p></p>
             <img src=" ../img/cartoon 1.png" alt="cartoon">
-            <p>已有賬號？</p>
-            <button id="register" onclick="login()">去登陸</button>
+            <p>Already have an account?</p>
+            <button id="register" onclick="login()">Go to login</button>
         </div>
         <div class="con-box right">
-            <h2>請登錄<span>客戶資料管理網站</span></h2>
+            <h2>Please log in<span> the event booking website</span></h2>
             <img src=" ../img/cartoon 2.png" alt="cartoon">
-            <p>沒有賬號？</p>
-            <button id="register" onclick="register()">去注冊</button>
+            <p>Don't have an account?</p>
+            <button id="register" onclick="register()">Go to register</button>
         </div>
     </div>
     <script src="../js/login.js">

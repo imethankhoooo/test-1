@@ -20,7 +20,7 @@
 
    
     if ($conn->connect_error) {
-        die("连接失败: " . $conn->connect_error);
+        die("connect error: " . $conn->connect_error);
     }
     $uploadDir = 'uploads/';
     if (!is_dir($uploadDir)) {
@@ -46,10 +46,10 @@
             $bannerImgPath = $uploadDir . basename($_FILES['eventImgInput']['name']);
             if (move_uploaded_file($_FILES['eventImgInput']['tmp_name'], $bannerImgPath)) {
             } else {
-                die("上传 banner 图片失败，检查文件上传是否正确。");
+                die("Failed to upload the banner image. Check whether the file was uploaded correctly.。");
             }
         } else {
-            echo "未检测到文件上传。<br>";
+            echo "No file upload detected.<br>";
         }
 
     
@@ -697,36 +697,7 @@ for (var i = 0; i < revenueData.length; i++) {
             <input type="text" id="searchMember" placeholder="Search users..." value="">
         </div>
         <div class="member-card-container" id="memberCardContainer">
-            <?php
-
-            $conn = new mysqli('localhost', 'root', '', 'php-assginment');
-
-
-            if ($conn->connect_error) {
-                die("连接失败: " . $conn->connect_error);
-            }
-
-
-            $sql = "SELECT member_id, name, email, avatar FROM member";
-            $result = $conn->query($sql);
-
-            if ($result->num_rows > 0) {
-                while ($row = $result->fetch_assoc()) {
-                    echo '<div class="member-card">';
-                    echo '<img src="' . htmlspecialchars($row['avatar']) . '" alt="' . htmlspecialchars($row['name']) . '">';
-                    echo '<div class="member-info">';
-                    echo '<h2>' . htmlspecialchars($row['name']) . '</h2>';
-                    echo '<p>' . htmlspecialchars($row['email']) . '</p>';
-                    echo '</div>';
-                    echo '<a href="member.php?id=' . htmlspecialchars($row['member_id']) . '" class="view-button">View Profile</a>';
-                    echo '</div>';
-                }
-            } else {
-                echo "没有找到用户";
-            }
-
-            $conn->close();
-            ?>
+            
         </div>
 
         <script>
@@ -760,7 +731,7 @@ $conn = new mysqli('localhost', 'root', '', 'php-assginment');
 
 
 if ($conn->connect_error) {
-    die("连接失败: " . $conn->connect_error);
+    die("connect error: " . $conn->connect_error);
 }
 
 $sql = "SELECT member_id, name, email,  avatar FROM member";
@@ -922,9 +893,9 @@ $conn->close();
         }
     </style>
     <div class="container">
-        <h1 class="panel-title">用户管理面板</h1>
+        <h1 class="panel-title">member manage system</h1>
         <div class="search-box">
-            <input type="text" id="searchUser" class="search-input" placeholder="搜索用户...">
+            <input type="text" id="searchUser" class="search-input" placeholder="search member...">
         </div>
         <div class="user-grid" id="userGrid">
             <?php foreach ($users as $user): ?>
@@ -932,7 +903,7 @@ $conn->close();
                     <img src="<?php echo htmlspecialchars($user['avatar']); ?>" alt="<?php echo htmlspecialchars($user['name']); ?>" class="user-avatar">
                     <div class="user-name"><?php echo htmlspecialchars($user['name']); ?></div>
                     <div class="user-email"><?php echo htmlspecialchars($user['email']); ?></div>
-                    <a href="booking_information.php?member_id=<?php echo htmlspecialchars($user['member_id']); ?>" class="view-profile">查看资料</a>
+                    <a href="booking_information.php?member_id=<?php echo htmlspecialchars($user['member_id']); ?>" class="view-profile">View profile</a>
                 </div>
             <?php endforeach; ?>
         </div>
@@ -982,7 +953,7 @@ $conn->close();
 
 
             if ($result === false) {
-                die("查询失败: " . $conn->error);
+                die("Query failed: " . $conn->error);
             }
 
             if ($result->num_rows > 0) {
@@ -1335,7 +1306,7 @@ $conn->close();
             card.style.opacity = '0';
             card.style.transform = 'scale(0.8)';
 
-            const imgSrc = member.avatar ? member.avatar : '/api/placeholder/400/300';
+            const imgSrc = member.avatar ;
 
             card.innerHTML = `
             <img src="${imgSrc}" alt="${member.name}">
@@ -1343,7 +1314,7 @@ $conn->close();
                 <h2>${member.name}</h2>
                 <p>${member.email}</p>
             </div>
-            <a href="user_profile.php?member_id=${member.member_id}" class="view-button">View Profile</a>
+            <a href="member.php?member_id=${member.member_id}" class="view-button">View Profile</a>
         `;
 
             return card;
