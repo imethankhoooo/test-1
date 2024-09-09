@@ -10,8 +10,9 @@
     <link rel="stylesheet" href="../css/addcustomer.css">
     <link rel="stylesheet" href="../css/page3.css">
     <link rel="stylesheet" href="../css/profile.css">
+    <link rel="stylesheet" href="../css/booking_information.css">
 
-    <title>保存用户数据</title>
+    <title>home Page</title>
 
 </head>
 
@@ -55,7 +56,7 @@ if(isset($_SESSION['member_id'])){
                     </a>
                 </li>
                 <li class="list" style="--clr:grey;">
-                    <a>
+                <a onclick="switchPage('Page5')">
                         <span class="icon"><img class="imgIcon" src="../Img/view-details.png"
                                 alt=""></span>
                         <span class="text">View</span>
@@ -70,108 +71,95 @@ if(isset($_SESSION['member_id'])){
     </div>
 
     <div class="Page Page1 ">
+    <?php
 
-        <div class="search-container " id="home-search">
-            <input type="test" class="search-input" id="search-input" placeholder=" " required>
+
+$conn = new mysqli('localhost', 'root', '', 'php-assginment');
+
+
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+
+$sql = "SELECT * FROM event ORDER BY event_date";
+$result = $conn->query($sql);
+
+$events = array();
+if ($result->num_rows > 0) {
+    while($row = $result->fetch_assoc()) {
+        $events[] = $row;
+    }
+}
+
+$conn->close();
+?>
+        <div class="search-container" id="home-search">
+            <input type="text" class="search-input" id="search-input" placeholder=" " required>
             <label class="search-placeholder">Search</label>
         </div>
         <div class="select-container">
             <div id="img-container">
-                <div class="img-item" id="img1"
-                    style=" background-image: url('../Img/pexels-shkrabaanthony-5878680.jpg');">
-                    <div class="content">
-                        <div class="img-title">MEET YOUR PERSONAL TRAINER</div>
-                        <div class="img-text">Not sure where to start? Try one-on-one sessions with our personal
-                            trainer! Our trainers will work together with you to tailor a training plan that fits you
-                            and your goals, monitor your progress and help you move forward with every session.</div>
-                        <button>seeMore</button>
+                <?php foreach ($events as $event): ?>
+                    <div class="img-item" style="background-image: url('<?php echo htmlspecialchars($event['banner_image']); ?>');">
+                        <div class="content">
+                            <div class="img-title"><?php echo htmlspecialchars($event['event_name']); ?></div>
+                            <div class="img-text"><?php echo htmlspecialchars($event['description']); ?></div>
+                            <button onclick="window.location.href='Event.php?event_id=<?php echo $event['event_id']; ?>'">See More</button>
+                        </div>
                     </div>
-                </div>
-                <div class="img-item" id="img2"
-                    style="background-image: url('../Img/9MqoKp.jpg');">
-                    <div class="content">
-                        <div class="img-title">Our Amenities</div>
-                        <div class="img-text">TOP SPEED AMENITIES.</div>
-                        <button>seeMore</button>
-                    </div>
-                </div>
-                <div class="img-item" id="img3"
-                    style="background-image: url('../Img/19238196_312409769281059_35031026448672256_o.width-1920.jpg');">
-                    <div class="content">
-                        <div class="img-title">Own A Gym</div>
-                        <div class="img-text">Come explore our fully equipped, full-range weight training space.</div>
-                        <button>seeMore</button>
-                    </div>
-                </div>
-                <div class="img-item" id="img4"
-                    style="background-image: url('../Img/stock-photo-sporty-people-exercising-in-gym.jpg');">
-                    <div class="content">
-                        <div class="img-title">Gallery</div>
-                        <div class="img-text"></div>
-                        <button>seeMore</button>
-                    </div>
-                </div>
-                <div class="img-item" id="img5"
-                    style="background-image: url('..//Img/photo-1534438327276-14e5300c3a48.jpg');">
-                    <div class="content">
-                        <div class="img-title">Find A Gym</div>
-                        <div class="img-text">You’re One Step Closer To Making Healthy Happen
-                            Find Your Local Gym And Get Your Free Pass</div>
-                        <button>seeMore</button>
-                    </div>
-                </div>
-                <div class="img-item" id="img6"
-                    style="background-image: url('../Img/1_5pyrdtIlYVp3ZvwR8C1Yrw.jpg');">
-                    <div class="content">
-                        <div class="img-title">Employee Wellness</div>
-                        <div class="img-text">Invest in the health of your employees and the return is exponential. A
-                            healthier, more motivated workforce is a happier, more productive workforce. Through our
-                            innovative approach to wellness, we’ll help both you, and your employees, improve your
-                            bottom line.</div>
-                        <button>seeMore</button>
-                    </div>
-                </div>
+                <?php endforeach; ?>
             </div>
             <div class="button-container">
-                <div class="s-button ">&lt;</div>
+                <div class="s-button">&lt;</div>
                 <div class="s-button">&gt;</div>
             </div>
         </div>
     </div>
 
     <div class="Page Page2 hidden">
-        <?php
+    <?php
 
-        $conn = new mysqli('localhost', 'root', '', 'php-assginment');
-        
-        if ($conn->connect_error) {
-            die("Connection failed: " . $conn->connect_error);
-        }
-        
-        if (isset($_SESSION['member_id'])) {
-            $member_id = $_SESSION['member_id'];
-            $sql = "SELECT avatar,name,username,gender,phone,address,bio,experience,socialmedia FROM member WHERE member_id =?";
-            $stmt = $conn->prepare($sql);
-            $stmt ->bind_param("i",$member_id);
-            $stmt->execute();
-            $result = $stmt->get_result();
-            $member = $result->fetch_assoc();
-            $avatar_path = $member['avatar'] ? $member['avatar'] : '../Img/cartoon 1.png';
+$conn = new mysqli('localhost', 'root', '', 'php-assginment');
+
+
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+
+
+if (isset($_SESSION['member_id'])) {
+    $member_id = $_SESSION['member_id'];
+
+ 
+    $sql = "SELECT avatar, name, username, gender, phone, address, bio, experience, socialmedia FROM member WHERE member_id = ?";
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("i", $member_id);
+    $stmt->execute();
+    $result = $stmt->get_result();
+
+    if ($result->num_rows == 0) {
+  
+        echo "<script>alert('No matching member found. Please log in.'); window.location.href='login.php';</script>";
+        exit;
+    } else {
+      
+        $member = $result->fetch_assoc();
+        $avatar_path = $member['avatar'] ? $member['avatar'] : '../Img/cartoon 1.png';
         $membername = $member['username'];
-        $name=$member['name'];
+        $name = $member['name'];
         $gender = $member['gender'];
         $phone = $member['phone'];
         $address = $member['address'];
         $bio = $member['bio'];
         $experience = $member['experience'];
         $socialmedia = $member['socialmedia'];
-
-        }else {
-            // 如果没有找到 session，则重定向到登录页面或显示错误信息
-            echo "<script>alert('No member ID found. Please log in.'); window.location.href='login.php';</script>";
-            exit;
-        }        
-        ?>
+    }
+} else {
+ 
+    echo "<script>alert('No session found. Please log in.'); window.location.href='login.php';</script>";
+    exit;
+}
+?>
     <div class="profileAside">
     <div class="profileImg-Container">
         <img src="<?php echo htmlspecialchars($avatar_path); ?>" alt="Profile Image" class="profileImg">
@@ -222,42 +210,36 @@ if(isset($_SESSION['member_id'])){
     <div class="Page Page3 hidden">
         <div class="searchEvent-container">
         <input type="text" id="searchInput"  class="searchEvent" placeholder="Search events...">
-
         </div>
         <div class="eventCard-Container">
         <?php
-// 1. 连接数据库
+
 
 
 $conn = new mysqli('localhost', 'root', '', 'php-assginment');
 
-// 检查连接是否成功
+
 if ($conn->connect_error) {
-    die("连接失败: " . $conn->connect_error);
+    die("connect failed: " . $conn->connect_error);
 }
 
-// 查询数据
+
 $sql = "SELECT event_id, banner_image, event_name, location FROM event";
 $result = $conn->query($sql);
 
-// 检查查询是否成功
+
 if ($result === false) {
-    die("查询失败: " . $conn->error);
+    die("Failed: " . $conn->error);
 }
 
-// 检查是否有结果
+
 if ($result->num_rows > 0) {
-    // 输出每一行数据
+
     while ($row = $result->fetch_assoc()) {
-        $event_id = $row['event_id'];  // 获取事件ID
+        $event_id = $row['event_id']; 
         echo '<div class="eventCard">';
+        $imgSrc = htmlspecialchars($row['banner_image']);
         
-        // 处理 banner_image
-        if (is_resource($row['banner_image'])) {
-            $imgSrc = 'data:image/jpeg;base64,' . base64_encode($row['banner_image']);
-        } else {
-            $imgSrc = htmlspecialchars($row['banner_image']);
-        }
 
         echo '<img class="eventCardImage" src="' . $imgSrc . '" alt="Event Image">';
         echo '<div class="eventCardInfo">';
@@ -268,7 +250,7 @@ if ($result->num_rows > 0) {
         echo '</div>';
     }
 } else {
-    echo "0 结果";
+    echo "0 result";
 }
 
 $conn->close();
@@ -280,82 +262,119 @@ $conn->close();
     <div class="Page Page4 hidden">
 
     </div>
+    <div class="Page Page5 hidden">
+    <style>
+        
+    </style>
+    <div class="container">
+        <?php
+       
+    
+        $conn = new mysqli("localhost", "root", "", "php-assginment");
+       
+ 
+        if ($conn->connect_error) {
+            die("<p class='error'>Connect error: " . $conn->connect_error . "</p>");
+        }
+        if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['delete_ticket'])) {
+            $ticket_id = intval($_POST['delete_ticket']);
+            $stmt = $conn->prepare("DELETE FROM ticket WHERE ticket_id = ?");
+            $stmt->bind_param("i", $ticket_id);
+            if ($stmt->execute()) {
+                echo "<p style='color: green;'>Delete Ticket Successful</p>";
+            } else {
+                echo "<p style='color: red;'>Delete Ticket Fail: " . $stmt->error . "</p>";
+            }
+            $stmt->close();
+        }
+
+        $member_id = $_SESSION['member_id'];
+
+        if (isset($member_id )) {
+
+                echo "<h2>Payment History</h2>";
+                echo "<table>";
+                echo "<thead><tr><th>Invoice ID</th><th>Event ID</th><th>Payment amount</th><th>Booking Date</th></tr></thead>";
+                echo "<tbody>";
+
+                $stmt = $conn->prepare("SELECT booking_id, event_id, paymentAmount, booking_date FROM bookingInformation WHERE member_id = ?");
+                $stmt->bind_param("i", $member_id);
+                $stmt->execute();
+                $result = $stmt->get_result();
+
+                if ($result->num_rows > 0) {
+                    while ($row = $result->fetch_assoc()) {
+                        echo "<tr>";
+                        echo "<td>" . $row["booking_id"] . "</td>";
+                        echo "<td>" . $row["event_id"] . "</td>";
+                        echo "<td>￥" . number_format($row["paymentAmount"], 2) . "</td>";
+                        echo "<td>" . $row["booking_date"] . "</td>";
+                        echo "</tr>";
+                    }
+                } else {
+                    echo "<tr><td colspan='4' style='text-align:center;'>No Payment History Found</td></tr>";
+                }
+
+                echo "</tbody></table>";
+
+
+                echo "<h2>Current Ticket information</h2>";
+            
+                $stmt = $conn->prepare("
+                    SELECT t.ticket_id, t.booking_id, t.event_id, t.issue_date, 
+                           e.event_name, e.event_date, e.banner_image
+                    FROM ticket t
+                    JOIN event e ON t.event_id = e.event_id
+                    WHERE t.member_id = ?
+                ");
+                $stmt->bind_param("i", $member_id);
+                $stmt->execute();
+                $result = $stmt->get_result();
+    
+                if ($result->num_rows > 0) {
+                    while ($row = $result->fetch_assoc()) {
+                        echo "<div class='event-info'>";
+                        if ($row['banner_image']) {
+                            $imgSrc = htmlspecialchars($row['banner_image']);
+                            echo "<img src='$imgSrc' alt='Event Banner' class='event-image'>";
+                        } else {
+                            echo "<div class='event-image' style='background-color: #ddd; display: flex; align-items: center; justify-content: center;'>No Image</div>";
+                        }
+                        echo "<div class='event-details'>";
+                        echo "<div class='event-name'>" . htmlspecialchars($row['event_name']) . "</div>";
+                        echo "<div>Date: " . $row['event_date'] . "</div>";
+                        echo "<div>Ticket ID: " . $row['ticket_id'] . "</div>";
+                        echo "<div>Invoice ID: " . $row['booking_id'] . "</div>";
+                        echo "<div>Purchase date: " . $row['issue_date'] . "</div>";
+                        echo "</div>";
+                        echo "<button class='delete-btn' onclick='deleteTicket(" . $row['ticket_id'] . ")'>Delete</button>";
+                        echo "</div>";
+                    }
+                } else {
+                    echo "<p style='text-align:center;'>No ticket information found</p>";
+                }
+    
+            } 
+    
+
+            $conn->close();
+            
+        ?>
+        
+    </div>
+   
+    </div>
 
     <script>
 
-        document.addEventListener('DOMContentLoaded', function() {
-    const searchInput = document.getElementById('searchInput');
-    const eventCardContainer = document.querySelector('.eventCard-Container');
-    let allEvents = [];
-    let debounceTimer;
-
-    function fetchEvents(searchTerm) {
-        fetch(`search_events.php?search=${encodeURIComponent(searchTerm)}`)
-            .then(response => response.json())
-            .then(events => {
-                allEvents = events;
-                displayEvents(events);
-            })
-            .catch(error => console.error('Error:', error));
-    }
-
-    function displayEvents(events) {
-        eventCardContainer.innerHTML = ''; // 清空容器
-        events.forEach((event, index) => {
-            const eventCard = createEventCard(event);
-            eventCardContainer.appendChild(eventCard);
-            setTimeout(() => {
-                eventCard.style.opacity = '1';
-                eventCard.style.transform = 'scale(1)';
-            }, 50 * index);
-        });
-    }
-
-    function createEventCard(event) {
-        const card = document.createElement('div');
-        card.className = 'eventCard';
-        card.dataset.eventId = event.event_id;
-        card.style.opacity = '0';
-        card.style.transform = 'scale(0.8)';
-        
-        const imgSrc = event.banner_image ? event.banner_image : 'path/to/default/image.jpg';
-        
-        card.innerHTML = `
-            <img class="eventCardImage" src="${imgSrc}" alt="Event Image">
-            <div class="eventCardInfo">
-                <h2>${event.event_name}</h2>
-                <p>${event.location}</p><br>
-                <a href="Event.php?event_id=${event.event_id}" class="button">View</a>
-            </div>
-        `;
-        
-        return card;
-    }
-
-    function filterEvents(searchTerm) {
-        if (searchTerm.trim() === '') {
-            fetchEvents('');
-        } else {
-            fetchEvents(searchTerm);
-        }
-    }
-
-    searchInput.addEventListener('input', function() {
-        clearTimeout(debounceTimer);
-        debounceTimer = setTimeout(() => {
-            filterEvents(this.value);
-        }, 300); // 300ms 防抖
-    });
-
-    // 初始加载所有事件
-    fetchEvents('');
-});
-
+       
     </script>
 
 
 </body>
 <script src="../js/page.js"></script>
 <script src="../js/home.js"></script>
+<script src="../js/delete_ticket.js"></script>
+
 
 </html>

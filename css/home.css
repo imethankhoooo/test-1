@@ -1,6 +1,5 @@
 .Page1{
     overflow: hidden;
-
 }
 #home-search{
     height: 51px;
@@ -28,7 +27,6 @@
     margin-top: 50px;
 }
 
-
 .img-item{
     width: 150px;
     height: 225px;
@@ -50,10 +48,11 @@
     height: 100%;
     margin-top: 0;
     border-radius: 0;
+    z-index: 0;
 }
 .img-item:nth-child(3){
     left: 50%;
-    opacity: 0;
+    opacity: 1;
 }
 .img-item:nth-child(4){
     left: calc(50% + 165px);
@@ -114,7 +113,6 @@
     bottom: 50px;
     margin-left: -50px;
     text-align: center;
-
 }
 
 .img-item button:hover{

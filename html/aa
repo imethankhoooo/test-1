@@ -1,0 +1,18 @@
+<div class="navigation">
+    <div class="menuToggle"></div>
+    <ul>
+        <li class="list active" style="--clr:red;">
+            <a data-page="Page1">
+                <span class="icon"><img class="imgIcon" src="../Img/home-icon.png" alt="Home"></span>
+                <span class="text">Home</span>
+            </a>
+        </li>
+        <li class="list" id="login" style="--clr:black;">
+            <a data-page="Page2">
+                <span class="icon"><img class="imgIcon" src="../Img/login-icon.png" alt="Login"></span>
+                <span class="text">Login</span>
+            </a>
+        </li>
+        <!-- ... other list items ... -->
+    </ul>
+</div>

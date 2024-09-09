@@ -187,28 +187,23 @@ body{
     color: var(--clr);
 }
 
-.Page.active{
-    width: 75%;
-    right: 3vw;
-    
-}
-
-
-
-.Page{
+.Page {
     width: 80%;
     float: right;
     position: absolute;
     right: 7vw;
     top: 10%;
     height: auto;
-    transition: 0.5s;
+    transition: opacity 0.3s ease-in-out, width 0.5s ease-in-out, right 0.5s ease-in-out;
     opacity: 1;
-    transition: all 0.5s ease-in-out;
-    
 }
 
-.Page.hidden{
+.Page.active {
+    width: 75%;
+    right: 3vw;
+}
+
+.Page.hidden {
     opacity: 0;
-    z-index: -1;
+    pointer-events: none;
 }

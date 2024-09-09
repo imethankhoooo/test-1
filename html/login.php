@@ -87,10 +87,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             
             if ($result->num_rows > 0) {
                 $row = $result->fetch_assoc();
-                // 验证密码
-                if ($password===$row['password']) {
-
-                    // 登录成功
+                // Verify password
+                if ($password === $row['password']) {
+                    // Member login successful
                     $_SESSION['member_id'] = $row['member_id'];
                     $_SESSION['email'] = $email;
                     showAlert("登录成功！");
@@ -100,7 +99,28 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     showAlert("密码错误。请重试。", true);
                 }
             } else {
-                showAlert("用户不存在。请注册或检查您的输入。", true);
+                // Member not found, check admin_member table
+                $stmt = $conn->prepare("SELECT admin_id, password FROM admin_member WHERE email = ?");
+                $stmt->bind_param("s", $email);
+                $stmt->execute();
+                $adminResult = $stmt->get_result();
+                
+                if ($adminResult->num_rows > 0) {
+                    $adminRow = $adminResult->fetch_assoc();
+                    // Verify admin password
+                    if ($password === $adminRow['password']) {
+                        // Admin login successful
+                        $_SESSION['admin_id'] = $adminRow['admin_id'];
+                        $_SESSION['email'] = $email;
+                        showAlert("管理员登录成功！");
+                        header('Location: administratorhome.php');
+                        exit();
+                    } else {
+                        showAlert("管理员密码错误。请重试。", true);
+                    }
+                } else {
+                    showAlert("用户不存在。请注册或检查您的输入。", true);
+                }
             }
             $stmt->close();
         }

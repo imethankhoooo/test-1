@@ -15,11 +15,11 @@ menuToggle.addEventListener('click', function () {
     navigation.classList.toggle('active');
     document.querySelectorAll('.Page').forEach(page => page.classList.toggle('active'))
 });
-let verityPage = 0;  // 在函数外部声明并初始化
+let verityPage = 0; 
 
 function switchPage(currentPage) {
     if (verityPage === 0) {
-        verityPage = 1;  // 标记当前正在切换页面
+        verityPage = 1; 
 
     
         document.querySelectorAll('.Page').forEach(page => page.classList.add('hidden'));

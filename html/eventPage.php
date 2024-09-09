@@ -10,18 +10,18 @@
     </head>
     <body>
     <?php
-// 创建数据库连接
+
 $conn = new mysqli('localhost', 'root', '', 'php-assginment');
 
-// 检查连接是否成功
+
 if ($conn->connect_error) {
     die("连接失败: " . $conn->connect_error);
 }
 
-// 假设你获取的事件ID是通过GET请求传递的
+
 $event_id = isset($_GET['event_id']) ? (int)$_GET['event_id'] : 1;
 
-// 从数据库中获取事件详情
+
 $sql = "SELECT event_name, description, location, event_date, time, fee, event_host, note, banner_image FROM event WHERE event_id =  ?";
 $stmt = $conn->prepare($sql);
 $stmt->bind_param("i", $event_id);
@@ -30,7 +30,7 @@ $result = $stmt->get_result();
 $event = $result->fetch_assoc();
 
 if ($event) {
-    // 将事件详情存储在变量中
+
     $event_name = $event['event_name'];
     $event_description = $event['description'];
     $event_location = $event['location'];
@@ -41,10 +41,10 @@ if ($event) {
     $event_note = $event['note'];
     $banner_image = $event['banner_image'];
 } else {
-    echo "未找到该事件的详细信息。";
+    echo "No event Information found";
 }
 
-// 从item表中获取 "Things to Bring" 数据
+
 $sql = "SELECT description, logo FROM item WHERE event_id = ?";
 $stmt = $conn->prepare($sql);
 $stmt->bind_param("i", $event_id);
@@ -63,17 +63,17 @@ $conn->close();
 
 
 <div class="eventDetails">
-    <!-- 事件Banner图 -->
+
     <div class="eventImgContainer">
         <img src="<?php echo htmlspecialchars($banner_image); ?>" alt="Event Image" class="eventImg">
     </div>
     
-    <!-- 事件信息 -->
+    
      
     <div class="contentBlock">
     <h3 class="eventType">Special Event</h3> <!-- Event Type -->
-        <h2 class="title eventInformation"><?php echo htmlspecialchars($event_name); ?></h2> <!-- 事件名称 -->
-        <p class="content eventInformation"><?php echo nl2br(htmlspecialchars($event_description)); ?></p> <!-- 事件描述 -->
+        <h2 class="title eventInformation"><?php echo htmlspecialchars($event_name); ?></h2> 
+        <p class="content eventInformation"><?php echo nl2br(htmlspecialchars($event_description)); ?></p> 
         <span class="line"></span>
         <table class="inputTable">
                     

@@ -1,10 +1,10 @@
 <?php
-// 创建数据库连接
+
 $conn = new mysqli('localhost', 'root', '', 'php-assginment');
 
-// 检查连接是否成功
+
 if ($conn->connect_error) {
-    die("连接失败: " . $conn->connect_error);
+    die("connect error: " . $conn->connect_error);
 }
 
 $search = isset($_GET['search']) ? $conn->real_escape_string($_GET['search']) : '';

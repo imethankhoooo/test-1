@@ -5,8 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Set Up Your Profile</title>
     <link rel="stylesheet" href="../css/memberInformation.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.12/cropper.min.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.12/cropper.min.css">
+
 </head>
 <body>
 <?php
@@ -34,29 +33,34 @@ if (isset($_SESSION['member_id'])) {
         if (isset($_FILES['avatar']) && $_FILES['avatar']['error'] === UPLOAD_ERR_OK) {
             $file_tmp = $_FILES['avatar']['tmp_name'];
             
-            // 使用 pathinfo 获取文件扩展名
+           
             $file_info = pathinfo($_FILES['avatar']['name']);
             $file_ext = strtolower($file_info['extension']);
             
-            // 设置相对路径的上传目录
+           
             $upload_dir = './uploads/';
             
-            // 确保上传目录存在
+          
             if (!is_dir($upload_dir)) {
-                mkdir($upload_dir, 0777, true); // 创建目录并设置权限
+                mkdir($upload_dir, 0777, true); 
             }
             
-            // 生成唯一的文件名
+     
             $avatar_name = uniqid() . '.' . $file_ext;
             
-            // 移动上传的文件到指定目录
+     
             if (move_uploaded_file($file_tmp, $upload_dir . $avatar_name)) {
                 $avatar_path = $upload_dir . $avatar_name; // 在数据库中存储相对路径
                 echo "File uploaded successfully to " . $avatar_path;
             } else {
-                // 上传失败的处理
+     
                 echo "File upload failed.";
             }
+        }else{
+            $avatar_path = '../Img/cartoon 1.png';
+            if (!move_uploaded_file($avatar_path, $upload_dir . 'cartoon 1')) {
+                echo "File upload failed.";
+            } 
         }
         
 
@@ -92,7 +96,7 @@ $conn->close();
                         <label for="avatarInput"></label>
                     </div>
                     <div class="avatar-preview">
-                        <div id="avatarPreview" style="background-image: url('../Img/cartoon 1');">
+                        <div id="avatarPreview" style="background-image: url('../Img/cartoon 1.png');">
                         </div>
                     </div>
                 </div>
