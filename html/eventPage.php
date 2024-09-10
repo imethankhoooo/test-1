@@ -115,7 +115,7 @@ $conn->close();
                 <?php foreach ($things_to_bring as $thing) { ?>
                         <div class="img-box" style="border:0px;">
                         <?php if (!empty($thing['logo'])) { ?>
-                            <img class="addImg" src="data:image/jpeg;base64,<?php echo base64_encode($thing['logo']); ?>" alt="Item Image" class="itemImage">
+                            <img src="<?php echo htmlspecialchars($thing['logo']); ?>" alt="Item logo" class="thing-logo">
                         <?php } ?>
                         </div>
                         <p class="thingContent"><?php echo htmlspecialchars($thing['description']); ?></p>

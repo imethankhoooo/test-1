@@ -489,71 +489,181 @@ $conn->close();
         </div>
 
 <div class="Page adminPage5 hidden">
-    <form action="<?php echo $_SERVER['PHP_SELF'] ?>" method="post" enctype="multipart/form-data">
-        <div class="eventImgCointainer" onclick="triggerFileInput('eventImgInput')">
-            <input type="file" id="eventImgInput" class="eventImgInput" name="eventImgInput" accept="image/*" style="display:none;" />
-            <img class="plus-sign" src="../Img/Screenshot 2024-06-08 133929.png">
-        </div>
-        <div class="contentBlock">
-            <h3 class="eventType">Special Event</h3>
-            <input class="title eventInformation" name="title" placeholder="Title:">
-            <textarea class="content eventInformation" name="content" rows="4" cols="50"></textarea>
-            <span class="line"></span>
-            <table class="inputTable">
-                <tr>
-                    <td><label class="eventInformation" for="Date">Date :</label></td>
-                    <td><input name="Date" type="date"></td>
-                </tr>
-                <tr>
-                    <td><label class="eventInformation" for="StartTime">Start Time :</label></td>
-                    <td><input name="StartTime" type="time"></td>
-                </tr>
-                <tr>
-                    <td><label class="eventInformation" for="EndTime">End Time :</label></td>
-                    <td><input name="EndTime" type="time"></td>
-                </tr>
-                <tr>
-                    <td><label class="eventInformation" for="Fee">Fee :</label></td>
-                    <td><input name="Fee" type="number" step="0.01"></td>
-                </tr>
-                <tr>
-                    <td><label class="eventInformation" for="Host">Event host :</label></td>
-                    <td><input name="Host"></td>
-                </tr>
-                <tr>
-                    <td><label class="eventInformation" for="Phone">Host Phone number :</label></td>
-                    <td><input name="Phone"></td>
-                </tr>
-                <tr>
-                    <td><label class="eventInformation" for="Venue">Venue :</label></td>
-                    <td><textarea name="Venue" cols="30" rows="3"></textarea></td>
-                </tr>
-                <tr>
-                    <td><label class="eventInformation" for="Seat">Available Seat</label></td>
-                    <td><input name="Seat" type="number"></td>
-                </tr>
-                <tr>
-                    <td><label class="eventInformation">Precautions :</label></td>
-                    <td><textarea name="Precautions" cols="30" rows="3"></textarea></td>
-                </tr>
-            </table>
-            <span class="line"></span>
-            <h3 class="thingToBring">Things to Bring</h3>
-            <div class="think-Container">
-                <div class="thingIcon">
-                    <input type="file" id="file-input0" class="file-input" accept="image/*" style="display:none;" name="file-input[]" />
-                    <div class="img-box" id="img-box0" onclick="triggerFileInput('file-input0')">
-                        <img src="../Img/Screenshot 2024-06-08 133929.png" alt="addImg" class="plus-sign" id="plus-sign0">
+<h1>Create Special Event</h1>
+        <form action="<?php echo $_SERVER['PHP_SELF'] ?>" method="post" enctype="multipart/form-data">
+            <div class="image-upload">
+                <label for="eventImgInput">Event Image:</label>
+                <div class="image-preview" id="eventImagePreview">
+                    <img src="../Img/Screenshot 2024-06-08 133929.png" alt="Add Image" id="eventPreviewImg">
+                </div>
+                <input type="file" id="eventImgInput" name="eventImgInput" accept="image/*" style="display: none;">
+            </div>
+
+            <div class="form-group">
+                <label for="title">Event Title:</label>
+                <input type="text" id="title" name="title" required placeholder="Enter event title">
+            </div>
+
+            <div class="form-group">
+                <label for="content">Event Description:</label>
+                <textarea id="content" name="content" rows="4" required placeholder="Describe your event"></textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="Date">Event Date:</label>
+                <input type="date" id="Date" name="Date" required>
+            </div>
+
+            <div class="form-group">
+                <label for="StartTime">Start Time:</label>
+                <input type="time" id="StartTime" name="StartTime" required>
+            </div>
+
+            <div class="form-group">
+                <label for="EndTime">End Time:</label>
+                <input type="time" id="EndTime" name="EndTime" required>
+            </div>
+
+            <div class="form-group">
+                <label for="Fee">Event Fee:</label>
+                <input type="number" id="Fee" name="Fee" step="0.01" required placeholder="Enter fee amount">
+            </div>
+
+            <div class="form-group">
+                <label for="Host">Event Host:</label>
+                <input type="text" id="Host" name="Host" required placeholder="Enter host name">
+            </div>
+
+            <div class="form-group">
+                <label for="Phone">Host Phone Number:</label>
+                <input type="tel" id="Phone" name="Phone" required placeholder="Enter phone number">
+            </div>
+
+            <div class="form-group">
+                <label for="Venue">Event Venue:</label>
+                <textarea id="Venue" name="Venue" rows="3" required placeholder="Enter venue details"></textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="Seat">Available Seats:</label>
+                <input type="number" id="Seat" name="Seat" required placeholder="Enter number of seats">
+            </div>
+
+            <div class="form-group">
+                <label for="Precautions">Event Precautions:</label>
+                <textarea id="Precautions" name="Precautions" rows="3" required placeholder="Enter any precautions or guidelines"></textarea>
+            </div>
+
+            <h2>Things to Bring</h2>
+            <div class="things-to-bring" id="thingsContainer">
+                <div class="thing-item">
+                    <div class="thing-image" onclick="triggerFileInput('file-input0')">
+                        <img src="../Img/Screenshot 2024-06-08 133929.png" alt="Add Image" id="previewImg0">
                     </div>
-                    <input name="thingContent[]" class="thingContent">
+                    <input type="file" id="file-input0" name="file-input[]" accept="image/*" style="display: none;">
+                    <input type="text" name="thingContent[]" placeholder="Item name">
                 </div>
             </div>
+            <button type="button" onclick="addThingItem()">Add Another Item</button>
+
             <div class="button-container">
-                <input class="button" type="submit" name="submit" value="Add">
-                <input class="button" type="reset" name="reset" value="Reset">
+                <button type="submit" name="submit" class="submit-btn">Create Event</button>
+                <button type="reset" name="reset" class="reset-btn">Reset Form</button>
             </div>
-        </div>
-    </form>
+        </form>
+        <script>
+        // ... (keep existing JavaScript) ...
+
+        function addThingItem() {
+            const container = document.getElementById('thingsContainer');
+            const newItem = document.createElement('div');
+            newItem.className = 'thing-item';
+            const itemIndex = container.children.length;
+            newItem.innerHTML = `
+                <div class="thing-image" onclick="triggerFileInput('file-input${itemIndex}')">
+                    <img src="../Img/Screenshot 2024-06-08 133929.png" alt="Add Image" id="previewImg${itemIndex}">
+                </div>
+                <input type="file" id="file-input${itemIndex}" name="file-input[]" accept="image/*" style="display: none;">
+                <input type="text" name="thingContent[]" placeholder="Item name">
+            `;
+            container.appendChild(newItem);
+        }
+
+        document.getElementById('eventImagePreview').addEventListener('click', function() {
+            document.getElementById('eventImgInput').click();
+        });
+
+        document.getElementById('eventImgInput').addEventListener('change', function(event) {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    document.getElementById('eventPreviewImg').src = e.target.result;
+                }
+                reader.readAsDataURL(file);
+            }
+        });
+
+        function triggerFileInput(inputId) {
+            document.getElementById(inputId).click();
+        }
+
+        document.addEventListener('change', function(event) {
+            if (event.target.type === 'file' && event.target.name === 'file-input[]') {
+                const file = event.target.files[0];
+                if (file) {
+                    const reader = new FileReader();
+                    reader.onload = function(e) {
+                        const imgId = event.target.id.replace('file-input', 'previewImg');
+                        document.getElementById(imgId).src = e.target.result;
+                    }
+                    reader.readAsDataURL(file);
+                }
+            }
+        });
+        function showLoading() {
+            document.getElementById('loadingOverlay').classList.add('visible');
+        }
+
+        function hideLoading() {
+            document.getElementById('loadingOverlay').classList.remove('visible');
+        }
+
+        function validateForm() {
+            let isValid = true;
+            const fields = ['title', 'content', 'Date', 'StartTime', 'EndTime', 'Fee', 'Host', 'Phone', 'Venue', 'Seat', 'Precautions', 'EventType'];
+            
+            fields.forEach(field => {
+                const input = document.getElementById(field);
+                const errorElement = document.getElementById(`${field.toLowerCase()}Error`);
+                if (!input.value) {
+                    isValid = false;
+                    errorElement.textContent = `${field.replace(/([A-Z])/g, ' $1').trim()} is required`;
+                } else {
+                    errorElement.textContent = '';
+                }
+            });
+
+            return isValid;
+        }
+
+        document.getElementById('eventForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            if (validateForm()) {
+                showLoading();
+                // 在这里可以添加 AJAX 请求来提交表单
+                setTimeout(() => {
+                    hideLoading();
+                    alert('Event created successfully!');
+                    this.reset();
+                }, 2000); // 模拟 2 秒的提交过程
+            }
+        });
+
+        
+
+    
+    </script>
 </div>
 
 
