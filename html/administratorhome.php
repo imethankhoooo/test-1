@@ -22,7 +22,9 @@
    
     $conn = new mysqli('localhost', 'root', '', 'php-assginment');
 
-   
+   if(!isset($_SESSION['admin_id'])){
+    echo "<script>alert ('No session found. Please login first');window.location.href='login.php'; </script>";
+   }
     if ($conn->connect_error) {
         die("connect error: " . $conn->connect_error);
     }

@@ -305,7 +305,7 @@ $conn->close();
                         echo "<tr>";
                         echo "<td>" . $row["booking_id"] . "</td>";
                         echo "<td>" . $row["event_id"] . "</td>";
-                        echo "<td>￥" . number_format($row["paymentAmount"], 2) . "</td>";
+                        echo "<td>RM" . number_format($row["paymentAmount"], 2) . "</td>";
                         echo "<td>" . $row["booking_date"] . "</td>";
                         echo "</tr>";
                     }
