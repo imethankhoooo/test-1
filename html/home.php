@@ -373,6 +373,6 @@ $conn->close();
 <script src="../js/page.js"></script>
 <script src="../js/home.js"></script>
 <script src="../js/delete_ticket.js"></script>
-
+<script src="../js/search_event.js"></script>
 
 </html>
