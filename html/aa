@@ -1,18 +1,39 @@
-<div class="navigation">
-    <div class="menuToggle"></div>
-    <ul>
-        <li class="list active" style="--clr:red;">
-            <a data-page="Page1">
-                <span class="icon"><img class="imgIcon" src="../Img/home-icon.png" alt="Home"></span>
-                <span class="text">Home</span>
-            </a>
-        </li>
-        <li class="list" id="login" style="--clr:black;">
-            <a data-page="Page2">
-                <span class="icon"><img class="imgIcon" src="../Img/login-icon.png" alt="Login"></span>
-                <span class="text">Login</span>
-            </a>
-        </li>
-        <!-- ... other list items ... -->
-    </ul>
+<div id="alert" class="Alert"></div>
+<div class="container">
+    <div class="form-box">
+        <div class="register-box hidden">
+            <form action="login.php" method="post">
+                <h1>register</h1>
+                <div class="search-container"> <input name="registerEmail" type="email" class="search-input"
+                        placeholder=" " required> <span class="line"></span> <label
+                        class="search-placeholder">Email</label> </div>
+                <div class="search-container"> <input name="registerPassword" type="password" class="search-input"
+                        placeholder=" " required> <span class="line"></span> <label for="password"
+                        class="search-placeholder">password</label> </div>
+                <div class="search-container"> <input name="userpassword" type="password" class="search-input"
+                        placeholder=" " required> <span class="line"></span> <label for="userpassword"
+                        class="search-placeholder">Confirm Password</label> </div> <button
+                    type="submit">Registration</button>
+            </form>
+        </div>
+        <div class="login-box">
+            <form action="login.php" method="post">
+                <h1>login</h1>
+                <div class="search-container"> <input name="email" type="text" class="search-input" placeholder=" "
+                        required> <span class="line"></span> <label class="search-placeholder">Email</label> </div>
+                <div class="search-container"> <input name="loginPassword" type="password" class="search-input"
+                        placeholder=" " required> <span class="line"></span> <label
+                        class="search-placeholder">Password</label> </div> <button type="submit">Log In</button>
+            </form>
+        </div>
+    </div>
+    <div class="con-box left">
+        <h2>Welcome to the<span> event booking website</span></h2>
+        <p></p> <img src=" ../img/cartoon 1.png" alt="cartoon">
+        <p>Already have an account?</p> <button id="register" onclick="login()">Go to login</button>
+    </div>
+    <div class="con-box right">
+        <h2>Please log in<span> the event booking website</span></h2> <img src=" ../img/cartoon 2.png" alt="cartoon">
+        <p>Don't have an account?</p> <button id="register" onclick="register()">Go to register</button>
+    </div>
 </div>
