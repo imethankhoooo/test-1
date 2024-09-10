@@ -488,78 +488,73 @@ $conn->close();
 
         </div>
 
-    </div>
-    <div class="Page adminPage5 hidden">
-        <form action="<?php echo $_SERVER['PHP_SELF'] ?>" method='post' enctype="multipart/form-data">
-
-            <div class="eventImgCointainer" onclick="triggerFileInput('eventImgInput')">
-                <input type="file" id="eventImgInput" class="eventImgInput" name="eventImgInput" accept="image/*" style="display:none;" />
-                <img class="plus-sign" src="../Img/Screenshot 2024-06-08 133929.png">
-            </div>
-            <div class="contentBlock">
-                <h3 class="eventType">Special Event</h3>
-                <input class="title eventInformation" name="title" placeholder="Title:">
-                <textarea class="content eventInformation" name="content" rows="4" cols="50"></textarea>
-                <span class="line"></span>
-                <table class="inputTable">
-
-                    <tr>
-                        <td><label class="eventInformation" for="Date">Date :</label></td>
-                        <td><input name="Date" type="date"></td>
-                    </tr>
-                    <tr>
-                        <td><label class="eventInformation" for="Time">Start Time :</label></td>
-                        <td><input name="StartTime" type="time"></td>
-                    </tr>
-                    <tr>
-                        <td><label class="eventInformation" for="Time">End Time :</label></td>
-                        <td><input name="EndTime" type="time"></td>
-                    </tr>
-                    <tr>
-                        <td><label class="eventInformation" for="Fee">Fee :</label></td>
-                        <td><input name="Fee" type="number" step="0.01"></td>
-                    </tr>
-                    <tr>
-                        <td><label class="eventInformation" for="Host">Event host :</label></td>
-                        <td><input name="Host"></td>
-                    </tr>
-                    <tr>
-                        <td><label class="eventInformation" for="Host">Host Phone number :</label></td>
-                        <td><input name="Phone"></td>
-                    </tr>
-                    <tr>
-                        <td><label class="eventInformation" for="Venue">Venue :</label></td>
-                        <td><textarea name="Venue" col="30" rows="3"></textarea></td>
-                    </tr>
-                    <tr>
-                        <td><label class="eventInformation" for="Seat">Available Seat</label></td>
-                        <td><input name="seat" type="number"></td>
-                    </tr>
-
-                    <tr>
-                        <td><label class="eventInformation">Precautions : </label></td>
-                        <td><textarea name="Precautions" cols="30" rows="3"></textarea></td>
-                    </tr>
-                </table>
-                <span class="line"></span>
-                <h3 class="thingToBring">Thing to bring</h3>
-                <div class="think-Container">
-                    <div class="thingIcon">
-                        <input type="file" id="file-input0" class="file-input" accept="image/*" style="display:none;" name="file-input[]" />
-                        <div class="img-box" id="img-box0" onclick="triggerFileInput('file-input0')">
-                            <img src="../Img/Screenshot 2024-06-08 133929.png" alt="addImg" class="plus-sign"
-                                id="plus-sign0">
-                        </div>
-                        <input name="thingContent[]" class="thingContent">
+<div class="Page adminPage5 hidden">
+    <form action="<?php echo $_SERVER['PHP_SELF'] ?>" method="post" enctype="multipart/form-data">
+        <div class="eventImgCointainer" onclick="triggerFileInput('eventImgInput')">
+            <input type="file" id="eventImgInput" class="eventImgInput" name="eventImgInput" accept="image/*" style="display:none;" />
+            <img class="plus-sign" src="../Img/Screenshot 2024-06-08 133929.png">
+        </div>
+        <div class="contentBlock">
+            <h3 class="eventType">Special Event</h3>
+            <input class="title eventInformation" name="title" placeholder="Title:">
+            <textarea class="content eventInformation" name="content" rows="4" cols="50"></textarea>
+            <span class="line"></span>
+            <table class="inputTable">
+                <tr>
+                    <td><label class="eventInformation" for="Date">Date :</label></td>
+                    <td><input name="Date" type="date"></td>
+                </tr>
+                <tr>
+                    <td><label class="eventInformation" for="StartTime">Start Time :</label></td>
+                    <td><input name="StartTime" type="time"></td>
+                </tr>
+                <tr>
+                    <td><label class="eventInformation" for="EndTime">End Time :</label></td>
+                    <td><input name="EndTime" type="time"></td>
+                </tr>
+                <tr>
+                    <td><label class="eventInformation" for="Fee">Fee :</label></td>
+                    <td><input name="Fee" type="number" step="0.01"></td>
+                </tr>
+                <tr>
+                    <td><label class="eventInformation" for="Host">Event host :</label></td>
+                    <td><input name="Host"></td>
+                </tr>
+                <tr>
+                    <td><label class="eventInformation" for="Phone">Host Phone number :</label></td>
+                    <td><input name="Phone"></td>
+                </tr>
+                <tr>
+                    <td><label class="eventInformation" for="Venue">Venue :</label></td>
+                    <td><textarea name="Venue" cols="30" rows="3"></textarea></td>
+                </tr>
+                <tr>
+                    <td><label class="eventInformation" for="Seat">Available Seat</label></td>
+                    <td><input name="Seat" type="number"></td>
+                </tr>
+                <tr>
+                    <td><label class="eventInformation">Precautions :</label></td>
+                    <td><textarea name="Precautions" cols="30" rows="3"></textarea></td>
+                </tr>
+            </table>
+            <span class="line"></span>
+            <h3 class="thingToBring">Things to Bring</h3>
+            <div class="think-Container">
+                <div class="thingIcon">
+                    <input type="file" id="file-input0" class="file-input" accept="image/*" style="display:none;" name="file-input[]" />
+                    <div class="img-box" id="img-box0" onclick="triggerFileInput('file-input0')">
+                        <img src="../Img/Screenshot 2024-06-08 133929.png" alt="addImg" class="plus-sign" id="plus-sign0">
                     </div>
-                </div>
-                <div class="button-container">
-                    <input class="button" type="submit" name="submit" value="Add">
-                    <input class="button" type="reset" name="reset" value="Reset">
+                    <input name="thingContent[]" class="thingContent">
                 </div>
             </div>
-        </form>
-    </div>
+            <div class="button-container">
+                <input class="button" type="submit" name="submit" value="Add">
+                <input class="button" type="reset" name="reset" value="Reset">
+            </div>
+        </div>
+    </form>
+</div>
 
 
 </body>
