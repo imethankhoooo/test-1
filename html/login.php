@@ -8,6 +8,34 @@
 <title>Login Page</title>
 </head>
 <body>
+<video autoplay muted loop id="video-background">
+    <source src="../Img/Login Video.mp4" type="video/mp4">
+    Your browser does not support the video tag.
+</video>
+<script>
+        function showCustomAlert(message, type) {
+            const alertDiv = document.createElement('div');
+            alertDiv.textContent = message;
+            alertDiv.className = `custom-alert ${type}`;
+            document.body.appendChild(alertDiv);
+
+            setTimeout(() => {
+                alertDiv.classList.add('show');
+            }, 10);
+
+            setTimeout(() => {
+                alertDiv.classList.remove('show');
+                setTimeout(() => {
+                    alertDiv.remove();
+                }, 300);
+            }, 5000);
+        }
+
+        function switchForm() {
+            const container = document.querySelector('.container');
+            container.classList.toggle('flip');
+        }
+    </script>
 <?php
 session_start();
 
@@ -17,68 +45,66 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-function showAlert($message, $isError = false) {
-    $class = $isError ? 'error' : 'success';
-    echo "<script>
-        var alertDiv = document.createElement('div');
-        alertDiv.textContent = '$message';
-        alertDiv.className = 'Alert $class';
-        alertDiv.style.display = 'block';
-        alertDiv.style.padding = '10px';
-        alertDiv.style.margin = '10px 0';
-        alertDiv.style.border = '1px solid " . ($isError ? 'red' : 'green') . "';
-        document.body.insertBefore(alertDiv, document.body.firstChild);
-        setTimeout(function() {
-            alertDiv.style.display = 'none';
-        }, 5000);
-    </script>";
+function showAlert($message, $type = 'info') {
+    echo "<script>window.showCustomAlert('$message', '$type');</script>";
+}
+
+
+function validateEmail($email) {
+    return filter_var($email, FILTER_VALIDATE_EMAIL);
+}
+
+function validatePassword($password) {
+    // At least 8 characters long and contain at least one number, one uppercase and one lowercase letter
+    return preg_match('/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}$/', $password);
 }
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    
-    
     if (isset($_POST['registerEmail']) && isset($_POST['registerPassword']) && isset($_POST['userpassword'])) {
         $email = trim($_POST['registerEmail']);
         $password = trim($_POST['registerPassword']);
         $confirmPassword = trim($_POST['userpassword']);
         
         if (empty($email) || empty($password) || empty($confirmPassword)) {
-            showAlert("All fields are required. Please make sure you fill out all form fields.", true);
+            showAlert("All fields are required.", 'error');
+        } elseif (!validateEmail($email)) {
+            showAlert("Please enter a valid email address.", 'error');
+        } elseif (!validatePassword($password)) {
+            showAlert("Password must be at least 8 characters long and contain at least one number, one uppercase and one lowercase letter.", 'error');
         } elseif ($password !== $confirmPassword) {
-            showAlert("The passwords do not match. Please make sure you enter the same password twice.", true);
+            showAlert("The passwords do not match.", 'error');
         } else {
-    
-            
             $stmt = $conn->prepare("SELECT member_id FROM member WHERE email = ?");
             $stmt->bind_param("s", $email);
             $stmt->execute();
             $result = $stmt->get_result();
             
-            if ($cresult->num_rows > 0) {
-                showAlert("This email address has been registered. You can log in directly.", true);
+            if ($result->num_rows > 0) {
+                showAlert("This email address is already registered.", 'error');
             } else {
+                $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
                 $stmt = $conn->prepare("INSERT INTO member (email, password) VALUES (?, ?)");
-                $stmt->bind_param("ss", $email, $password);
+                $stmt->bind_param("ss", $email, $hashedPassword);
                 
                 if ($stmt->execute()) {
                     $member_id = $conn->insert_id;
-                    showAlert("Registration successful! You can now log in.");
-                    header('Location:memberInformation.php');
+                    showAlert("Registration successful! You can now log in.", 'success');
                     $_SESSION['member_id'] = $member_id;
-                    exit();
+                    echo "<script>setTimeout(function() { window.location.href = 'memberInformation.php'; }, 2000);</script>";
                 } else {
-                    showAlert("Registration failed:" . $conn->error, true);
+                    showAlert("Registration failed: " . $conn->error, 'error');
                 }
             }
             $stmt->close();
         }
-    } elseif (isset($_POST['email']) && isset($_POST['loginPassword'])) {
-        // Login code (unchanged)
+    } else if (isset($_POST['email']) && isset($_POST['loginPassword'])) {
         $email = trim($_POST['email']);
         $password = trim($_POST['loginPassword']);
         
         if (empty($email) || empty($password)) {
-            showAlert("Username or password cannot be empty.", true);
+            showAlert("Email and password are required.", 'error');
+        } elseif (!validateEmail($email)) {
+            showAlert("Please enter a valid email address.", 'error');
         } else {
             $stmt = $conn->prepare("SELECT member_id, password FROM member WHERE email = ?");
             $stmt->bind_param("s", $email);
@@ -87,19 +113,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             
             if ($result->num_rows > 0) {
                 $row = $result->fetch_assoc();
-                // Verify password
-                if ($password === $row['password']) {
-                    // Member login successful
+                if ($password=== $row['password']) {
                     $_SESSION['member_id'] = $row['member_id'];
                     $_SESSION['email'] = $email;
-                    showAlert("Login successful!");
-                    header('Location: home.php');
-                    exit();
+                    showAlert("Login successful!", 'success');
+                    echo "<script>setTimeout(function() { window.location.href = 'home.php'; }, 2000);</script>";
                 } else {
-                    showAlert("Wrong password. Please try again.", true);
+                    showAlert("Incorrect password.", 'error');
                 }
             } else {
-                // Member not found, check admin_member table
                 $stmt = $conn->prepare("SELECT admin_id, password FROM admin_member WHERE email = ?");
                 $stmt->bind_param("s", $email);
                 $stmt->execute();
@@ -107,47 +129,34 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 
                 if ($adminResult->num_rows > 0) {
                     $adminRow = $adminResult->fetch_assoc();
-                    // Verify admin password
-                    if ($password === $adminRow['password']) {
-                        // Admin login successful
+                    if (password_verify($password, $adminRow['password'])) {
                         $_SESSION['admin_id'] = $adminRow['admin_id'];
                         $_SESSION['email'] = $email;
-                        showAlert("Administrator login successful!");
-                        header('Location: administratorhome.php');
-                        exit();
+                        showAlert("Administrator login successful!", 'success');
+                        echo "<script>setTimeout(function() { window.location.href = 'administratorhome.php'; }, 2000);</script>";
                     } else {
-                        showAlert("Wrong password. Please try again.", true);
+                        showAlert("Incorrect password.", 'error');
                     }
                 } else {
-                    showAlert("member does not exist. Please register or check your input.", true);
+                    showAlert("User not found. Please register or check your input.", 'error');
                 }
             }
             $stmt->close();
         }
     } else {
-        showAlert("Invalid form submission. Please check your form.", true);
+        showAlert("Invalid form submission.", 'error');
     }
 }
-
-
 
 $conn->close();
 ?>
 <style>
-        .search-container {
-            width: 300px;
-            height: 30px;
-            margin: 30px 10px;
-        }
-
-        .line {
-            top: 50px;
-
-        }
+        
     </style>
     
     <div class="container">
         <div class="form-box login-box">
+            
             <h2>Login Now</h2>
             <form action="login.php" method="post">
                 <div class="input-group">

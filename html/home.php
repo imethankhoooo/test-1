@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../css/home.css">
     <link rel="stylesheet" href="../css/page.css">
-    <link rel="stylesheet" href="../css/search.css">
+
     <link rel="stylesheet" href="../css/addcustomer.css">
     <link rel="stylesheet" href="../css/page3.css">
     <link rel="stylesheet" href="../css/profile.css">
@@ -208,55 +208,54 @@ if (isset($_SESSION['member_id'])) {
     
 
     <div class="Page Page3 hidden">
-        <div class="searchEvent-container">
-        <input type="text" id="searchInput"  class="searchEvent" placeholder="Search events...">
-        </div>
-        <div class="eventCard-Container">
-        <?php
-
-
-
-$conn = new mysqli('localhost', 'root', '', 'php-assginment');
-
-
-if ($conn->connect_error) {
-    die("connect failed: " . $conn->connect_error);
-}
-
-
-$sql = "SELECT event_id, banner_image, event_name, location FROM event";
-$result = $conn->query($sql);
-
-
-if ($result === false) {
-    die("Failed: " . $conn->error);
-}
-
-
-if ($result->num_rows > 0) {
-
-    while ($row = $result->fetch_assoc()) {
-        $event_id = $row['event_id']; 
-        echo '<div class="eventCard">';
-        $imgSrc = htmlspecialchars($row['banner_image']);
+    <header class="header">
+        <h1>Discover Exciting Events</h1>
+    </header>
+    
+    <div class="container">
+        <aside class="search-section">
+            <input type="text" id="searchInput" class="search-input" placeholder="Search for events...">
+            <div class="filter-section">
+                <h3>Filters</h3>
+                <div class="filter-option">
+                    <input type="checkbox" id="filter1" name="filter1">
+                    <label for="filter1">Category 1</label>
+                </div>
+                <div class="filter-option">
+                    <input type="checkbox" id="filter2" name="filter2">
+                    <label for="filter2">Category 2</label>
+                </div>
+                
+            </div>
+        </aside>
         
-
-        echo '<img class="eventCardImage" src="' . $imgSrc . '" alt="Event Image">';
-        echo '<div class="eventCardInfo">';
-        echo '<h2>' . htmlspecialchars($row['event_name']) . '</h2>';
-        echo '<p>' . nl2br(htmlspecialchars($row['location'])) . '</p><br>';
-        echo '<a href="Event.php?event_id=' . htmlspecialchars($event_id) . '" class="button">View</a>';
-        echo '</div>';
-        echo '</div>';
-    }
-} else {
-    echo "0 result";
-}
-
-$conn->close();
-?>
-
+        <main class="event-section">
+            <div class="event-grid">
+            <?php
+            $conn = new mysqli('localhost', 'root', '', 'php-assginment');
+            if ($conn->connect_error) {
+                die("Connection failed: " . $conn->connect_error);
+            }
+            $sql = "SELECT event_id, banner_image, event_name, location FROM event";
+            $result = $conn->query($sql);
+            if ($result->num_rows > 0) {
+                while ($row = $result->fetch_assoc()) {
+                    echo '<div class="event-card">';
+                    echo '<img class="event-image" src="' . htmlspecialchars($row['banner_image']) . '" alt="Event Image">';
+                    echo '<div class="event-info">';
+                    echo '<h2 class="event-name">' . htmlspecialchars($row['event_name']) . '</h2>';
+                    echo '<p class="event-location">' . htmlspecialchars($row['location']) . '</p>';
+                    echo '<a href="Event.php?event_id=' . htmlspecialchars($row['event_id']) . '" class="event-button">Learn More</a>';
+                    echo '</div>';
+                    echo '</div>';
+                }
+            } else {
+                echo '<p class="no-results">No events found</p>';
+            }
+            $conn->close();
+            ?>
         </div>
+    </div>
     </div>
 
     <div class="Page Page4 hidden">

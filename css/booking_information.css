@@ -6,32 +6,32 @@
     margin: 0;
     padding: 20px;
 }
-.container {
+.main-container .container {
     max-width: 1500px;
     background-color: #fff;
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0,0,0,0.1);
     padding: 20px;
 }
-.container h1, .container h2 {
+.main-container .container h1, .container h2 {
     color: #2c3e50;
 }
-.container h1 {
+.main-container .container h1 {
     font-size: 24px;
     border-bottom: 2px solid #3498db;
     padding-bottom: 10px;
 }
-.container h2 {
+.main-container .container h2 {
     font-size: 20px;
     margin-top: 30px;
 }
-.member-info {
+.main-container .member-info {
     background-color: #ecf0f1;
     border-radius: 8px;
     padding: 20px;
     margin-bottom: 20px;
 }
-.member-info .avatar {
+.main-container .member-info .avatar {
     width: 100px;
     height: 100px;
     border-radius: 50%;
@@ -39,49 +39,49 @@
     margin-right: 20px;
     float: left;
 }
-.member-info .avatar img {
+.main-container .member-info .avatar img {
     width: 100%;
     height: 100%;
     object-fit: cover;
 }
-.member-details {
+.main-container .member-details {
     overflow: hidden;
 }
-.member-name {
+.main-container .member-name {
     font-size: 22px;
     font-weight: bold;
     margin: 0;
 }
-.member-username {
+.main-container .member-username {
     color: #7f8c8d;
     margin: 5px 0;
 }
-table {
+.main-container table {
     width: 100%;
     border-collapse: collapse;
     margin-top: 20px;
 }
-th, td {
+.main-container th, .main-container td {
     text-align: left;
     padding: 12px;
     border-bottom: 1px solid #ddd;
 }
-th {
+.main-container th {
     background-color: #3498db;
     color: white;
 }
-tr:nth-child(even) {
+.main-container tr:nth-child(even) {
     background-color: #f2f2f2;
 }
-tr:hover {
+.main-container tr:hover {
     background-color: #e0e0e0;
 }
-.error {
+.main-container .error {
     color: #e74c3c;
     font-size: 18px;
     text-align: center;
 }
-.event-info {
+.main-container .event-info {
     display: flex;
     align-items: center;
     margin-bottom: 20px;
@@ -91,23 +91,23 @@ tr:hover {
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
     position: relative;
 }
-.event-image {
+.main-container .event-image {
     width: 120px;
     height: 80px;
     object-fit: cover;
     margin-right: 20px;
     border-radius: 5px;
 }
-.event-details {
+.main-container .event-details {
     flex-grow: 1;
 }
-.event-name {
+.main-container .event-name {
     font-weight: bold;
     font-size: 18px;
     margin-bottom: 8px;
     color: #2c3e50;
 }
-.delete-btn {
+.main-container .delete-btn {
     position: absolute;
     top: 10px;
     right: 10px;
@@ -119,6 +119,6 @@ tr:hover {
     cursor: pointer;
     transition: background-color 0.3s;
 }
-.delete-btn:hover {
+.main-container .delete-btn:hover {
     background-color: #c0392b;
 }

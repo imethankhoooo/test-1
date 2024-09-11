@@ -8,172 +8,112 @@
 
 </head>
 <body>
-<?php
-session_start();
-$conn = new mysqli('localhost', 'root', '', 'php-assginment');
-
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
-
-if (isset($_SESSION['member_id'])) {
-    $member_id = $_SESSION['member_id'];
-
-    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-        $name = $_POST['name'];
-        $membername = $_POST['membername'];
-        $gender = $_POST['gender'];
-        $phone = $_POST['phone'];
-        $address = $_POST['address'];
-        $bio = $_POST['bio'];
-        $experience = $_POST['experience'];
-        $socialmedia = $_POST['socialmedia'];
-
-        // Handle avatar upload
-        if (isset($_FILES['avatar']) && $_FILES['avatar']['error'] === UPLOAD_ERR_OK) {
-            $file_tmp = $_FILES['avatar']['tmp_name'];
-            
-           
-            $file_info = pathinfo($_FILES['avatar']['name']);
-            $file_ext = strtolower($file_info['extension']);
-            
-           
-            $upload_dir = './uploads/';
-            
-          
-            if (!is_dir($upload_dir)) {
-                mkdir($upload_dir, 0777, true); 
-            }
-            
-     
-            $avatar_name = uniqid() . '.' . $file_ext;
-            
-     
-            if (move_uploaded_file($file_tmp, $upload_dir . $avatar_name)) {
-                $avatar_path = $upload_dir . $avatar_name; // 在数据库中存储相对路径
-                echo "File uploaded successfully to " . $avatar_path;
-            } else {
-     
-                echo "File upload failed.";
-            }
-        }else{
-            $avatar_path = '../Img/cartoon 1.png';
-            if (!move_uploaded_file($avatar_path, $upload_dir . 'cartoon 1')) {
-                echo "File upload failed.";
-            } 
-        }
-        
-
-        $stmt = $conn->prepare("UPDATE member SET name=?, username=?, gender=?, phone=?, address=?, bio=?, experience=?, socialmedia=?, avatar=? WHERE member_id=?");
-        $stmt->bind_param("sssssssssi", $name, $membername, $gender, $phone, $address, $bio, $experience, $socialmedia, $avatar_path, $member_id);
-
-        if ($stmt->execute()) {
-            echo "<script>alert('Profile updated successfully'); window.location.href='home.php';</script>";
-        } else {
-            echo "Error: " . $stmt->error;
-        }
-
-        $stmt->close();
-    } 
-    
-} else {
-    echo "Member ID not received or invalid.";
-}
-
-$conn->close();
-?>
-    <div class="profileInput-container container1">
-        <img src="../Img/00002-3114174374.png" alt="Background Image">
-    </div>
-    <div class="profileInput-container container2">
+    <div class="page-container">
         <div class="form-container">
-            <form id="profileForm" action="memberInformation.php" method="POST" enctype="multipart/form-data">
+            <div class="form-header">
                 <h1>Set Up Your Profile</h1>
-                
-                <div class="avatar-upload">
-                    <div class="avatar-edit">
-                        <input type='file' id="avatarInput" name="avatar" accept=".png, .jpg, .jpeg" />
-                        <label for="avatarInput"></label>
-                    </div>
-                    <div class="avatar-preview">
-                        <div id="avatarPreview" style="background-image: url('../Img/cartoon 1.png');">
+                <div class="progress-bar">
+                    <div class="progress"></div>
+                </div>
+            </div>
+            <form id="profileForm" action="memberInformation.php" method="POST" enctype="multipart/form-data">
+                <div class="form-section" id="section1">
+                    <h2>Basic Information</h2>
+                    <div class="avatar-upload">
+                        <div class="avatar-edit">
+                            <input type='file' id="avatarInput" name="avatar" accept=".png, .jpg, .jpeg" />
+                            <label for="avatarInput"></label>
+                        </div>
+                        <div class="avatar-preview">
+                            <div id="avatarPreview" style="background-image: url('../Img/cartoon 1.png');"></div>
                         </div>
                     </div>
-                </div>
-
-
-                <fieldset>
-                    <legend>Basic Information</legend>
-                    <div class="search-container">
-                        <input name="name" type="text" class="search-input" placeholder=" " required>
-                        <span class="line"></span>
-                        <label class="search-placeholder">Name</label>
+                    <div class="input-group">
+                        <input name="name" type="text" required>
+                        <label>Name</label>
                     </div>
-                    <div class="search-container">
-                        <input name="membername" type="text" class="search-input" placeholder=" " required>
-                        <span class="line"></span>
-                        <label class="search-placeholder">Username</label>
+                    <div class="input-group">
+                        <input name="membername" type="text" required>
+                        <label>Username</label>
                     </div>
-                    
-                    <div class="gender-container">
-                        <div class="gender-option">
+                    <div class="gender-group">
+                        <label>Gender</label>
+                        <div class="gender-options">
                             <input type="radio" id="male" name="gender" value="male" required>
                             <label for="male">Male</label>
-                        </div>
-                        <div class="gender-option">
                             <input type="radio" id="female" name="gender" value="female" required>
                             <label for="female">Female</label>
                         </div>
                     </div>
-                </fieldset>
-
-                <fieldset>
-                    <legend>Other Information</legend>
-                    <div class="search-container">
-                        <input name="phone" type="tel" class="search-input" placeholder=" ">
-                        <span class="line"></span>
-                        <label class="search-placeholder">Phone</label>
+                    <button type="button" class="next-btn" onclick="nextSection(1)">Next</button>
+                </div>
+                
+                <div class="form-section" id="section2" style="display:none;">
+                    <h2>Contact Information</h2>
+                    <div class="input-group">
+                        <input name="phone" type="tel">
+                        <label>Phone</label>
                     </div>
-                    <div class="search-container">
-                        <input name="address" type="text" class="search-input" placeholder=" ">
-                        <span class="line"></span>
-                        <label class="search-placeholder">Address</label>
+                    <div class="input-group">
+                        <input name="address" type="text">
+                        <label>Address</label>
                     </div>
-                    <div class="search-container">
-                        <input name="bio" type="text" class="search-input" placeholder=" ">
-                        <span class="line"></span>
-                        <label class="search-placeholder">Bio</label>
+                    <div class="input-group">
+                        <input name="socialmedia" type="text">
+                        <label>Social Media</label>
                     </div>
-                    <div class="search-container">
-                        <input name="socialmedia" type="text" class="search-input" placeholder=" ">
-                        <span class="line"></span>
-                        <label class="search-placeholder">Social Media</label>
+                    <button type="button" class="prev-btn" onclick="prevSection(2)">Previous</button>
+                    <button type="button" class="next-btn" onclick="nextSection(2)">Next</button>
+                </div>
+                
+                <div class="form-section" id="section3" style="display:none;">
+                    <h2>About You</h2>
+                    <div class="input-group">
+                        <textarea name="bio" rows="4"></textarea>
+                        <label>Bio</label>
                     </div>
-                    <div class="search-container">
-                        <input name="experience" type="text" class="search-input" placeholder=" ">
-                        <span class="line"></span>
-                        <label class="search-placeholder">Experience</label>
+                    <div class="input-group">
+                        <textarea name="experience" rows="4"></textarea>
+                        <label>Experience</label>
                     </div>
-                </fieldset>
-                <button type="submit">Submit Profile</button>
+                    <button type="button" class="prev-btn" onclick="prevSection(3)">Previous</button>
+                    <button type="submit">Submit Profile</button>
+                </div>
             </form>
         </div>
     </div>
 
     <script>
         function readURL(input) {
-        if (input.files && input.files[0]) {
-            var reader = new FileReader();
-            reader.onload = function(e) {
-                document.getElementById('avatarPreview').style.backgroundImage = "url('" + e.target.result + "')";
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+                reader.onload = function(e) {
+                    document.getElementById('avatarPreview').style.backgroundImage = "url('" + e.target.result + "')";
+                }
+                reader.readAsDataURL(input.files[0]);
             }
-            reader.readAsDataURL(input.files[0]);
         }
-    }
 
-    document.getElementById("avatarInput").addEventListener("change", function() {
-        readURL(this);
-    });
+        document.getElementById("avatarInput").addEventListener("change", function() {
+            readURL(this);
+        });
+
+        function nextSection(currentSection) {
+            document.getElementById('section'+currentSection).style.display = 'none';
+            document.getElementById('section'+(currentSection+1)).style.display = 'block';
+            updateProgressBar(currentSection+1);
+        }
+
+        function prevSection(currentSection) {
+            document.getElementById('section'+currentSection).style.display = 'none';
+            document.getElementById('section'+(currentSection-1)).style.display = 'block';
+            updateProgressBar(currentSection-1);
+        }
+
+        function updateProgressBar(section) {
+            var progress = (section / 3) * 100;
+            document.querySelector('.progress').style.width = progress + '%';
+        }
     </script>
 </body>
 </html>

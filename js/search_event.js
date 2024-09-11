@@ -65,3 +65,12 @@ document.addEventListener('DOMContentLoaded', function() {
 
     fetchEvents('');
 });
+searchInput.addEventListener('focus', () => {
+    searchInput.style.transform = 'scale(1.05)';
+    searchInput.style.boxShadow = '0 0 0 4px rgba(79, 70, 229, 0.3), 0 4px 16px rgba(0, 0, 0, 0.1)';
+});
+
+searchInput.addEventListener('blur', () => {
+    searchInput.style.transform = 'scale(1)';
+    searchInput.style.boxShadow = '0 0 0 2px rgba(79, 70, 229, 0.1)';
+});
