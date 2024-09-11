@@ -397,6 +397,40 @@ if (isset($_SESSION['member_id'])) {
     </div>
 
     <script>
+document.addEventListener('DOMContentLoaded', function() {
+    const tabs = document.querySelectorAll('.SecondSection .tabs ul .tab');
+    const timelineSection = document.querySelector('.timelineSection');
+    const aboutSection = document.querySelector('.aboutSection');
+
+    tabs.forEach(tab => {
+        tab.addEventListener('click', function() {
+            // Remove active class from all tabs
+            tabs.forEach(t => t.classList.remove('active'));
+
+            // Hide both sections
+            timelineSection.style.display = 'none';
+            aboutSection.style.display = 'none';
+
+            // Add active class to clicked tab
+            this.classList.add('active');
+
+            // Show the corresponding section
+            if (this.classList.contains('timeline')) {
+                timelineSection.style.display = 'block';
+            } else if (this.classList.contains('about')) {
+                aboutSection.style.display = 'block';
+            }
+        });
+    });
+
+    // Initialize by showing the active section
+    const activeTab = document.querySelector('.SecondSection .tabs ul .active');
+    if (activeTab.classList.contains('timeline')) {
+        timelineSection.style.display = 'block';
+    } else if (activeTab.classList.contains('about')) {
+        aboutSection.style.display = 'block';
+    }
+});
 
        
     </script>
