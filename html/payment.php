@@ -35,8 +35,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['num_tickets'])) {
     $currentSeat = $event['seat'];
 
 
+    
+ if(isset($_POST['card_number'])){
     $conn->begin_transaction();
-if(isset($_POST['card_number'])){
     try {
 
         $sql = "INSERT INTO bookinginformation (event_id, member_id, paymentAmount, booking_date) VALUES (?, ?,?, CURRENT_TIMESTAMP)";

@@ -1,13 +1,4 @@
-:root {
-    --primary-color: #3c388f;
-    --secondary-color: #973b4e;
-    --background-color: #0F1624;
-    --card-color: #1A202C;
-    --text-color: #F7FAFC;
-    --accent-color: #b47500;
-    --gradient: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-    --shadow-color: rgba(0, 0, 0, 0.3);
-}
+
 
 body {
     font-family: 'Poppins', sans-serif;
