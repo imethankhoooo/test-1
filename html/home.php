@@ -160,49 +160,83 @@ if (isset($_SESSION['member_id'])) {
     exit;
 }
 ?>
-    <div class="profileAside">
-    <div class="profileImg-Container">
-        <img src="<?php echo htmlspecialchars($avatar_path); ?>" alt="Profile Image" class="profileImg">
-        <h3 class="profileUsername"><?php echo htmlspecialchars($membername); ?></h3>
-    </div>
-</div>
-<div class="profileInformation">
-    <div class="infoSection">
-        <div class="profileCard">
-            <h2>Personal Information</h2>
-            <div class="infoGroup">
-                <p><strong>Name:</strong> <span class="profileInformation"><?php echo htmlspecialchars($name); ?></span></p>
-                <p><strong>Email:</strong> <span class="profileInformation"><?php echo htmlspecialchars($_SESSION['email']); ?></span></p>
-                <p><strong>Phone:</strong> <span class="profileInformation"><?php echo htmlspecialchars($phone); ?></span></p>
+   <div class="Page2">
+    <!-- First Section -->
+    <div class="FirstSection">
+        <div class="profileAside">
+            <div class="profileImg-Container">
+                <img src="<?php echo htmlspecialchars($avatar_path); ?>" alt="Profile Image" class="profileImg">
+                <h3 class="profileUsername"><?php echo htmlspecialchars($membername); ?></h3>
+            </div>
+        </div>
+        <div class="profileInformation">
+            <div class="infoSection">
+                <div class="profileCard1">
+                    <h2>Personal Information</h2>
+                    <div class="infoGroup">
+                        <p><strong>Name:</strong> <span class="profileInformation"><?php echo htmlspecialchars($name); ?></span></p>
+                        <p><strong>Email:</strong> <span class="profileInformation"><?php echo htmlspecialchars($_SESSION['email']); ?></span></p>
+                        <p><strong>Phone:</strong> <span class="profileInformation"><?php echo htmlspecialchars($phone); ?></span></p>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
-    <div class="infoSection">
-        <div class="profileCard">
-            <h2>Address</h2>
-            <p><strong>Address:</strong> <span class="profileInformation"><?php echo htmlspecialchars($address); ?></span></p>
-        </div>
-    </div>
-    <div class="infoSection">
-        <div class="profileCard">
-            <h2>Bio</h2>
-            <p><span class="profileInformation"><?php echo htmlspecialchars($bio); ?></span></p>
-        </div>
-    </div>
-    <div class="infoSection">
-        <div class="profileCard">
-            <h2>Social Media</h2>
-            <p><strong>LinkedIn:</strong> <a href="<?php echo htmlspecialchars($socialmedia); ?>" class="profileLink"><?php echo htmlspecialchars($socialmedia); ?></a></p>
-        </div>
-    </div>
-    <div class="infoSection">
-        <div class="profileCard">
-            <h2>Experience</h2>
-            <ul class="profileList">
-                <li><?php echo htmlspecialchars($experience); ?></li>
+
+    <!-- Second Section -->
+    <div class="SecondSection">
+        <div class="tabs">
+            <ul>
+                <li class="tab timeline active">
+                    <i class="ri-eye-fill ri"></i>
+                    <span>Timeline</span>
+                </li>
+                <li class="tab about">
+                    <i class="ri-user-3-fill ri"></i>
+                    <span>About</span>
+                </li>
             </ul>
         </div>
+
+        <!-- Timeline Section -->
+        <div class="timelineSection">
+            <div class="infoSection">
+                <div class="profileCard">
+                    <h2>Social Media</h2>
+                    <p><strong>LinkedIn:</strong> <a href="<?php echo htmlspecialchars($socialmedia); ?>" class="profileLink"><?php echo htmlspecialchars($socialmedia); ?></a></p>
+                </div>
+            </div>
+            <div class="infoSection">
+                <div class="profileCard">
+                    <h2>Experience</h2>
+                    <ul class="profileList">
+                        <li><?php echo htmlspecialchars($experience); ?></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- About Section -->
+        <div class="aboutSection">
+            <div class="infoSection">
+                <div class="profileCard">
+                    <h2>Address</h2>
+                    <p><strong>Address:</strong> <span class="profileInformation"><?php echo htmlspecialchars($address); ?></span></p>
+                </div>
+            </div>
+            <div class="infoSection">
+                <div class="profileCard">
+                    <h2>Bio</h2>
+                    <p><span class="profileInformation"><?php echo htmlspecialchars($bio); ?></span></p>
+                </div>
+            </div>
+        </div>
+        <div class="editButtonContainer">
+            <a href="edit_memberInformation.php" class="editButton">Edit</a>
+        </div>
     </div>
+    </div>
+</div>
 </div>
     </div>
     
@@ -363,6 +397,40 @@ if (isset($_SESSION['member_id'])) {
     </div>
 
     <script>
+document.addEventListener('DOMContentLoaded', function() {
+    const tabs = document.querySelectorAll('.SecondSection .tabs ul .tab');
+    const timelineSection = document.querySelector('.timelineSection');
+    const aboutSection = document.querySelector('.aboutSection');
+
+    tabs.forEach(tab => {
+        tab.addEventListener('click', function() {
+            // Remove active class from all tabs
+            tabs.forEach(t => t.classList.remove('active'));
+
+            // Hide both sections
+            timelineSection.style.display = 'none';
+            aboutSection.style.display = 'none';
+
+            // Add active class to clicked tab
+            this.classList.add('active');
+
+            // Show the corresponding section
+            if (this.classList.contains('timeline')) {
+                timelineSection.style.display = 'block';
+            } else if (this.classList.contains('about')) {
+                aboutSection.style.display = 'block';
+            }
+        });
+    });
+
+    // Initialize by showing the active section
+    const activeTab = document.querySelector('.SecondSection .tabs ul .active');
+    if (activeTab.classList.contains('timeline')) {
+        timelineSection.style.display = 'block';
+    } else if (activeTab.classList.contains('about')) {
+        aboutSection.style.display = 'block';
+    }
+});
 
        
     </script>
