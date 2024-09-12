@@ -6,4 +6,5 @@
     --text-color: #F7FAFC;
     --accent-color: #AB6D03;
     --gradient: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    --shadow-color: rgba(0, 0, 0, 0.3);
 }
