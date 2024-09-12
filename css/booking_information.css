@@ -1,37 +1,47 @@
+
 .Page5 {
     font-family: Arial, sans-serif;
     line-height: 1.6;
-    color: #333;
-    background-color: #f4f4f4;
+    color: var(--text-color);
+    background-color: var(--background-color);
     margin: 0;
     padding: 20px;
 }
-.main-container .container {
-    max-width: 1500px;
-    background-color: #fff;
+
+.Booking-container {
+
+    background-color: var(--card-color);
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0,0,0,0.1);
     padding: 20px;
 }
-.main-container .container h1, .container h2 {
-    color: #2c3e50;
+.Booking-container div{
+    color: var(--text-color);
 }
-.main-container .container h1 {
+.Booking-container h1,
+.Booking-container h2 {
+    color: var(--text-color);
+}
+
+.Booking-container h1 {
     font-size: 24px;
-    border-bottom: 2px solid #3498db;
+    border-bottom: 2px solid var(--secondary-color);
     padding-bottom: 10px;
 }
-.main-container .container h2 {
+
+.Booking-container h2 {
     font-size: 20px;
     margin-top: 30px;
 }
-.main-container .member-info {
-    background-color: #ecf0f1;
+
+.Booking-container .member-info {
+    background-color: var(--card-color);
     border-radius: 8px;
     padding: 20px;
     margin-bottom: 20px;
 }
-.main-container .member-info .avatar {
+
+.Booking-container .member-info .avatar {
     width: 100px;
     height: 100px;
     border-radius: 50%;
@@ -39,75 +49,93 @@
     margin-right: 20px;
     float: left;
 }
-.main-container .member-info .avatar img {
+
+.Booking-container .member-info .avatar img {
     width: 100%;
     height: 100%;
     object-fit: cover;
 }
-.main-container .member-details {
+
+.Booking-container .member-details {
     overflow: hidden;
 }
-.main-container .member-name {
+
+.Booking-container .member-name {
     font-size: 22px;
     font-weight: bold;
     margin: 0;
+    color: var(--text-color);
 }
-.main-container .member-username {
-    color: #7f8c8d;
+
+.Booking-container .member-username {
+    color: var(--text-color);
+    opacity: 0.7;
     margin: 5px 0;
 }
-.main-container table {
+
+.Booking-container table {
     width: 100%;
     border-collapse: collapse;
     margin-top: 20px;
 }
-.main-container th, .main-container td {
+
+.Booking-container th, .Booking-container td {
     text-align: left;
     padding: 12px;
-    border-bottom: 1px solid #ddd;
+    border-bottom: 1px solid var(--border-color);
+    color: var(--text-color);
 }
-.main-container th {
-    background-color: #3498db;
-    color: white;
+
+.Booking-container th {
+    background: var(--accent-color);
+    color: var(--text-color);
 }
-.main-container tr:nth-child(even) {
-    background-color: #f2f2f2;
+
+.Booking-container tr:nth-child(even) {
+    background-color: rgba(255, 255, 255, 0.05);
 }
-.main-container tr:hover {
-    background-color: #e0e0e0;
+
+.Booking-container tr:hover {
+    background-color: rgba(255, 255, 255, 0.1);
 }
-.main-container .error {
+
+.Booking-container .error {
     color: #e74c3c;
     font-size: 18px;
     text-align: center;
 }
-.main-container .event-info {
+
+.Booking-container .event-info {
     display: flex;
     align-items: center;
     margin-bottom: 20px;
     padding: 15px;
-    background-color: #f8f9fa;
+    background-color: var(--card-color);
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
     position: relative;
 }
-.main-container .event-image {
+
+.Booking-container .event-image {
     width: 120px;
     height: 80px;
     object-fit: cover;
     margin-right: 20px;
     border-radius: 5px;
 }
-.main-container .event-details {
+
+.Booking-container .event-details {
     flex-grow: 1;
 }
-.main-container .event-name {
+
+.Booking-container .event-name {
     font-weight: bold;
     font-size: 18px;
     margin-bottom: 8px;
-    color: #2c3e50;
+    color: var(--text-color);
 }
-.main-container .delete-btn {
+
+.Booking-container .delete-btn {
     position: absolute;
     top: 10px;
     right: 10px;
@@ -119,6 +147,7 @@
     cursor: pointer;
     transition: background-color 0.3s;
 }
-.main-container .delete-btn:hover {
+
+.Booking-container .delete-btn:hover {
     background-color: #c0392b;
 }

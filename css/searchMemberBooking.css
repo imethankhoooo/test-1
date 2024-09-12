@@ -1,9 +1,10 @@
+
 .adminPage3 {
     font-family: 'Arial', sans-serif;
-    background-color: #f0f2f5;
+    background-color: var(--background-color);
     margin: 0;
     padding: 20px;
-    color: #333;
+    color: var(--text-color);
 }
 
 .container {
@@ -12,13 +13,13 @@
 }
 
 .panel-title {
-    color: #2c3e50;
+    color: var(--text-color);
     text-align: center;
     margin-bottom: 30px;
 }
 
 .search-box {
-    background: white;
+    background: var(--card-color);
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 4px 6px rgba(0,0,0,0.1);
@@ -27,20 +28,22 @@
 }
 
 .search-box:focus-within {
-    box-shadow: 0 6px 8px rgba(0,0,0,0.15);
+    box-shadow: 0 6px 8px rgba(60, 56, 143, 0.15);
 }
 
 .search-input {
     width: 100%;
     padding: 10px;
-    border: 1px solid #ddd;
+    border: 1px solid var(--primary-color);
     border-radius: 4px;
     font-size: 16px;
     transition: border-color 0.3s ease;
+    background-color: var(--card-color);
+    color: var(--text-color);
 }
 
 .search-input:focus {
-    border-color: #3498db;
+    border-color: var(--accent-color);
     outline: none;
 }
 
@@ -51,7 +54,7 @@
 }
 
 .user-card {
-    background: white;
+    background: var(--card-color);
     border-radius: 8px;
     padding: 20px;
     box-shadow: 0 4px 6px rgba(0,0,0,0.1);
@@ -63,19 +66,19 @@
 
 .user-card:hover {
     transform: translateY(-5px);
-    box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+    box-shadow: 0 6px 12px rgba(60, 56, 143, 0.15);
 }
 
 .user-avatar {
     width: 80px;
     height: 80px;
     border-radius: 50%;
-    background-color: #f0f2f5;
+    background-color: var(--background-color);
     display: flex;
     justify-content: center;
     align-items: center;
     margin-bottom: 15px;
-    color: #3498db;
+    color: var(--text-color);
     font-size: 32px;
     overflow: hidden;
     position: relative;
@@ -88,7 +91,7 @@
     left: 0;
     right: 0;
     bottom: 0;
-    background: radial-gradient(circle, transparent 30%, rgba(0,0,0,0.1) 100%);
+    background: radial-gradient(circle, transparent 30%, rgba(60, 56, 143, 0.1) 100%);
     opacity: 0;
     transition: opacity 0.3s ease;
 }
@@ -100,35 +103,36 @@
 .user-name {
     font-size: 18px;
     font-weight: bold;
-    color: #2c3e50;
+    color: var(--text-color);
     margin-bottom: 5px;
     text-align: center;
 }
 
 .user-email {
-    color: #7f8c8d;
+    color: var(--text-color);
+    opacity: 0.7;
     margin-bottom: 10px;
     text-align: center;
 }
 
 .user-role {
-    background-color: #3498db;
-    color: white;
+    background: black;
+    color: var(--text-color);
     padding: 5px 10px;
     border-radius: 20px;
     font-size: 12px;
     display: inline-block;
-    transition: background-color 0.3s ease;
+    transition: filter 0.3s ease;
 }
 
 .user-card:hover .user-role {
-    background-color: #2980b9;
+    filter: brightness(1.1);
 }
 
 .view-profile {
     display: block;
-    background-color: #2ecc71;
-    color: white;
+    background: var(--accent-color);
+    color: var(--text-color);
     text-align: center;
     padding: 10px;
     border-radius: 4px;
@@ -139,6 +143,6 @@
 }
 
 .view-profile:hover {
-    background-color: #27ae60;
+    filter: brightness(1.1);
     transform: scale(1.05);
 }

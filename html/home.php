@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="../css/page3.css">
     <link rel="stylesheet" href="../css/profile.css">
     <link rel="stylesheet" href="../css/booking_information.css">
+    <link rel="stylesheet" href="../css/color.css">
 
     <title>home Page</title>
 
@@ -242,26 +243,33 @@ if (isset($_SESSION['member_id'])) {
     
 
     <div class="Page Page3 hidden">
-    <header class="header">
+    <header class="searchEvent-header">
         <h1>Discover Exciting Events</h1>
     </header>
     
-    <div class="container">
-        <aside class="search-section">
-            <input type="text" id="searchInput" class="search-input" placeholder="Search for events...">
-            <div class="filter-section">
-                <h3>Filters</h3>
-                <div class="filter-option">
-                    <input type="checkbox" id="filter1" name="filter1">
-                    <label for="filter1">Category 1</label>
-                </div>
-                <div class="filter-option">
-                    <input type="checkbox" id="filter2" name="filter2">
-                    <label for="filter2">Category 2</label>
-                </div>
-                
-            </div>
-        </aside>
+    <div class="searchEvent-container">
+    <aside class="search-section">
+    <input type="text" id="searchInput" class="search-input" placeholder="Search for events...">
+    <div class="filter-section">
+        <h3>Filters</h3>
+        <div class="filter-option">
+            <input type="radio" id="filterNone" name="filter" value="none" checked>
+            <label for="filterNone">No Filter</label>
+        </div>
+        <div class="filter-option">
+            <input type="radio" id="filterRecent" name="filter" value="recent">
+            <label for="filterRecent">Most Recent</label>
+        </div>
+        <div class="filter-option">
+            <input type="radio" id="filterPopular" name="filter" value="popular">
+            <label for="filterPopular">Most Popular</label>
+        </div>
+        <div class="filter-option">
+            <input type="radio" id="filterPrice" name="filter" value="price_low">
+            <label for="filterPrice">Lowest Price</label>
+        </div>
+    </div>
+</aside>
         
         <main class="event-section">
             <div class="event-grid">
@@ -297,7 +305,7 @@ if (isset($_SESSION['member_id'])) {
     </div>
     <div class="Page Page5 hidden">
    
-    <div class="container">
+    <div class="Booking-container">
         <?php
        
     

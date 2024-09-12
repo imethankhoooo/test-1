@@ -1,12 +1,4 @@
-:root {
-    --primary-color: #39358f;
-    --secondary-color: #782c3c;
-    --background-color: #121212;
-    --card-color: #1E1E1E;
-    --text-color: #E0E0E0;
-    --accent-color: #4F46E5;
-    --gradient: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
-}
+
 
 * {
     margin: 0;
@@ -14,28 +6,49 @@
     box-sizing: border-box;
 }
 
-.Page3 {
-    font-family: 'Arial', sans-serif;
+.Page3, .adminPage4 {
+    font-family: 'Poppins', sans-serif;
     background-color: var(--background-color);
     color: var(--text-color);
     overflow-x: hidden;
     min-height: 100vh;
     display: flex;
     flex-direction: column;
+    border-radius: 10px 10px 10px 10px;
 }
 
-.header {
+.searchEvent-header {
     background: var(--gradient);
-    padding: 2rem 0;
+    padding: 3rem 0;
     text-align: center;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    position: relative;
+    overflow: hidden;
 }
 
-.header h1 {
-    font-size: 3rem;
+.searchEvent-header::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 80%);
+    animation: ripple 15s linear infinite;
+}
+
+@keyframes ripple {
+    0% { transform: translate(0, 0); }
+    100% { transform: translate(-50%, -50%); }
+}
+
+.searchEvent-header h1 {
+    font-size: 3.5rem;
     color: #fff;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
     animation: glow 2s ease-in-out infinite alternate;
+    position: relative;
+    z-index: 1;
 }
 
 @keyframes glow {
@@ -43,23 +56,28 @@
     to { text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px var(--primary-color); }
 }
 
-.container {
+.searchEvent-container {
     display: flex;
     flex: 1;
 }
 
-.search-section {
+.searchEvent-container .search-section {
     width: 300px;
-    background-color: rgba(30, 30, 30, 0.9);
+    background-color: rgba(26, 32, 44, 0.9);
     padding: 2rem;
     position: sticky;
     top: 0;
-    height: calc(100vh - 80px); /* Adjust based on your header height */
+    height: calc(100vh - 80px);
     overflow-y: auto;
-    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+    box-shadow: 2px 0 15px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
 }
 
-.search-input {
+.searchEvent-container .search-section:hover {
+    box-shadow: 2px 0 20px rgba(108, 99, 255, 0.2);
+}
+
+.searchEvent-container .search-input {
     width: 100%;
     padding: 1rem 1.5rem;
     font-size: 1.1rem;
@@ -69,52 +87,88 @@
     color: var(--text-color);
     transition: all 0.3s ease;
     margin-bottom: 1rem;
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-.search-input:focus {
+.searchEvent-container .search-input:focus {
     outline: none;
     background-color: rgba(255, 255, 255, 0.2);
-    box-shadow: 0 0 20px rgba(108, 99, 255, 0.5);
+    box-shadow: 0 0 20px rgba(108, 99, 255, 0.5), inset 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-.search-input::placeholder {
+.searchEvent-container .search-input::placeholder {
     color: rgba(255, 255, 255, 0.5);
 }
 
-.filter-section {
+.searchEvent-container .filter-section {
     margin-top: 2rem;
 }
 
-.filter-section h3 {
+.searchEvent-container .filter-section h3 {
     margin-bottom: 1rem;
     color: var(--secondary-color);
+    font-size: 1.2rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
 }
 
-.filter-option {
-    margin-bottom: 0.5rem;
+.searchEvent-container .filter-option {
+    margin-bottom: 0.8rem;
+    display: flex;
+    align-items: center;
 }
 
-.event-section {
+.searchEvent-container .filter-option input[type="radio"] {
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    border: 2px solid var(--accent-color);
+    border-radius: 50%;
+    margin-right: 10px;
+    position: relative;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.searchEvent-container .filter-option input[type="radio"]:checked {
+    background-color: var(--accent-color);
+}
+
+.searchEvent-container .filter-option input[type="radio"]:checked::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 10px;
+    height: 10px;
+    background-color: white;
+    border-radius: 50%;
+}
+
+.searchEvent-container .filter-option label {
+    cursor: pointer;
+    font-size: 1rem;
+    transition: color 0.2s ease;
+}
+
+.searchEvent-container .filter-option:hover label {
+    color: var(--accent-color);
+}
+
+.searchEvent-container .event-section {
     flex: 1;
     padding: 2rem;
 }
 
-.event-grid {
+.searchEvent-container .event-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 2rem;
 }
 
-.event-card {
-    background-color: var(--card-color);
-    border-radius: 20px;
-    overflow: hidden;
-    transition: all 0.3s ease;
-    position: relative;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-}
 
-.event-card::before {
+.searchEvent-container .event-card::before {
     content: '';
     position: absolute;
     top: -2px;
@@ -128,43 +182,89 @@
     transition: opacity 0.3s ease;
 }
 
-.event-card:hover::before {
+.searchEvent-container .event-card:hover::before {
     opacity: 0.7;
 }
 
-.event-card:hover {
+.searchEvent-container .event-card:hover {
     transform: translateY(-10px);
     box-shadow: 0 20px 30px rgba(0, 0, 0, 0.2);
 }
 
-.event-image {
+
+.searchEvent-container .event-card:hover .event-image {
+    transform: scale(1.1);
+}
+
+.searchEvent-container .event-card {
+    background-color: var(--card-color);
+    border-radius: 20px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    position: relative;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+}
+
+.searchEvent-container .event-image {
     width: 100%;
     height: 220px;
     object-fit: cover;
     transition: transform 0.3s ease;
 }
 
-.event-card:hover .event-image {
-    transform: scale(1.1);
-}
-
-.event-info {
+.searchEvent-container .event-info {
     padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
 }
 
-.event-name {
+.searchEvent-container .event-name {
     font-size: 1.4rem;
     color: var(--accent-color);
     margin-bottom: 0.5rem;
+    font-weight: 600;
 }
 
-.event-location {
+.searchEvent-container .event-location {
     font-size: 1rem;
     color: rgba(255, 255, 255, 0.7);
     margin-bottom: 1rem;
 }
 
-.event-button {
+.searchEvent-container .event-details {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    padding: 0.5rem;
+}
+
+.searchEvent-container .event-date,
+.searchEvent-container .event-tickets {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.searchEvent-container .event-date-label,
+.searchEvent-container .event-tickets-label {
+    font-size: 0.8rem;
+    color: rgba(255, 255, 255, 0.6);
+    margin-bottom: 0.2rem;
+}
+
+.searchEvent-container .event-date-value,
+.searchEvent-container .event-tickets-value {
+    font-size: 1rem;
+    color: var(--text-color);
+    font-weight: 600;
+}
+
+.searchEvent-container .event-button {
     display: inline-block;
     padding: 0.8rem 1.5rem;
     background-color: var(--accent-color);
@@ -175,9 +275,13 @@
     font-weight: 600;
     position: relative;
     overflow: hidden;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    align-self: flex-start;
+    margin-top: auto;
 }
 
-.event-button::before {
+.searchEvent-container .event-button::before {
     content: '';
     position: absolute;
     top: 0;
@@ -188,16 +292,16 @@
     transition: all 0.6s;
 }
 
-.event-button:hover::before {
+.searchEvent-container .event-button:hover::before {
     left: 100%;
 }
 
-.event-button:hover {
+.searchEvent-container .event-button:hover {
     background-color: var(--secondary-color);
     transform: translateY(-2px);
 }
 
-.no-results {
+.searchEvent-container .no-results {
     text-align: center;
     font-size: 1.2rem;
     color: var(--text-color);
@@ -229,22 +333,22 @@
 }
 
 @media (max-width: 768px) {
-    .main-container {
+    .searchEvent-container {
         flex-direction: column;
     }
     
-    .search-section {
+    .searchEvent-container .search-section {
         width: 100%;
         height: auto;
         position: static;
         padding: 1rem;
     }
     
-    .event-section {
+    .searchEvent-container .event-section {
         padding: 1rem;
     }
     
-    .event-grid {
+    .searchEvent-container .event-grid {
         grid-template-columns: 1fr;
     }
 }

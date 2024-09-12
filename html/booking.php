@@ -62,6 +62,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && $member_info) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Book Event: <?php echo htmlspecialchars($event['event_name']); ?></title>
     <link rel="stylesheet" href="../css/booking.css">
+    <link rel="stylesheet" href="../css/color.css">
     
 </head>
 <body>

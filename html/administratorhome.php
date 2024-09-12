@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="../css/dashboard.css">
     <link rel="stylesheet" href="../css/searchMemberInformation.css">
     <link rel="stylesheet" href="../css/searchMemberBooking.css">
-
+    <link rel="stylesheet" href="../css/color.css">
 
 
 </head>
@@ -468,54 +468,61 @@
         </script>
     </div>
     <div class="Page adminPage4 hidden">
-        <div class="searchEvent-container">
-            <input type="text" id="searchInput" class="searchEvent" placeholder="Search events...">
+    <header class="searchEvent-header">
+        <h1>Discover Exciting Events</h1>
+    </header>
+    
+    <div class="searchEvent-container">
+    <aside class="search-section">
+    <input type="text" id="searchInput" class="search-input" placeholder="Search for events...">
+    <div class="filter-section">
+        <h3>Filters</h3>
+        <div class="filter-option">
+            <input type="radio" id="filterNone" name="filter" value="none" checked>
+            <label for="filterNone">No Filter</label>
         </div>
-        <div class="eventCard-Container">
-
+        <div class="filter-option">
+            <input type="radio" id="filterRecent" name="filter" value="recent">
+            <label for="filterRecent">Most Recent</label>
+        </div>
+        <div class="filter-option">
+            <input type="radio" id="filterPopular" name="filter" value="popular">
+            <label for="filterPopular">Most Popular</label>
+        </div>
+        <div class="filter-option">
+            <input type="radio" id="filterPrice" name="filter" value="price_low">
+            <label for="filterPrice">Lowest Price</label>
+        </div>
+    </div>
+</aside>
+        
+        <main class="event-section">
+            <div class="event-grid">
             <?php
-
-
             $conn = new mysqli('localhost', 'root', '', 'php-assginment');
-
-
             if ($conn->connect_error) {
-                die("连接失败: " . $conn->connect_error);
+                die("Connection failed: " . $conn->connect_error);
             }
-
-
             $sql = "SELECT event_id, banner_image, event_name, location FROM event";
             $result = $conn->query($sql);
-
-
-            if ($result === false) {
-                die("Query failed: " . $conn->error);
-            }
-
             if ($result->num_rows > 0) {
-
                 while ($row = $result->fetch_assoc()) {
-                    $event_id = $row['event_id'];
-                    echo '<div class="eventCard">';
-                    $imgSrc = htmlspecialchars($row['banner_image']);
-
-
-                    echo '<img class="eventCardImage" src="' . $imgSrc . '" alt="Event Image">';
-                    echo '<div class="eventCardInfo">';
-                    echo '<h2>' . htmlspecialchars($row['event_name']) . '</h2>';
-                    echo '<p>' . nl2br(htmlspecialchars($row['location'])) . '</p><br>';
-                    echo '<a href="Event.php?event_id=' . htmlspecialchars($event_id) . '" class="button">View</a>';
+                    echo '<div class="event-card">';
+                    echo '<img class="event-image" src="' . htmlspecialchars($row['banner_image']) . '" alt="Event Image">';
+                    echo '<div class="event-info">';
+                    echo '<h2 class="event-name">' . htmlspecialchars($row['event_name']) . '</h2>';
+                    echo '<p class="event-location">' . htmlspecialchars($row['location']) . '</p>';
+                    echo '<a href="Event.php?event_id=' . htmlspecialchars($row['event_id']) . '" class="event-button">Learn More</a>';
                     echo '</div>';
                     echo '</div>';
                 }
             } else {
-                echo "0 结果";
+                echo '<p class="no-results">No events found</p>';
             }
-
             $conn->close();
             ?>
-
         </div>
+    </div>
     </div>
         <div class="Page adminPage5 hidden">
             <h1>Create Special Event</h1>
@@ -805,74 +812,7 @@
         result = (index * width) + "px";
         ImgContainer.style.right = result;
     }
-    document.addEventListener('DOMContentLoaded', function() {
-        const searchInput = document.getElementById('searchInput');
-
-        const eventCardContainer = document.querySelector('.eventCard-Container');
-        let allEvents = [];
-        let debounceTimer;
-
-        function fetchEvents(searchTerm) {
-            fetch(`search_events.php?search=${encodeURIComponent(searchTerm)}`)
-                .then(response => response.json())
-                .then(events => {
-                    allEvents = events;
-                    displayEvents(events);
-                })
-                .catch(error => console.error('Error:', error));
-        }
-
-        function displayEvents(events) {
-            eventCardContainer.innerHTML = '';
-            events.forEach((event, index) => {
-                const eventCard = createEventCard(event);
-                eventCardContainer.appendChild(eventCard);
-                setTimeout(() => {
-                    eventCard.style.opacity = '1';
-                    eventCard.style.transform = 'scale(1)';
-                }, 50 * index);
-            });
-        }
-
-        function createEventCard(event) {
-            const card = document.createElement('div');
-            card.className = 'eventCard';
-            card.dataset.eventId = event.event_id;
-            card.style.opacity = '0';
-            card.style.transform = 'scale(0.8)';
-
-            const imgSrc = event.banner_image ? event.banner_image : 'path/to/default/image.jpg';
-
-            card.innerHTML = `
-            <img class="eventCardImage" src="${imgSrc}" alt="Event Image">
-            <div class="eventCardInfo">
-                <h2>${event.event_name}</h2>
-                <p>${event.location}</p><br>
-                <a href="Event.php?event_id=${event.event_id}" class="button">View</a>
-            </div>
-        `;
-
-            return card;
-        }
-
-        function filterEvents(searchTerm) {
-            if (searchTerm.trim() === '') {
-                fetchEvents('');
-            } else {
-                fetchEvents(searchTerm);
-            }
-        }
-
-        searchInput.addEventListener('input', function() {
-            clearTimeout(debounceTimer);
-            debounceTimer = setTimeout(() => {
-                filterEvents(this.value);
-            }, 300);
-        });
-
-
-        fetchEvents('');
-    });
+   
     document.addEventListener('DOMContentLoaded', function() {
         const searchInput = document.getElementById('searchMember');
         const userCardContainer = document.getElementById('memberCardContainer');
@@ -943,5 +883,5 @@
         fetchMembers('');
     });
 </script>
-
+<script src="../js/search_event.js"></script>
 </html>

@@ -5,9 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Booking And Ticket Information</title>
     <link rel="stylesheet" href="../css/booking_information.css">
+    <link rel="stylesheet" href="../css/color.css">
 </head>
 <body>
-    <div class="container">
+    <div class="Booking-container">
         <?php
 
 

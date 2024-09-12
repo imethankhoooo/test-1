@@ -191,6 +191,7 @@ $conn->close();
     <title>Edit Event</title>
     <link rel="stylesheet" href="../css/eventPage.css">
     <link rel="stylesheet" href="../css/edit_event.css">
+    <link rel="stylesheet" href="../css/color.css">
    
 </head>
 <body>

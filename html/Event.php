@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?php echo htmlspecialchars($event_name); ?></title>
     <link rel="stylesheet" href="../css/eventPage.css">
+    <link rel="stylesheet" href="../css/color.css">
 </head>
 <body>
     <?php

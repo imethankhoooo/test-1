@@ -28,7 +28,7 @@ $ticket_ids = [];
 
 
 
-if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['num_tickets'])&& isset($_POST['card_number'])) {
+if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['num_tickets'])) {
 
     $num_tickets = (int)$_POST['num_tickets'];
     $total_price = $event['fee'] * $num_tickets;
@@ -36,7 +36,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['num_tickets'])&& isset
 
 
     $conn->begin_transaction();
-
+if(isset($_POST['card_number'])){
     try {
 
         $sql = "INSERT INTO bookinginformation (event_id, member_id, paymentAmount, booking_date) VALUES (?, ?,?, CURRENT_TIMESTAMP)";
@@ -80,6 +80,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['num_tickets'])&& isset
         }
     }
 }
+}
 
 ?>
 
@@ -90,6 +91,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['num_tickets'])&& isset
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Payment for <?php echo htmlspecialchars($event['event_name']); ?></title>
     <link rel="stylesheet" href="../css/payment.css">
+    <link rel="stylesheet" href="../css/color.css">
 </head>
 <body>
     <header class="header">
@@ -118,7 +120,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['num_tickets'])&& isset
                 <form method="post" action="payment.php?event_id=<?php echo "$event_id "?>">
                     <div class="form-group">
                         <label for="num_tickets">Number of Tickets:</label>
-                        <input type="number" id="num_tickets" name="num_tickets" required min="1" value="1">
+                        <input type="number" id="num_tickets" name="num_tickets" required min="1" value="<?php echo htmlspecialchars(($num_tickets))?>" disabled>
                     </div>
                     <div class="form-group">
                         <label for="card_number">Card Number:</label>

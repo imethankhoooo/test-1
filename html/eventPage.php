@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="../css/page.css">
     <link rel="stylesheet" href="../css/addEventPage.css">
     <link rel="stylesheet" href="../css/page3.css">
-        
+    <link rel="stylesheet" href="../css/color.css">
     </head>
     <body>
     <?php
