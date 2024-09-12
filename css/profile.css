@@ -2,7 +2,16 @@
     display: flex;
     flex-direction: column;
     background: linear-gradient(135deg, #e2e2e2, #ffffff);
-    /* Soft gradient background */
+    animation: fadeIn 1s ease-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
 }
 
 /* First Section: Profile Image and Personal Information */
@@ -15,9 +24,19 @@
     background-size: cover;
     background-position: center;
     width: 100%;
+    animation: slideInLeft 1s ease-out;
 }
 
-
+@keyframes slideInLeft {
+    from {
+        transform: translateX(-100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
 
 .profileAside {
     width: 30%;
@@ -60,13 +79,13 @@
     height: 200px;
     object-fit: cover;
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out, border-color 0.3s ease;
 }
 
 .profileImg:hover {
-    transform: scale(1.1);
-    /* Slight zoom effect on hover */
-    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.3);
+    transform: scale(1.15);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+    border-color: var(--accent-color);
 }
 
 .profileUsername {
@@ -78,19 +97,30 @@
 }
 
 /* Second Section: Address, Bio, Social Media, Experience */
-/* Second Section: Dark Purple Vibrant Design */
 .SecondSection {
-    background: var(--card-color); /* Dark muted purple background */
+    background: var(--card-color);
     border: none;
     padding: 40px;
-    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2); /* Pronounced shadow */
-    color: var(--text-color); /* Light purple-gray text color */
-    transition: transform 0.4s ease, box-shadow 0.4s ease; /* Smooth hover effect */
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
+    color: var(--text-color);
+    transition: transform 0.4s ease, box-shadow 0.4s ease, background-color 0.4s ease;
+    animation: fadeInScale 1s ease-out;
+}
+
+@keyframes fadeInScale {
+    from {
+        transform: scale(0.8);
+        opacity: 0;
+    }
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
 }
 
 .SecondSection:hover {
-    transform: scale(1.02); /* Subtle zoom effect on hover */
-    box-shadow: 0 16px 32px rgba(0, 0, 0, 0.3); /* Deeper shadow on hover */
+    transform: scale(1.05);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
 }
 
 /* Enhanced Tabs inside SecondSection */
@@ -107,66 +137,67 @@
     cursor: pointer;
     padding: 12px 24px;
     margin-right: 10px;
-    background: rgba(255, 255, 255, 0.1); /* Transparent background for inactive tabs */
-    color: var(--text-color); /* Light purple-gray color */
+    background: rgba(255, 255, 255, 0.1);
+    color: var(--text-color);
     border-radius: 8px;
-    transition: background-color 0.3s ease, transform 0.3s ease;
+    transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .tabs ul li:hover {
-    background: rgba(255, 255, 255, 0.2); /* Lighter shade on hover */
-    transform: translateY(-2px); /* Lift effect on hover */
+    background: rgba(255, 255, 255, 0.2);
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
 }
 
 .tabs ul li.active {
-    background: var(--accent-color); /* Light blue for the active tab */
+    background: var(--accent-color);
     color: white;
 }
 
 .tabs ul li.active i {
-    color: white; /* Adjusted icon color */
+    color: white;
 }
 
 /* Profile Card inside the SecondSection */
 .profileCard {
-    background: rgba(255, 255, 255, 0.1); /* Transparent card background */
+    background: rgba(255, 255, 255, 0.1);
     border-radius: 10px;
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
     padding: 20px;
-    transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+    transition: transform 0.4s ease, box-shadow 0.4s ease, background-color 0.4s ease;
 }
 
 .profileCard:hover {
-    transform: translateY(-10px); /* Noticeable lift on hover */
-    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.2); /* Enhanced shadow on hover */
-    background-color: rgba(255, 255, 255, 0.2); /* Light up card on hover */
+    transform: translateY(-15px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+    background-color: rgba(255, 255, 255, 0.25);
 }
 
 .profileCard h2 {
     margin-bottom: 20px;
-    color: #ffffff;
+    color: var(--text-color);
     font-size: 1.8rem;
-    border-bottom: 2px solid #ffffff; /* White underline for contrast */
+    border-bottom: 2px solid var(--text-color);
     padding-bottom: 10px;
     font-weight: 700;
 }
 
 .profileCard p,
 .profileCard ul {
-    color: #d0d0e1; /* Consistent light purple-gray text color */
+    color: #d0d0e1;
     margin: 10px 0;
     line-height: 1.6;
 }
 
 .profileCard a.profileLink {
-    color: var(--accent-color); /* Use light blue for links */
+    color: var(--accent-color);
     text-decoration: none;
     font-weight: 600;
     transition: color 0.3s ease;
 }
 
 .profileCard a.profileLink:hover {
-    color: #ffffff; /* White on hover for contrast */
+    color: #ffffff;
     text-decoration: underline;
 }
 
@@ -179,29 +210,28 @@
 .profileList li {
     margin: 8px 0;
     font-size: 1rem;
-    color: #d0d0e1; /* Consistent text color */
+    color: #d0d0e1;
 }
 
 .editButtonContainer {
     margin-top: 20px;
-    text-align: center; /* Center the button */
+    text-align: center;
 }
 
 .editButton {
     display: inline-block;
-    background-color: var(--accent-color); /* Button color */
-    color: white; /* Text color */
-    padding: 10px 20px; /* Padding for the button */
-    border-radius: 5px; /* Rounded corners */
-    text-decoration: none; /* Remove underline */
-    font-size: 1rem; /* Font size */
-    font-weight: bold; /* Font weight */
-    transition: background-color 0.3s ease, transform 0.3s ease; /* Smooth transitions */
+    background-color: var(--accent-color);
+    color: var(--text-color);
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-size: 1rem;
+    font-weight: bold;
+    transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .editButton:hover {
-    background-color: #3d4cbb; /* Darker shade on hover */
-    transform: scale(1.05); /* Slight zoom effect */
+    background-color: #3d4cbb;
+    transform: scale(1.1);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
 }
-
-
