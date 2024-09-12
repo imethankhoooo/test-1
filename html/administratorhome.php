@@ -236,9 +236,9 @@
             <div class="stats-container">
                 <?php
                 $stats = [
-                    ['Total Members', $totalMembers, '../Img/person-outline.svg'],
-                    ['Admin Members', $adminMembers, '../Img/person-circle-outline.svg'],
-                    ['Total Events', $totalEvents, '../Img/calendar-clear-outline.svg']
+                    ['Total Members', $totalMembers, '../Img/person-outline.png'],
+                    ['Admin Members', $adminMembers, '../Img/person-circle-outline.png'],
+                    ['Total Events', $totalEvents, '../Img/calendar-clear-outline.png']
                 ];
 
                 foreach ($stats as $stat) {
@@ -290,7 +290,7 @@
                     echo "<div class='event-card'>";
                     echo "<h3>{$event['event_name']}</h3>";
                     echo "<div class='event-info'><img src='../Img/calendar-clear-outline.svg'>{$event['event_date']}</div>";
-                    echo "<div class='event-info'><img src='../Img/time-outline.svg'>{$event['start_time']}</div>";
+                    echo "<div class='event-info'><img src='../Img/time-outline.png'>{$event['start_time']}</div>";
                     echo "</div>";
                 }
                 ?>
