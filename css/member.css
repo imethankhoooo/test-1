@@ -1,69 +1,122 @@
-
-.profile-container {
-    background-color: white;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0,0,0,0.1);
-    padding: 30px;
+body {
+    font-family: 'Arial', sans-serif;
+    line-height: 1.6;
+    color: var(--text-color);
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: var(--background-color);
 }
+    
+.profile-container {
+    background-color: var(--card-color);
+    border-radius: 8px;
+    box-shadow: 0 0 10px var(--shadow-color);
+    padding: 30px;
+    transition: transform 0.3s ease;
+}
+
+.profile-container:hover {
+    transform: translateY(-5px);
+}
+
 .profile-header {
     text-align: center;
     margin-bottom: 30px;
 }
-.profile-container  .avatar {
+
+.profile-container .avatar {
     width: 150px;
     height: 150px;
     border-radius: 50%;
     object-fit: cover;
     margin-bottom: 20px;
-    border: #2c3e50 2px;
+    border: 2px solid var(--accent-color);
+    transition: transform 0.3s ease;
 }
+
+.profile-container .avatar:hover {
+    transform: scale(1.05);
+}
+
 .profile-container h1 {
-    color: #2c3e50;
+    color: var(--text-color);
     margin-bottom: 10px;
 }
+
+p{
+    color: var(--text-color);
+}
 .username {
-    color: #7f8c8d;
+    color: var(--primary-color);
     font-size: 1.2em;
 }
+
 .profile-details {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     gap: 20px;
 }
+
 .detail-item {
     margin-bottom: 15px;
+    transition: background-color 0.3s ease;
+    padding: 10px;
+    border-radius: 5px;
 }
+
+.detail-item:hover {
+    background-color: var(--background-color);
+}
+
 .detail-label {
     font-weight: bold;
-    color: #2c3e50;
+    color: var(--accent-color);
     margin-bottom: 5px;
 }
+
 .detail-value {
-    color: #34495e;
+    color: var(--text-color);
 }
+
 .bio, .experience, .social-media {
     margin-top: 30px;
 }
+
 .bio h2, .experience h2, .social-media h2 {
-    color: #2c3e50;
-    border-bottom: 2px solid #ecf0f1;
+    color: var(--accent-color);
+    border-bottom: 2px solid var(--primary-color);
     padding-bottom: 10px;
     margin-bottom: 15px;
 }
+
 .delete-button {
-    background-color: #e74c3c;
-    color: white;
+    background-color: var(--secondary-color);
+    color: var(--text-color);
     border: none;
     padding: 10px 20px;
     border-radius: 5px;
     cursor: pointer;
     font-size: 16px;
-    transition: background-color 0.3s;
+    transition: background-color 0.3s, transform 0.2s;
 }
+
 .delete-button:hover {
-    background-color: #c0392b;
+    background-color: var(--accent-color);
+    transform: scale(1.05);
 }
+
 .button-container {
     text-align: center;
     margin-top: 20px;
+}
+
+/* Add a subtle animation to the profile container */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.profile-container {
+    animation: fadeIn 1s ease-out;
 }

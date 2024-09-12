@@ -5,6 +5,7 @@
     --card-color: #1A202C;
     --text-color: #F7FAFC;
     --accent-color: #AB6D03;
+    --darkaccent-color:#9e6700cf;
     --gradient: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
     --shadow-color: rgba(0, 0, 0, 0.3);
 }

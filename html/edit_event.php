@@ -197,7 +197,7 @@ $conn->close();
 <body>
     <header class="header">
         <nav class="navbar">
-            <a href="home.php" class="logo">First Fitness</a>
+            <a href="administratorhome.php" class="logo">First Fitness</a>
             <ul class="nav-menu">
                 <li><a href="administratorhome.php">Home</a></li>
                 <li><a href="event.php?event_id=<?php echo $event_id; ?>">Back to Event</a></li>

@@ -135,6 +135,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['num_tickets'])) {
                         <label for="cvv">CVV:</label>
                         <input type="text" id="cvv" name="cvv" required placeholder="123">
                     </div>
+                    <input type="hidden" id="num_tickets" name="num_tickets" required min="1" value="<?php echo htmlspecialchars(($num_tickets))?>">
                     <button type="submit" class="submit-btn">Pay Now</button>
                 </form>
             </div>

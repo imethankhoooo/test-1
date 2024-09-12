@@ -114,7 +114,7 @@ body {
 }
 
 .cta-button:hover {
-    background-color: #9e6600; /* Darker shade of accent color */
+    background-color: var(--darkaccent-color); /* Darker shade of accent color */
     transform: translateY(-2px);
 }
 

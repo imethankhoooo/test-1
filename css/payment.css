@@ -1,4 +1,10 @@
-
+:root {
+    --ticket-bg: #1a1a1a;
+    --ticket-text: #ffffff;
+    --ticket-gold: #d4af37;
+    --ticket-gold-light: #f4e6a9;
+    --ticket-shadow: rgba(212, 175, 55, 0.3);
+}
 
 body {
     font-family: 'Poppins', sans-serif;
@@ -162,12 +168,12 @@ main {
 }
 
 .ticket {
-    background-color: var(--card-color);
-    border: none;
-    border-radius: 8px;
-    width: 650px;
-    height: 200px;
-    box-shadow: 0 4px 8px var(--shadow-color);
+    background: linear-gradient(145deg, var(--ticket-bg), #2a2a2a);
+    border: 2px solid var(--ticket-gold);
+    border-radius: 15px;
+    width: 700px;
+    height: 250px;
+    box-shadow: 0 10px 20px var(--ticket-shadow);
     display: flex;
     position: relative;
     margin-bottom: 2rem;
@@ -176,16 +182,16 @@ main {
 
 .ticket-left {
     width: 75%;
-    padding: 20px;
-    background: var(--gradient);
+    padding: 25px;
+    background: linear-gradient(135deg, rgba(26,26,26,0.9), rgba(42,42,42,0.9));
     position: relative;
-    border-right: 1px dashed var(--text-color);
+    border-right: 1px dashed var(--ticket-gold);
 }
 
 .ticket-right {
     width: 25%;
-    background-color: var(--secondary-color);
-    color: var(--text-color);
+    background: linear-gradient(135deg, var(--ticket-gold), var(--ticket-gold-light));
+    color: var(--ticket-bg);
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -195,69 +201,102 @@ main {
 }
 
 .ticket-event-name {
-    font-size: 1.8rem;
+    font-size: 2rem;
     font-weight: bold;
-    color: var(--text-color);
-    margin-bottom: 10px;
+    color: var(--ticket-gold);
+    margin-bottom: 15px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.5);
 }
 
 .ticket-info {
-    font-size: 1rem;
-    color: var(--text-color);
-    margin-bottom: 8px;
+    font-size: 1.1rem;
+    color: var(--ticket-text);
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
 }
 
 .ticket-info strong {
     display: inline-block;
-    min-width: 80px;
+    min-width: 100px;
+    color: var(--ticket-gold-light);
 }
 
 .ticket-number {
-    font-size: 2rem;
+    font-size: 2.5rem;
     font-weight: bold;
-    margin-bottom: 10px;
+    margin-bottom: 15px;
+    color: var(--ticket-bg);
+    text-shadow: 0 1px 2px rgba(255,255,255,0.3);
 }
 
 .ticket-price {
-    font-size: 1.5rem;
+    font-size: 1.8rem;
     font-weight: bold;
+    color: var(--ticket-bg);
+    text-shadow: 0 1px 2px rgba(255,255,255,0.3);
 }
 
 .ticket::before, .ticket::after {
     content: '';
     position: absolute;
-    width: 20px;
-    height: 20px;
+    width: 40px;
+    height: 40px;
     background-color: var(--background-color);
     border-radius: 50%;
-    box-shadow: 0 0 0 1px var(--shadow-color);
+    box-shadow: 0 0 0 2px var(--ticket-gold);
 }
 
 .ticket::before {
     top: 50%;
-    left: -10px;
+    left: -20px;
     transform: translateY(-50%);
 }
 
 .ticket::after {
     top: 50%;
-    right: -10px;
+    right: -20px;
     transform: translateY(-50%);
 }
 
-.ticket-divider {
+/* 添加装饰性边框 */
+.ticket-left::before, .ticket-right::before {
+    content: '';
     position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 75%;
-    width: 4px;
-    background-image: linear-gradient(to bottom, var(--secondary-color) 50%, transparent 50%);
-    background-size: 4px 20px;
-    background-repeat: repeat-y;
+    top: 10px;
+    bottom: 10px;
+    left: 10px;
+    right: 10px;
+    border: 1px solid var(--ticket-gold);
+    border-radius: 10px;
+    pointer-events: none;
+}
+
+/* 添加金色装饰元素 */
+.ticket-left::after {
+    content: '\2605'; /* 星形Unicode字符 */
+    font-size: 100px;
+    color: rgba(212, 175, 55, 0.1);
+    position: absolute;
+    bottom: 10px;
+    right: 20px;
+    transform: rotate(-15deg);
 }
 
 @media (max-width: 768px) {
     .ticket {
         width: 100%;
+        height: auto;
+        flex-direction: column;
+    }
+    
+    .ticket-left, .ticket-right {
+        width: 100%;
+    }
+    
+    .ticket-right {
+        border-top: 1px dashed var(--ticket-gold);
     }
 }

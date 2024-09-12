@@ -1,25 +1,22 @@
 
-
-
-
 .adminPage5 {
-
     margin: 2rem auto;
     padding: 2rem;
-    background: linear-gradient(135deg, #2A2A3C 0%, #1E1E2E 100%);
+    background: var(--background-color);
     border-radius: 20px;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
     transform-style: preserve-3d;
     perspective: 1000px;
     overflow-x: hidden;
+    color: var(--text-color);
 }
 
 .adminPage5 h1 {
     font-size: 3rem;
     text-align: center;
     margin-bottom: 2rem;
-    color: var(--primary-color);
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    color: var(--accent-color);
+    text-shadow: 2px 2px 4px var(--shadow-color);
     animation: titleAnimation 1.5s ease-out;
 }
 
@@ -32,15 +29,16 @@
     margin-bottom: 2rem;
     transform: translateZ(0);
     transition: all 0.3s ease;
+    background-color: var(--card-color);
+    padding: 1rem;
+    border-radius: 10px;
 }
-
-
 
 .adminPage5 label {
     display: block;
     margin-bottom: 0.5rem;
     font-weight: 600;
-    color: var(--primary-color);
+    color: var(--secondary-color);
     transform: translateZ(5px);
 }
 
@@ -49,12 +47,12 @@
 .adminPage5 input[type="date"],
 .adminPage5 input[type="time"],
 .adminPage5 input[type="tel"],
-.adminPage5 textarea{
+.adminPage5 textarea {
     width: 100%;
     padding: 1rem;
-    border: none;
+    border: 1px solid var(--darkaccent-color);
     border-radius: 10px;
-    background-color: var(--input-background);
+    background-color: var(--card-color);
     color: var(--text-color);
     font-size: 1rem;
     transition: all 0.3s ease;
@@ -62,9 +60,9 @@
 }
 
 .adminPage5 input:focus,
-.adminPage5 textarea:focus{
+.adminPage5 textarea:focus {
     outline: none;
-    box-shadow: 0 0 0 3px var(--primary-color), inset 0 2px 4px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 0 0 3px var(--accent-color), inset 0 2px 4px var(--shadow-color);
     transform: translateZ(30px);
 }
 
@@ -76,7 +74,7 @@
 .image-preview {
     width: 250px;
     height: 250px;
-    border: 3px dashed var(--primary-color);
+    border: 3px dashed var(--secondary-color);
     border-radius: 50%;
     margin: 0 auto;
     display: flex;
@@ -95,7 +93,7 @@
 }
 
 .image-preview:hover {
-    border-color: var(--secondary-color);
+    border-color: var(--accent-color);
     animation: none;
     transform: scale(1.1);
 }
@@ -115,22 +113,23 @@
 }
 
 .thing-item {
-    background-color: var(--card-background);
+    background-color: var(--card-color);
     padding: 1.5rem;
     border-radius: 15px;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
     transition: all 0.3s ease;
     transform: translateZ(0);
+    border: 1px solid var(--darkaccent-color);
 }
 
 .thing-item:hover {
-    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 15px 30px var(--shadow-color);
 }
 
 .thing-image {
     width: 120px;
     height: 120px;
-    border: 2px dashed var(--primary-color);
+    border: 2px dashed var(--accent-color);
     border-radius: 15px;
     margin: 0 auto 1rem;
     display: flex;
@@ -147,7 +146,7 @@
 }
 
 .adminPage5 button {
-    background-color: var(--primary-color);
+    background-color: var(--secondary-color);
     color: var(--text-color);
     padding: 1rem 2rem;
     border: none;
@@ -162,7 +161,7 @@
 }
 
 .adminPage5 button:hover {
-    background-color: var(--secondary-color);
+    background-color: var(--primary-color);
     transform: translateY(-5px);
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
 }
@@ -174,15 +173,15 @@
 }
 
 .submit-btn {
-    background-color: var(--secondary-color);
+    background-color: var(--accent-color);
 }
 
 .reset-btn {
-    background-color: #FF6B6B;
+    background-color: var(--primary-color);
 }
 
 .delete-btn {
-    background-color: #FF4136;
+    background-color: var(--secondary-color);
     padding: 0.5rem;
     border-radius: 50%;
     width: 30px;
@@ -234,12 +233,9 @@
 }
 
 .form-group {
-
     transform: translateY(20px);
     transition: opacity 0.5s ease, transform 0.5s ease;
 }
-
-
 
 .error-message {
     color: #FF4136;
@@ -280,4 +276,4 @@
 @keyframes spin {
     0% { transform: rotate(0deg); }
     100% { transform: rotate(360deg); }
-}   
+}

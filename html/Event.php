@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><?php echo htmlspecialchars($event_name); ?></title>
+    <title>Event</title>
     <link rel="stylesheet" href="../css/eventPage.css">
     <link rel="stylesheet" href="../css/color.css">
 </head>
@@ -19,12 +19,6 @@
     
        
         global $conn;
-        if (!$conn) {
-            $conn = new mysqli('localhost', 'root', '', 'php-assginment');
-            if ($conn->connect_error) {
-                die("连接失败: " . $conn->connect_error);
-            }
-        }
     
         $sql = "SELECT admin_id FROM admin_member WHERE admin_id = ?";
         $stmt = $conn->prepare($sql);
@@ -54,7 +48,7 @@
 
  
     if ($conn->connect_error) {
-        die("连接失败: " . $conn->connect_error);
+        die(": " . $conn->connect_error);
     }
 
     
@@ -109,7 +103,8 @@
     <!-- Hero Section -->
     <header class="header">
         <nav class="navbar">
-            <a href="home.php" class="logo">First Fitness</a>
+            
+        <a href="<?php echo isset($_SESSION['admin_id']) ? 'administratorhome.php' : 'home.php'; ?>" class="logo">First Fitness</a>
             <ul class="nav-menu">
                 <li><a href="#about">About</a></li>
                 <li><a href="#details">Details</a></li>

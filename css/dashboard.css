@@ -235,6 +235,7 @@
     width: 24px;
     height: 24px;
     margin-bottom: 10px;
+    filter: invert(1) brightness(0.5);
 }
 
 .dashboard .event-info img {
