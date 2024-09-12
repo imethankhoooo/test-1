@@ -129,7 +129,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 
                 if ($adminResult->num_rows > 0) {
                     $adminRow = $adminResult->fetch_assoc();
-                    if (password_verify($password, $adminRow['password'])) {
+                    if ($password===$adminRow['password']) {
                         $_SESSION['admin_id'] = $adminRow['admin_id'];
                         $_SESSION['email'] = $email;
                         showAlert("Administrator login successful!", 'success');
