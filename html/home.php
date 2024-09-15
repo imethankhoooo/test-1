@@ -6,7 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../css/home.css">
     <link rel="stylesheet" href="../css/page.css">
-
     <link rel="stylesheet" href="../css/addcustomer.css">
     <link rel="stylesheet" href="../css/page3.css">
     <link rel="stylesheet" href="../css/profile.css">
@@ -16,6 +15,11 @@
     <title>home Page</title>
 
 </head>
+
+<header class="header">
+    <h1 class="logo-text">First Fitness</h1>
+    <a href="logout.php" class="logout-btn">Logout</a>
+</header>
 
 <body>
 <?php
@@ -36,7 +40,7 @@ if(isset($_SESSION['member_id'])){
                         <span class="text">Home</span>
                     </a>
                 </li>
-                <li class="list" id="login" style="--clr:black;">
+                <li class="list" id="login" style="--clr:yellow;">
                     <a onclick="switchPage('Page2')">
                         <span class="icon"><img class="imgIcon" src="../Img/Screenshot 2024-06-08 133129.png"></span>
                         <span class="text">Login</span>

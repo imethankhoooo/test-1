@@ -15,6 +15,11 @@
 
 </head>
 
+<header class="header">
+    <h1 class="logo-text">First Fitness</h1>
+    <a href="logout.php" class="logout-btn">Logout</a>
+</header>
+
 <body>
 
     <?php
@@ -105,7 +110,7 @@
                         <span class="text">Home</span>
                     </a>
                 </li>
-                <li class="list" style="--clr:black;">
+                <li class="list" style="--clr:yellow;">
                     <a onclick="switchPage('adminPage2')">
                         <span class="icon"><img class="imgIcon" src="../Img/Screenshot 2024-06-08 133129.png"></span>
                         <span class="text">Member Information</span>

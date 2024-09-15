@@ -113,7 +113,6 @@ $conn->close();
   <div class="header-content">
     <div class="left-content">
       <a href="home.php" class="logo">First Fitness</a>
-      <a href="logout.php" class="logout-btn">Logout</a>
     </div>
     <a href="javascript:history.back()" class="back-btn">Go Back</a>
   </div>
