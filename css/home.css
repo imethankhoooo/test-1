@@ -137,3 +137,106 @@
     background-color: rgba(100,100,100,0.4);
     transition: 0.5s;
 }
+
+footer {
+    background-color: var(--card-color); /* Same color as header */
+    color: white;
+    height: 200px; /* Increase height */
+    width: 100%; /* Full width */
+    position: fixed; /* Fixed to stay at the bottom */
+    bottom: 0;
+    left: 0;
+    z-index: 10; /* Ensure footer is above navigation */
+    display: none; /* Initially hidden */
+    padding: 10px; /* Add padding for better spacing */
+    box-shadow: 0 -4px 10px rgba(0,0,0,0.3); /* Optional shadow for better visibility */
+
+}
+
+.footer-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 100%;
+    padding: 0 30px; /* Increase padding for larger footer */
+}
+
+
+/* Display footer only on Page5 */
+.Page.Page5 footer {
+    display: block;
+}
+
+.nav-section {
+    margin-left: 70px;
+    margin-bottom: 10px;
+}
+
+.footer-col hr {
+    border-left: 3px solid #808080;
+    height: 140px;
+    position: absolute;
+    margin-left: 20px;
+}
+
+.footer-col ul li {
+    margin-left: 40px;
+    list-style: none;
+    padding: 5px;
+}
+
+.footer-col ul li a {
+    color: #ffffff; /* Matches the footer text color */
+    text-decoration: none;
+    font-size: larger;
+    font-weight: bold;
+    margin-left: 10px;
+}
+
+.footer .logo img {
+    width: 100px;
+    height: 100px;
+    top: 0;
+}
+
+.subcribe-form {
+    padding: 20px;
+    margin-left: auto;
+    text-align: center;
+}
+
+.subcribe-form input {
+    padding: 10px;
+    width: 200px;
+    height: 50px;
+}
+
+.subcribe-form .ctn {
+    display: inline-block;
+    padding: 10px;
+    color: white; /* Matches the footer text color */
+    text-decoration: none;
+    margin-top: 10px;
+}
+
+.social {
+    display: flex;
+    justify-content: center;
+    margin-top: auto;
+}
+
+.social img {
+    background-color: #ffffff;
+    border-radius: 20px;
+    position: relative;
+    width: 45px;
+    height: 42px;
+    padding: 5px;
+    margin: 5px;
+}
+
+.copyright {
+    order: 200;
+    align-self: center;
+}
+

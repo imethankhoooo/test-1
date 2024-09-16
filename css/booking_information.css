@@ -1,3 +1,6 @@
+body{
+    background-color: var(--background-color);
+}
 
 .Page5 {
     font-family: Arial, sans-serif;
@@ -6,10 +9,10 @@
     background-color: var(--background-color);
     margin: 0;
     padding: 20px;
+    padding-bottom: 300px;
 }
 
 .Booking-container {
-
     background-color: var(--card-color);
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0,0,0,0.1);
