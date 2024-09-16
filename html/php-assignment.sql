@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- 主机： 127.0.0.1
--- 生成日期： 2024-09-10 05:30:04
+-- 生成日期： 2024-09-16 11:05:12
 -- 服务器版本： 10.4.32-MariaDB
 -- PHP 版本： 8.1.25
 
@@ -18,16 +18,16 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- 数据库： `php-assginment`
+-- 数据库： `php-assignment`
 --
 
 -- --------------------------------------------------------
 
 --
--- 表的结构 `admin_member`
+-- 表的结构 `admin`
 --
 
-CREATE TABLE `admin_member` (
+CREATE TABLE `admin` (
   `admin_id` int(11) NOT NULL,
   `username` varchar(255) NOT NULL,
   `password` varchar(255) NOT NULL,
@@ -37,10 +37,10 @@ CREATE TABLE `admin_member` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- 转存表中的数据 `admin_member`
+-- 转存表中的数据 `admin`
 --
 
-INSERT INTO `admin_member` (`admin_id`, `username`, `password`, `email`, `phone`, `created_at`) VALUES
+INSERT INTO `admin` (`admin_id`, `username`, `password`, `email`, `phone`, `created_at`) VALUES
 (10001, 'admin', '1234', 'admin01@gmail.com', '012-123-1234', '2024-09-07 05:27:10');
 
 -- --------------------------------------------------------
@@ -69,7 +69,32 @@ INSERT INTO `bookinginformation` (`booking_id`, `event_id`, `member_id`, `paymen
 (58, 35, 31, 36.36, '2024-09-07 05:32:38'),
 (59, 32, 31, 36.36, '2024-09-08 04:01:55'),
 (60, 32, 31, 24.24, '2024-09-09 05:01:31'),
-(61, 31, 31, 369, '2024-09-10 03:11:44');
+(61, 31, 31, 369, '2024-09-10 03:11:44'),
+(62, 31, 31, 0, '2024-09-12 12:23:01'),
+(63, 31, 31, 0, '2024-09-12 12:23:24'),
+(64, 31, 31, 0, '2024-09-12 12:25:29'),
+(65, 31, 31, 0, '2024-09-12 12:31:30'),
+(66, 31, 31, 0, '2024-09-12 12:32:10'),
+(67, 31, 31, 0, '2024-09-12 12:34:59'),
+(68, 31, 31, 0, '2024-09-12 12:37:29'),
+(69, 31, 31, 0, '2024-09-12 12:37:35'),
+(70, 31, 31, 0, '2024-09-12 12:38:01'),
+(71, 31, 31, 369, '2024-09-12 12:40:48'),
+(72, 31, 31, 369, '2024-09-12 12:42:07'),
+(73, 31, 31, 369, '2024-09-12 12:44:08'),
+(74, 31, 31, 369, '2024-09-12 12:45:28'),
+(75, 31, 31, 369, '2024-09-12 12:46:37'),
+(76, 31, 31, 369, '2024-09-12 12:47:42'),
+(77, 31, 31, 369, '2024-09-12 12:49:46'),
+(78, 31, 31, 369, '2024-09-12 12:50:23'),
+(79, 31, 31, 369, '2024-09-12 12:51:05'),
+(80, 31, 31, 369, '2024-09-12 12:51:17'),
+(81, 31, 31, 369, '2024-09-12 12:52:48'),
+(82, 31, 31, 369, '2024-09-12 12:53:01'),
+(83, 31, 31, 369, '2024-09-12 12:53:22'),
+(84, 31, 31, 369, '2024-09-12 13:00:07'),
+(85, 31, 31, 369, '2024-09-12 13:01:49'),
+(86, 32, 31, 36.36, '2024-09-12 13:34:07');
 
 -- --------------------------------------------------------
 
@@ -99,8 +124,8 @@ CREATE TABLE `event` (
 --
 
 INSERT INTO `event` (`event_id`, `event_name`, `event_date`, `start_time`, `end_time`, `location`, `description`, `banner_image`, `note`, `fee`, `seat`, `event_host`, `phone`, `created_at`) VALUES
-(31, 'ds', '2024-07-31', '03:24:00', '04:25:00', 'sdasdas', 'sdfdsf', 0x75706c6f6164732f3562633634663661643533313861303034623837333932645f776869746e65792d7065616b2d686f74656c2d7361756e612d737465616d2d726f6f6d2d616d656e69746965732d6261736563616d702d636c696d62696e672d67796d2d312e6a7067, 'sdasd', 123.00, 97, 'asda', '2312312', '2024-08-28 17:24:01'),
-(32, 'Push Up Competition', '2024-08-30', '10:52:00', '12:52:00', 'Your Home', 'This is a very good Competition', 0x75706c6f6164732f315f357079726474496c595670335a7677523843315972772e6a7067, 'Please bring your tower', 12.12, 95, 'ethan', '012-1212-1122', '2024-08-29 01:53:14'),
+(31, 'ds', '2024-07-31', '03:24:00', '04:25:00', 'sdasdas', 'sdfdsf', 0x75706c6f6164732f67796d206d616e2e6a7067, 'sdasdas\r\n', 123.00, 52, 'asda', '2312312', '2024-08-28 17:24:01'),
+(32, 'Push Up Competition', '2024-08-30', '10:52:00', '12:52:00', 'Your Home', 'This is a very good Competition', 0x75706c6f6164732f315f357079726474496c595670335a7677523843315972772e6a7067, 'Please bring your tower', 12.12, 92, 'ethan', '012-1212-1122', '2024-08-29 01:53:14'),
 (34, 'aoliga', '2024-08-31', '05:05:00', '06:03:00', 'qqqqq', 'oooooooo', 0x75706c6f6164732f3139313030332d6d616c65706572736f6e616c747261696e65722d73746f636b2e6a7067, 'qqqqq', 121.11, 0, 'asdas', '012-1212-1122', '2024-08-29 17:02:05'),
 (35, 'gohohooh', '2024-09-13', '02:48:00', '03:49:00', 'sdasda', 'sadasdas', 0x75706c6f6164732f3533333939373838332e6a7067, 'asdasdzxzxc', 12.12, 114, 'ethan', '012-1212-1122', '2024-09-05 16:47:05'),
 (36, 'asdasd', '2024-09-19', '02:00:00', '04:00:00', 'sdasdas', 'dasdasd', 0x75706c6f6164732f4261636b79617264706f6f6c2e6a7067, 'scasasc', 12.00, 122, 'asdas', '123 123 1234', '2024-09-08 16:25:53');
@@ -146,7 +171,8 @@ INSERT INTO `item` (`item_id`, `event_id`, `logo`, `description`) VALUES
 (98, 31, 0x75706c6f6164732f363664633466643231333062365f636172746f6f6e20332e706e67, 'bbbb'),
 (99, 31, 0x75706c6f6164732f363664633466643231336262355f636172746f6f6e20322e706e67, 'cccc'),
 (100, 36, 0x75706c6f6164732f363664653765393833396663345f636172746f6f6e20342e706e67, '22'),
-(101, 36, 0x75706c6f6164732f636865636b206c697374206c6f676f2e6a706567, '333');
+(101, 36, 0x75706c6f6164732f636865636b206c697374206c6f676f2e6a706567, '333'),
+(102, 31, 0x75706c6f6164732f363665326366663033653766335f636172746f6f6e20342e706e67, 'ssss');
 
 -- --------------------------------------------------------
 
@@ -166,15 +192,17 @@ CREATE TABLE `member` (
   `address` varchar(255) DEFAULT NULL,
   `bio` text DEFAULT NULL,
   `experience` varchar(255) DEFAULT NULL,
-  `socialmedia` text DEFAULT NULL
+  `socialMedia` text DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- 转存表中的数据 `member`
 --
 
-INSERT INTO `member` (`member_id`, `avatar`, `name`, `username`, `gender`, `email`, `password`, `phone`, `address`, `bio`, `experience`, `socialmedia`) VALUES
-(31, 0x2e2f75706c6f6164732f363664656531386437323835372e706e67, 'Ethan Khoo Tsui Ern', 'ethan', 'Male', 'ethan05@gmail.com', '1234', '012-123-1234', '25, Jalan Sultan Ismail, Bukit Bintang, 54021 Kuala Lumpur, Wilayah Persekutuan Kuala Lumpur, Malaysia', 'adsada', 'asdasda', 'sdasdas');
+INSERT INTO `member` (`member_id`, `avatar`, `name`, `username`, `gender`, `email`, `password`, `phone`, `address`, `bio`, `experience`, `socialMedia`) VALUES
+(31, 0x2e2f75706c6f6164732f363664656531386437323835372e706e67, 'Ethan Khoo Tsui Ern', 'ethan', 'Male', 'ethan05@gmail.com', '1234', '012-123-1234', '25, Jalan Sultan Ismail, Bukit Bintang, 54021 Kuala Lumpur, Wilayah Persekutuan Kuala Lumpur, Malaysia', 'adsada', 'asdasda', 'sdasdas'),
+(32, NULL, NULL, NULL, NULL, 'ethankhoo05@gmail.com', '12345', NULL, NULL, NULL, NULL, NULL),
+(34, NULL, NULL, NULL, NULL, 'ethankhoo06@gmail.com', '12345', NULL, NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -215,16 +243,64 @@ INSERT INTO `ticket` (`ticket_id`, `booking_id`, `event_id`, `issue_date`, `memb
 (62, 60, 32, '2024-09-09 05:01:31', 31),
 (63, 61, 31, '2024-09-10 03:11:44', 31),
 (64, 61, 31, '2024-09-10 03:11:44', 31),
-(65, 61, 31, '2024-09-10 03:11:44', 31);
+(65, 61, 31, '2024-09-10 03:11:44', 31),
+(66, 71, 31, '2024-09-12 12:40:48', 31),
+(67, 71, 31, '2024-09-12 12:40:48', 31),
+(68, 71, 31, '2024-09-12 12:40:48', 31),
+(69, 72, 31, '2024-09-12 12:42:07', 31),
+(70, 72, 31, '2024-09-12 12:42:07', 31),
+(71, 72, 31, '2024-09-12 12:42:07', 31),
+(72, 73, 31, '2024-09-12 12:44:08', 31),
+(73, 73, 31, '2024-09-12 12:44:08', 31),
+(74, 73, 31, '2024-09-12 12:44:08', 31),
+(75, 74, 31, '2024-09-12 12:45:28', 31),
+(76, 74, 31, '2024-09-12 12:45:28', 31),
+(77, 74, 31, '2024-09-12 12:45:28', 31),
+(78, 75, 31, '2024-09-12 12:46:37', 31),
+(79, 75, 31, '2024-09-12 12:46:37', 31),
+(80, 75, 31, '2024-09-12 12:46:37', 31),
+(81, 76, 31, '2024-09-12 12:47:42', 31),
+(82, 76, 31, '2024-09-12 12:47:42', 31),
+(83, 76, 31, '2024-09-12 12:47:42', 31),
+(84, 77, 31, '2024-09-12 12:49:46', 31),
+(85, 77, 31, '2024-09-12 12:49:46', 31),
+(86, 77, 31, '2024-09-12 12:49:46', 31),
+(87, 78, 31, '2024-09-12 12:50:23', 31),
+(88, 78, 31, '2024-09-12 12:50:23', 31),
+(89, 78, 31, '2024-09-12 12:50:23', 31),
+(90, 79, 31, '2024-09-12 12:51:05', 31),
+(91, 79, 31, '2024-09-12 12:51:05', 31),
+(92, 79, 31, '2024-09-12 12:51:05', 31),
+(93, 80, 31, '2024-09-12 12:51:17', 31),
+(94, 80, 31, '2024-09-12 12:51:17', 31),
+(95, 80, 31, '2024-09-12 12:51:17', 31),
+(96, 81, 31, '2024-09-12 12:52:48', 31),
+(97, 81, 31, '2024-09-12 12:52:48', 31),
+(98, 81, 31, '2024-09-12 12:52:48', 31),
+(99, 82, 31, '2024-09-12 12:53:01', 31),
+(100, 82, 31, '2024-09-12 12:53:01', 31),
+(101, 82, 31, '2024-09-12 12:53:01', 31),
+(102, 83, 31, '2024-09-12 12:53:22', 31),
+(103, 83, 31, '2024-09-12 12:53:22', 31),
+(104, 83, 31, '2024-09-12 12:53:22', 31),
+(105, 84, 31, '2024-09-12 13:00:07', 31),
+(106, 84, 31, '2024-09-12 13:00:07', 31),
+(107, 84, 31, '2024-09-12 13:00:07', 31),
+(108, 85, 31, '2024-09-12 13:01:49', 31),
+(109, 85, 31, '2024-09-12 13:01:49', 31),
+(110, 85, 31, '2024-09-12 13:01:49', 31),
+(111, 86, 32, '2024-09-12 13:34:07', 31),
+(112, 86, 32, '2024-09-12 13:34:07', 31),
+(113, 86, 32, '2024-09-12 13:34:07', 31);
 
 --
 -- 转储表的索引
 --
 
 --
--- 表的索引 `admin_member`
+-- 表的索引 `admin`
 --
-ALTER TABLE `admin_member`
+ALTER TABLE `admin`
   ADD PRIMARY KEY (`admin_id`),
   ADD UNIQUE KEY `username` (`username`),
   ADD UNIQUE KEY `email` (`email`);
@@ -271,16 +347,16 @@ ALTER TABLE `ticket`
 --
 
 --
--- 使用表AUTO_INCREMENT `admin_member`
+-- 使用表AUTO_INCREMENT `admin`
 --
-ALTER TABLE `admin_member`
+ALTER TABLE `admin`
   MODIFY `admin_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10002;
 
 --
 -- 使用表AUTO_INCREMENT `bookinginformation`
 --
 ALTER TABLE `bookinginformation`
-  MODIFY `booking_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=62;
+  MODIFY `booking_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=87;
 
 --
 -- 使用表AUTO_INCREMENT `event`
@@ -292,19 +368,19 @@ ALTER TABLE `event`
 -- 使用表AUTO_INCREMENT `item`
 --
 ALTER TABLE `item`
-  MODIFY `item_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=102;
+  MODIFY `item_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=103;
 
 --
 -- 使用表AUTO_INCREMENT `member`
 --
 ALTER TABLE `member`
-  MODIFY `member_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
+  MODIFY `member_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
 
 --
 -- 使用表AUTO_INCREMENT `ticket`
 --
 ALTER TABLE `ticket`
-  MODIFY `ticket_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=66;
+  MODIFY `ticket_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=114;
 
 --
 -- 限制导出的表

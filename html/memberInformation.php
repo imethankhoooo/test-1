@@ -60,7 +60,7 @@
                         <label>Address</label>
                     </div>
                     <div class="input-group">
-                        <input name="socialmedia" type="text">
+                        <input name="socialMedia" type="text">
                         <label>Social Media</label>
                     </div>
                     <button type="button" class="prev-btn" onclick="prevSection(2)">Previous</button>

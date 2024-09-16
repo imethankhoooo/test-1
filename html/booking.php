@@ -2,7 +2,7 @@
 session_start();
 
 
-$conn = new mysqli('localhost', 'root', '', 'php-assginment');
+$conn = new mysqli('localhost', 'root', '', 'php-assignment');
 
 if ($conn->connect_error) {
     die("connect error: " . $conn->connect_error);

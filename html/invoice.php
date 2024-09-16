@@ -2,7 +2,7 @@
 session_start();
 
 
-$conn = new mysqli('localhost', 'root', '', 'php-assginment');
+$conn = new mysqli('localhost', 'root', '', 'php-assignment');
 
 
 if ($conn->connect_error) {
@@ -14,7 +14,7 @@ $booking_id = isset($_GET['booking_id']) ? (int)$_GET['booking_id'] : 0;
 
 
 $sql = "SELECT b.*, e.event_name, e.event_date, e.start_time, e.end_time, e.fee, m.name as member_name, m.email 
-        FROM bookinginformation b 
+        FROM bookingInformation b 
         JOIN event e ON b.event_id = e.event_id 
         JOIN member m ON b.member_id = m.member_id 
         WHERE b.booking_id = ?";

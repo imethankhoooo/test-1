@@ -25,7 +25,7 @@
     <?php
     session_start();
 
-    $conn = new mysqli('localhost', 'root', '', 'php-assginment');
+    $conn = new mysqli('localhost', 'root', '', 'php-assignment');
 
     if (!isset($_SESSION['admin_id'])) {
         echo "<script>alert ('No session found. Please login first');window.location.href='login.php'; </script>";
@@ -145,7 +145,7 @@
 
     <div class="Page adminPage1 ">
         <?php
-        $conn = new mysqli("localhost", "root", "", "php-assginment");
+        $conn = new mysqli("localhost", "root", "", "php-assignment");
 
         if ($conn->connect_error) {
             die("Connection failed: " . $conn->connect_error);
@@ -176,7 +176,7 @@
         // Function to get admin count
         function getAdminCount($conn)
         {
-            $sql = "SELECT COUNT(*) as count FROM admin_member";
+            $sql = "SELECT COUNT(*) as count FROM admin ";
             $result = $conn->query($sql);
             if ($result->num_rows > 0) {
                 $row = $result->fetch_assoc();
@@ -354,7 +354,7 @@
     <div class="Page adminPage2 hidden">
         <?php
 
-        $conn = new mysqli('localhost', 'root', '', 'php-assginment');
+        $conn = new mysqli('localhost', 'root', '', 'php-assignment');
         if ($conn->connect_error) {
             die("connect error: " . $conn->connect_error);
         }
@@ -412,7 +412,7 @@
     <div class="Page adminPage3 hidden">
         <?php
 
-        $conn = new mysqli('localhost', 'root', '', 'php-assginment');
+        $conn = new mysqli('localhost', 'root', '', 'php-assignment');
 
 
 
@@ -504,7 +504,7 @@
         <main class="event-section">
             <div class="event-grid">
             <?php
-            $conn = new mysqli('localhost', 'root', '', 'php-assginment');
+            $conn = new mysqli('localhost', 'root', '', 'php-assignment');
             if ($conn->connect_error) {
                 die("Connection failed: " . $conn->connect_error);
             }

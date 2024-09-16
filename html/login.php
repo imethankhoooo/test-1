@@ -39,7 +39,7 @@
 <?php
 session_start();
 
-$conn = new mysqli('localhost', 'root', '', 'php-assginment');
+$conn = new mysqli('localhost', 'root', '', 'php-assignment');
 
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
@@ -122,7 +122,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     showAlert("Incorrect password.", 'error');
                 }
             } else {
-                $stmt = $conn->prepare("SELECT admin_id, password FROM admin_member WHERE email = ?");
+                $stmt = $conn->prepare("SELECT admin_id, password FROM admin WHERE email = ?");
                 $stmt->bind_param("s", $email);
                 $stmt->execute();
                 $adminResult = $stmt->get_result();

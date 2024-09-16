@@ -2,7 +2,7 @@
 session_start();
 
 
-$conn = new mysqli('localhost', 'root', '', 'php-assginment');
+$conn = new mysqli('localhost', 'root', '', 'php-assignment');
 
 
 if ($conn->connect_error) {
@@ -40,7 +40,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['num_tickets'])) {
     $conn->begin_transaction();
     try {
 
-        $sql = "INSERT INTO bookinginformation (event_id, member_id, paymentAmount, booking_date) VALUES (?, ?,?, CURRENT_TIMESTAMP)";
+        $sql = "INSERT INTO bookingInformation (event_id, member_id, paymentAmount, booking_date) VALUES (?, ?,?, CURRENT_TIMESTAMP)";
         $stmt = $conn->prepare($sql);
         $stmt->bind_param("iis", $event_id, $member_id, $total_price);
         $stmt->execute();

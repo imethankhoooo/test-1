@@ -5,7 +5,7 @@ if (!isset($_SESSION['member_id'])) {
     exit();
 }
 
-$conn = new mysqli('localhost', 'root', '', 'php-assginment');
+$conn = new mysqli('localhost', 'root', '', 'php-assignment');
 if ($conn->connect_error) {
     die("Connection error: " . $conn->connect_error);
 }
@@ -20,7 +20,7 @@ $messages = ['success' => '', 'error' => ''];
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Update profile information
-    $fields = ['name', 'username', 'gender', 'email', 'phone', 'address', 'bio', 'experience', 'socialmedia'];
+    $fields = ['name', 'username', 'gender', 'email', 'phone', 'address', 'bio', 'experience', 'socialMedia'];
     $params = array_map(fn($field) => $_POST[$field], $fields);
     $params[] = $member_id;
 
@@ -148,7 +148,7 @@ $conn->close();
                         'address' => 'Address',
                         'bio' => 'Bio',
                         'experience' => 'Work Experience',
-                        'socialmedia' => 'Social Media'
+                        'socialMedia' => 'Social Media'
                     ];
                     foreach ($fields as $field => $label):
                         if ($field === 'gender'): ?>

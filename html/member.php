@@ -1,6 +1,6 @@
 <?php
 
-$conn = new mysqli("localhost", "root", "", "php-assginment");
+$conn = new mysqli("localhost", "root", "", "php-assignment");
 
 
 if ($conn->connect_error) {
@@ -140,7 +140,7 @@ $conn->close();
         
         <div class="social-media">
             <h2>Sosial Media</h2>
-            <p><?= nl2br(htmlspecialchars($member['socialmedia'] ?? 'No social media information')) ?></p>
+            <p><?= nl2br(htmlspecialchars($member['socialMedia'] ?? 'No social media information')) ?></p>
         </div>
         
         <div class="button-container">

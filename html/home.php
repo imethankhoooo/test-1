@@ -79,7 +79,7 @@ if(isset($_SESSION['member_id'])){
     <?php
 
 
-$conn = new mysqli('localhost', 'root', '', 'php-assginment');
+$conn = new mysqli('localhost', 'root', '', 'php-assignment');
 
 
 if ($conn->connect_error) {
@@ -124,7 +124,7 @@ $conn->close();
     <div class="Page Page2 hidden">
     <?php
 
-$conn = new mysqli('localhost', 'root', '', 'php-assginment');
+$conn = new mysqli('localhost', 'root', '', 'php-assignment');
 
 
 if ($conn->connect_error) {
@@ -136,7 +136,7 @@ if (isset($_SESSION['member_id'])) {
     $member_id = $_SESSION['member_id'];
 
  
-    $sql = "SELECT avatar, name, username, gender, phone, address, bio, experience, socialmedia FROM member WHERE member_id = ?";
+    $sql = "SELECT avatar, name, username, gender, phone, address, bio, experience, socialMedia FROM member WHERE member_id = ?";
     $stmt = $conn->prepare($sql);
     $stmt->bind_param("i", $member_id);
     $stmt->execute();
@@ -157,7 +157,7 @@ if (isset($_SESSION['member_id'])) {
         $address = $member['address'];
         $bio = $member['bio'];
         $experience = $member['experience'];
-        $socialmedia = $member['socialmedia'];
+        $socialMedia = $member['socialMedia'];
     }
 } else {
  
@@ -208,7 +208,7 @@ if (isset($_SESSION['member_id'])) {
             <div class="infoSection">
                 <div class="profileCard">
                     <h2>Social Media</h2>
-                    <p><strong>LinkedIn:</strong> <a href="<?php echo htmlspecialchars($socialmedia); ?>" class="profileLink"><?php echo htmlspecialchars($socialmedia); ?></a></p>
+                    <p><strong>LinkedIn:</strong> <a href="<?php echo htmlspecialchars($socialMedia); ?>" class="profileLink"><?php echo htmlspecialchars($socialMedia); ?></a></p>
                 </div>
             </div>
             <div class="infoSection">
@@ -278,7 +278,7 @@ if (isset($_SESSION['member_id'])) {
         <main class="event-section">
             <div class="event-grid">
             <?php
-            $conn = new mysqli('localhost', 'root', '', 'php-assginment');
+            $conn = new mysqli('localhost', 'root', '', 'php-assignment');
             if ($conn->connect_error) {
                 die("Connection failed: " . $conn->connect_error);
             }
@@ -313,7 +313,7 @@ if (isset($_SESSION['member_id'])) {
         <?php
        
     
-        $conn = new mysqli("localhost", "root", "", "php-assginment");
+        $conn = new mysqli("localhost", "root", "", "php-assignment");
        
  
         if ($conn->connect_error) {

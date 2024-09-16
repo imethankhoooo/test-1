@@ -1,6 +1,6 @@
 <?php
 session_start();
-$conn = new mysqli("localhost", "root", "", "php-assginment");
+$conn = new mysqli("localhost", "root", "", "php-assignment");
 
 if ($conn->connect_error) {
     die("Connect Error: " . $conn->connect_error);
@@ -14,7 +14,7 @@ function isAdmin() {
     }
 
     global $conn;
-    $sql = "SELECT admin_id FROM admin_member WHERE admin_id = ?";
+    $sql = "SELECT admin_id FROM admin WHERE admin_id = ?";
     $stmt = $conn->prepare($sql);
 
     if ($stmt) {

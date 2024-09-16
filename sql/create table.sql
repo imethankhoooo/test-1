@@ -56,7 +56,7 @@ CREATE TABLE member (
     address VARCHAR(255) DEFAULT NULL,
     bio TEXT DEFAULT NULL,
     experience VARCHAR(255) DEFAULT NULL,
-    socialmedia TEXT DEFAULT NULL
+    socialMedia TEXT DEFAULT NULL
 );
 
 
