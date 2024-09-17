@@ -397,121 +397,107 @@
             ?>
         </div>
         <footer>
-            <div class="footer-container">
-
-
-                <div class="nav-section">
-                    <h2>Quick Link</h2>
-                </div>
-                <div class="footer-col">
-                    <ul>
-                        <hr>
-                        <li onclick="switchPage('Page1')"><a href="#">Home</a></li>
-                        <li onclick="switchPage('Page3')"><a href="#">Search Event</a></li>
-                    </ul>
-                </div>
-
-                <div class="footer-col">
-                    <ul>
-                        <li><a href="https://www.google.com/maps/dir/3.2362824,101.6918495//@3.2207987,101.7115947,13.1z?entry=ttu">Our Location</a></li>
-                    </ul>
-                </div>
-                <form class="subcribe-form">
-                    <div>
-                        <input type="text" placeholder="Your Email Address" />
-                        <br>
-                        <a href="" class="ctn">Subcribe Us</a>
-                    </div>
-                </form>
-
-                <div class="social">
-                    <a href="https://www.facebook.com/" target="_blank"><img src="../Img/facebook_icon.png" alt="meta" /></a>
-                    <a href="https://www.instagram.com/" target="_blank"><img src="../Img/instagram_icon.png" alt="instagram" /></a>
-                    <a href="https://www.youtube.com/" target="_blank"><img src="../Img/youtube_icon.png" alt="youtube" /></a>
-                    <a href="https://twitter.com/" target="_blank"><img src="../Img/twitter_icon.png" alt="twitter" /></a>
-                </div>
-                <div class="copyright">&copy; 2023 My Gym. All rights reserved.</div>
-            </div>
+    <div class="footer-container">
+        <div class="nav-section">
+            <h2>Quick Link</h2>
+        </div>
+        <div class="footer-col">
+            <ul>
+                <hr>
+                <li><a href="https://www.google.com/maps/dir/3.2362824,101.6918495//@3.2207987,101.7115947,13.1z?entry=ttu">First Vacation</a></li>
+                <li><a href="https://www.google.com/maps/dir/3.2362824,101.6918495//@3.2207987,101.7115947,13.1z?entry=ttu">Second Vacation</a></li>
+            </ul>
+        </div>
+        <form class="subcribe-form">
+            <input type="text" placeholder="Your Email Address" />
+            <a href="" class="ctn">Subscribe Us</a>
+        </form>
+        <div class="social">
+            <a href="https://www.facebook.com/" target="_blank"><img src="../Img/facebook_icon.png" alt="facebook" /></a>
+            <a href="https://www.instagram.com/" target="_blank"><img src="../Img/instagram_icon.png" alt="instagram" /></a>
+            <a href="https://www.youtube.com/" target="_blank"><img src="../Img/youtube_icon.png" alt="youtube" /></a>
+            <a href="https://twitter.com/" target="_blank"><img src="../Img/twitter_icon.png" alt="twitter" /></a>
+        </div>
+        <div class="copyright">&copy; 2024 My Gym. All rights reserved.</div>
     </div>
-
-    </footer>
+</footer>
 
     </div>
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-    const tabs = document.querySelectorAll('.SecondSection .tabs ul .tab');
-    const timelineSection = document.querySelector('.timelineSection');
-    const aboutSection = document.querySelector('.aboutSection');
+            const tabs = document.querySelectorAll('.SecondSection .tabs ul .tab');
+            const timelineSection = document.querySelector('.timelineSection');
+            const aboutSection = document.querySelector('.aboutSection');
 
-    function showSection(sectionToShow) {
-        timelineSection.style.display = 'none';
-        aboutSection.style.display = 'none';
-        sectionToShow.style.display = 'block';
-    }
+            function showSection(sectionToShow) {
+                timelineSection.style.display = 'none';
+                aboutSection.style.display = 'none';
+                sectionToShow.style.display = 'block';
+            }
 
-    function handleTabClick(clickedTab) {
-        tabs.forEach(tab => tab.classList.remove('active'));
-        clickedTab.classList.add('active');
+            function handleTabClick(clickedTab) {
+                tabs.forEach(tab => tab.classList.remove('active'));
+                clickedTab.classList.add('active');
 
-        if (clickedTab.classList.contains('timeline')) {
-            showSection(timelineSection);
-        } else if (clickedTab.classList.contains('about')) {
-            showSection(aboutSection);
-        }
-    }
+                if (clickedTab.classList.contains('timeline')) {
+                    showSection(timelineSection);
+                } else if (clickedTab.classList.contains('about')) {
+                    showSection(aboutSection);
+                }
+            }
 
-    tabs.forEach(tab => {
-        tab.addEventListener('click', function() {
-            handleTabClick(this);
+            tabs.forEach(tab => {
+                tab.addEventListener('click', function() {
+                    handleTabClick(this);
+                });
+            });
+
+            // Show the initially active section
+            const initialActiveTab = document.querySelector('.SecondSection .tabs ul .tab.active');
+            if (initialActiveTab) {
+                handleTabClick(initialActiveTab);
+            } else if (tabs.length > 0) {
+                // If no tab is initially active, activate the first tab
+                handleTabClick(tabs[0]);
+            }
         });
-    });
 
-    // Show the initially active section
-    const initialActiveTab = document.querySelector('.SecondSection .tabs ul .tab.active');
-    if (initialActiveTab) {
-        handleTabClick(initialActiveTab);
-    } else if (tabs.length > 0) {
-        // If no tab is initially active, activate the first tab
-        handleTabClick(tabs[0]);
-    }
-});
+        document.addEventListener('DOMContentLoaded', function() {
+            const footer = document.querySelector('footer');
+            const page5 = document.querySelector('.Page5');
 
-            document.addEventListener('DOMContentLoaded', function() {
-    const footer = document.querySelector('footer');
-    const page5 = document.querySelector('.Page5');
-
-    // Initially hide the footer
-    footer.style.display = 'none';
-
-    function checkFooterVisibility() {
-        // Check if Page5 is currently visible
-        if (page5.classList.contains('hidden')) {
+            // Initially hide the footer
             footer.style.display = 'none';
-            return;
-        }
 
-        const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-        const scrollHeight = page5.scrollHeight;
-        const clientHeight = document.documentElement.clientHeight;
+            function checkFooterVisibility() {
+                // Check if Page5 is currently visible
+                if (page5.classList.contains('hidden')) {
+                    footer.style.display = 'none';
+                    return;
+                }
 
-        // Check if the user has scrolled to the bottom of Page5
-        if (scrollTop + clientHeight >= scrollHeight - 10) {
-            footer.style.display = 'block'; // Show footer
-        } else {
-            footer.style.display = 'none'; // Hide footer
-        }
-    }
+                const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+                const scrollHeight = page5.scrollHeight;
+                const clientHeight = document.documentElement.clientHeight;
 
-    // Add scroll event listener
-    window.addEventListener('scroll', checkFooterVisibility);
+                // Check if the user has scrolled to the bottom of Page5
+                if (scrollTop + clientHeight >= scrollHeight - 10) {
+                    footer.style.display = 'block'; // Show footer
+                } else {
+                    footer.style.display = 'none'; // Hide footer
+                }
+            }
 
-    // Add event listener for page switches
-    document.addEventListener('pageSwitch', checkFooterVisibility);
+            // Add scroll event listener
+            window.addEventListener('scroll', checkFooterVisibility);
 
-    // Initial check
-    checkFooterVisibility();
-});
+            // Add event listener for page switches
+            document.addEventListener('pageSwitch', checkFooterVisibility);
+
+            // Initial check
+            checkFooterVisibility();
+        });
     </script>
 
 
