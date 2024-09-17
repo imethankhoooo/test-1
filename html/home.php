@@ -406,15 +406,14 @@
                 <div class="footer-col">
                     <ul>
                         <hr>
-                        <li> <a href="member.php">Profile</a></li>
-                        <li><a href="about.html">About Us</a></li>
+                        <li onclick="switchPage('Page1')"><a href="#">Home</a></li>
+                        <li onclick="switchPage('Page3')"><a href="#">Search Event</a></li>
                     </ul>
                 </div>
 
                 <div class="footer-col">
                     <ul>
-                        <li><a href="https://www.google.com/maps/dir/3.2362824,101.6918495//@3.2207987,101.7115947,13.1z?entry=ttu">Maps</a></li>
-                        <li><a href="">Shopping Cart</a></li>
+                        <li><a href="https://www.google.com/maps/dir/3.2362824,101.6918495//@3.2207987,101.7115947,13.1z?entry=ttu">Our Location</a></li>
                     </ul>
                 </div>
                 <form class="subcribe-form">
